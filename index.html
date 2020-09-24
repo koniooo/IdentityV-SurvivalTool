@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0"/>
 <title>第五人格サバイバルツール</title>
-<meta name="description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーにとって役立つさまざまな機能が揃ったツールです。焼き入れ効果や裏向きカードにも対応！">
+<meta name="description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツールです。焼き入れ効果や裏向きカードにも対応！">
 <meta property="og:url" content="https://koniooo.github.io/IdentityV-SurvivalTool/" />
 <meta property="og:title" content="第五人格サバイバルツール" /> 
 <meta property="og:type" content="website">
-<meta property="og:description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーにとって役立つさまざまな機能が揃ったツールです。" /> 
+<meta property="og:description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツールです。焼き入れ効果や裏向きカードにも対応！" /> 
 <meta property="og:image" content="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/card2.png" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@konio_tracy" />
@@ -264,7 +264,6 @@ $(function(){
 			
 			case 0:
 				document.getElementById("tap").play();
-				$("#presenceArea").removeClass("green").addClass("orange");
 				$("#pre1").show();
 				presence ++;
 				break;
@@ -284,8 +283,9 @@ $(function(){
 			case 3:
 				document.getElementById("tap").play();
 				document.getElementById("presenceSound").play();
-				$("#sence2").show()
-				;presence ++;
+				$("#presenceArea").removeClass("green").addClass("orange");
+				$("#sence2").show();
+				presence ++;
 				break;
 			
 			case 4:
@@ -510,7 +510,7 @@ $(function(){
                     
                 }
                 
-             }, 1000)
+             }, 1000);
 		
 		} else {
            
@@ -582,7 +582,7 @@ $(function(){
                     
                 }
                 
-             }, 1000)
+             }, 1000);
 		
 		} else {
            
@@ -666,7 +666,7 @@ $(function(){
 					
 					}
 					
-					}, 1000)
+					}, 1000);
 				
 				}
 			
@@ -730,7 +730,7 @@ $(function(){
 					
 					}
 					
-					}, 1000)
+					}, 1000);
 				
 				}
 			
@@ -786,7 +786,7 @@ $(function(){
 						$(".skillsArea").eq(p).removeClass("red").addClass("green");
 						$(".skills").eq(p).text($(".skills").eq(p).data("num"));
 					
-					}}, 1000)}
+					}}, 1000);}
 			
 			} else {              
 				
