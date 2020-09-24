@@ -31,11 +31,11 @@ body {
 }
 
 #startArea, #presenceArea, #trumpArea, #muteArea, #resetArea {
-	height: 15.5vh;
+	height: calc(15.5*var(--vh));
 }
 
 .toolsArea {
-	height: 31vh;
+	height: calc(31*var(--vh));
 }
 
 svg, img, #start, #quenchingText, #decodeText, #quenchingText2, .tools, #trump, #trumpAlert, #reset {
@@ -57,7 +57,7 @@ svg, img, #start, #quenchingText, #decodeText, #quenchingText2, .tools, #trump, 
 	position: relative;
 	float: left;
 	border-radius: 2vh;
-	margin: 1.4vh 0 0 2.5%;
+	margin: calc(1.4*var(--vh)) 0 0 2.5%;
 }
 
 .orange, .orangeStart, .decode , .detensionOrange {
