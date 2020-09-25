@@ -78,29 +78,29 @@ $(function(){
 			
 			$("#start").text(50);
 			
-            let nextS = 205;
+            let nextS = 202;
 			
 			quenchingTimer = setInterval(function(){
                 
                 nextS--;
                 
-                if (nextS > 155) {
+                if (nextS > 152) {
                     
-                    $("#start").text(nextS - 155);
+                    $("#start").text(nextS - 152);
                     
-                } else if (nextS === 155) {
+                } else if (nextS === 152) {
                     
                     $("#startArea").removeClass("orangeStart").addClass("redStart");
 					
                     $("#start").text("");
 					
-				} else if (nextS > 150) {
+				} else if (nextS > 147) {
 					
-				} else if (nextS === 150) {
+				} else if (nextS === 147) {
 					
                     $("#startArea").removeClass("redStart").addClass("decode");
 					
-					$("#start").text(150);
+					$("#start").text(147);
                 
                 } else if (nextS > 5) {
                     
@@ -620,9 +620,9 @@ $(function(){
                 
                 $("#blinkArea").removeClass("green");
 				
-				$("#teleport").text(Math.round($("#patroller").text() * 10 / 9 ));
+				$("#teleport").text(Math.floor($("#patroller").text() * 10 / 9 ));
                 
-                $("#blink").text(Math.round($("#patroller").text() * 5 / 3 ));
+                $("#blink").text(Math.floor($("#patroller").text() * 5 / 3 ));
 				
 				for (let p = 1; p < 3; p++) {
 					
@@ -684,9 +684,9 @@ $(function(){
                 
                 $("#blinkArea").removeClass("green");
                 
-                $("#patroller").text(Math.round($("#teleport").text() * 9 / 10 ));
+                $("#patroller").text(Math.floor($("#teleport").text() * 9 / 10 ));
                 
-                $("#blink").text(Math.round($("#teleport").text() * 3 / 2 ));
+                $("#blink").text(Math.floor($("#teleport").text() * 3 / 2 ));
 				
 				for (let p = 0; p < 3; p += 2) {
 					
@@ -739,14 +739,23 @@ $(function(){
 				document.getElementById("trumpSound").play();
 				
 				$("#trumpArea").removeClass("green").addClass("over");
+				
 				$("#trump").text("");
+				
 				$("#trumpAlert").text("");
+				
 				$("#patrollerArea").removeClass("green");
+				
                 $("#teleportArea").removeClass("green");
-                $("#patroller").text(Math.round($("#blink").text() * 3 / 5 ));
-                $("#teleport").text(Math.round($("#blink").text() * 2 / 3 ));
+				
+                $("#patroller").text(Math.floor($("#blink").text() * 3 / 5 ));
+				
+                $("#teleport").text(Math.floor($("#blink").text() * 2 / 3 ));
+				
 				clearInterval(skillTimer[2]);
+				
 				$("#blinkArea").removeClass("orange red").addClass("green");
+				
 				$("#blink").text(150);
 				
 				for (let p = 0; p < 2; p++) {
@@ -774,6 +783,7 @@ $(function(){
                 	} else if (nextT === 5) {
                     
                     	$(".skillsArea").eq(p).removeClass("orange").addClass("red");
+						
 						$(".skills").eq(p).text(nextT);
                     
                 	} else if (nextT > 0) {
@@ -783,7 +793,9 @@ $(function(){
                 	} else {
                    
                     	clearInterval(trumpTimer[p]);
+						
 						$(".skillsArea").eq(p).removeClass("red").addClass("green");
+						
 						$(".skills").eq(p).text($(".skills").eq(p).data("num"));
 					
 					}}, 1000);}
@@ -791,6 +803,7 @@ $(function(){
 			} else {              
 				
 				document.getElementById("error").play();
+				
 				$("#trumpAlert").html("特質を1つ<br>だけ選択");
 				
             }
@@ -798,8 +811,11 @@ $(function(){
 		} else if ($("#trumpArea").hasClass("orangeStart")||$("#trumpArea").hasClass("redStart")) {
             
             clearInterval(openingTimer[3]);
+			
 			document.getElementById("tap").play();
+			
             $("#trumpArea").removeClass("orangeStart redStart").addClass("green");
+			
 			$("#trump").text("");
 		
 		}
