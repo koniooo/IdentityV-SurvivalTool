@@ -60,7 +60,7 @@ $(function(){
 			clearInterval(trumpTimer[1]);
 			clearInterval(trumpTimer[2]);
 			
-			document.getElementById("start").play();
+			document.getElementById("startSound").play();
 			
 			$("#presenceArea").removeClass("orange red").addClass("green");
 			
@@ -849,6 +849,7 @@ $(function(){
 		$("#muteArea").toggleClass("red");
 		document.getElementById("tap").muted = !document.getElementById("tap").muted;
 		document.getElementById("attention").muted = !document.getElementById("attention").muted;
+		document.getElementById("startSound").muted = !document.getElementById("startSound").muted;
 		document.getElementById("decodeSound").muted = !document.getElementById("decodeSound").muted;
 		document.getElementById("detensionSound").muted = !document.getElementById("detensionSound").muted;
 		document.getElementById("presenceSound").muted = !document.getElementById("presenceSound").muted;
@@ -934,6 +935,7 @@ $(function(){
 <body>
 	<audio id="tap" src="mp3/tap.mp3" preload="auto" muted></audio>
 	<audio id="attention" src="mp3/attention.mp3" preload="auto" muted></audio>
+	<audio id="startSound" src="mp3/start.mp3" preload="auto" muted></audio>
 	<audio id="decodeSound" src="mp3/decode.mp3" preload="auto" muted></audio>
 	<audio id="detensionSound" src="mp3/detension.mp3" preload="auto" muted></audio>
 	<audio id="presenceSound" src="mp3/presence.mp3" preload="auto" muted></audio>
