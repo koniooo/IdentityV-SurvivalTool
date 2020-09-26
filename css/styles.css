@@ -38,9 +38,16 @@ body {
 	height: calc(31*var(--vh));
 }
 
-svg, img, #start, #quenchingText, #decodeText, #quenchingText2, .tools, #trump, #trumpAlert, #reset {
+svg, img, #start,#quenchingText2, .tools, #trump, #trumpAlert, #reset {
 	position: absolute;
 	transform: translate(-50%,-50%);
+}
+
+#quenchingText, #decodeText{
+	position: absolute;
+	transform: translate(0,-50%);
+	top: 50%;
+	left: 3%;
 }
 
 #quenchingText, #quenchingText2, #decodeText, .startSvgs, .presence, .orangeStart #abnormal, .orangeStart #excitement, .redStart #abnormal, .redStart #excitement, #owl, #listen, .red #muteSvg {
@@ -79,27 +86,21 @@ svg, img, #start, #quenchingText, #decodeText, #quenchingText2, .tools, #trump, 
   	left: 50%;
 }
 
-#quenchingText, #decodeText {
-	
-	line-height: 1.2;
-	top: 50%;
-}
-
 #quenchingText {
 	font-size: 5vmin;
-	left: 20%;
+	line-height: 1.2;
 }
 
 #decodeText {
 	font-size: 4.5vmin;
-	left: 18%;
+	line-height: 1.2;
 }
 
 #quenchingText2 {
+	font-size: 6.5vmin;
 	white-space: nowrap;
-	font-size: 7vmin;
 	top: 50%;
-  	left: 40%;
+	left: 33%;
 }
 
 .startSvgs {
