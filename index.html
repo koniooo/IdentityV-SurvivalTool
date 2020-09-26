@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0" />
 <title>第五人格サバイバルツール</title>
-<meta name="description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツールです。焼き入れ効果や裏向きカードにも対応！">
+<meta name="description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツール。焼き入れ効果や裏向きカードにも対応！">
 <meta property="og:url" content="https://koniooo.github.io/IdentityV-SurvivalTool/" />
 <meta property="og:title" content="第五人格サバイバルツール" /> 
 <meta property="og:type" content="website">
-<meta property="og:description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツールです。焼き入れ効果や裏向きカードにも対応！" /> 
+<meta property="og:description" content="ハンタースキルのクールタイム管理からダブルタップ計算器まで、サバイバーに役立つ機能が揃ったツール。焼き入れ効果や裏向きカードにも対応！" /> 
 <meta property="og:image" content="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/card.png" />
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:site" content="@konio_tracy" />
@@ -140,7 +140,7 @@ $(function(){
 					
                 }}, 1000);
 			
-			for(let h = 0; h < 4; h++) {
+			for (let h = 0; h < 4; h++) {
                 
                 let next = $(".openings").eq(h).text();
                 
@@ -161,10 +161,16 @@ $(function(){
                 } else if (next > 0) {
                     
                     $(".openings").eq(h).text(next);
-                     
+					
                 } else {
                     
                     clearInterval(openingTimer[h]);
+					
+					if (h === 1 || h ===2) {
+						
+						document.getElementById("attention").play();
+						
+					}
 					
                     $(".openingsArea").eq(h).removeClass("redStart").addClass("green");
 					
