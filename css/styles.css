@@ -38,7 +38,7 @@ body {
 	height: calc(31*var(--vh));
 }
 
-svg, img, #start,#quenchingText2, .tools, #trump, #trumpAlert, #reset {
+svg, img, #start,#quenchingText2, .tools, #trump, #trumpAlert, #reset, span {
 	position: absolute;
 	transform: translate(-50%,-50%);
 }
@@ -84,6 +84,11 @@ svg, img, #start,#quenchingText2, .tools, #trump, #trumpAlert, #reset {
 	font-size: 14vmin;
 	top: 50%;
   	left: 50%;
+}
+
+span {
+	font-size: 5.8vh;
+	line-height: 1.2;
 }
 
 #quenchingText {
