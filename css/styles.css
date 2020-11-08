@@ -38,7 +38,7 @@ body {
 	height: calc(31*var(--vh));
 }
 
-svg, img, #start,#quenchingText2, .tools, #trump, #trumpAlert, #reset, span {
+svg, img, #start,#quenchingText2, .tools, #trump, #trumpAlert, #reset {
 	position: absolute;
 	transform: translate(-50%,-50%);
 }
