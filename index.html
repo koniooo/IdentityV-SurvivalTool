@@ -292,7 +292,8 @@ $(function(){
 			case 0:
 				document.getElementById("tap").play();
 				$("#pre1").show();
-				presence ++;
+				$("#sence1").show();
+				presence = presence + 2;
 				break;
 		
 			case 1:
@@ -303,8 +304,11 @@ $(function(){
 				
 			case 2:
 				document.getElementById("tap").play();
+				document.getElementById("presenceSound").play();
+				$("#presenceArea").removeClass("green").addClass("orange");
 				$("#pre2").show();
-				presence ++;
+				$("#sence2").show();
+				presence = presence + 2;
 				break;
 			
 			case 3:
@@ -430,12 +434,12 @@ $(function(){
 	
 	
 	$("#mirrorArea").click(function() {
-
+		
 		if ($("#mirrorArea").hasClass("green")) {
 			
 			document.getElementById("mirrorSound").play();
 			
-			$("#mirrorArea").removeClass("green").addClass("red");
+			$("#mirrorArea").removeClass("green").addClass("redStart");
 			 
 			 let nextM = 28;
 			 
@@ -449,7 +453,7 @@ $(function(){
                     
                 } else if (nextM === 15) {
                     
-                    $("#mirrorArea").removeClass("red").addClass("orange");
+                    $("#mirrorArea").removeClass("redStart").addClass("orange");
 					
                     $("#mirror").text(nextM);
                     
@@ -479,6 +483,48 @@ $(function(){
 					
 				}}, 1000);
 		
+		} else if ($("#mirrorArea").hasClass("redStart")) {
+			
+			clearInterval(mirrorTimer);
+			
+			document.getElementById("tap").play();
+			
+            $("#mirrorArea").removeClass("redStart").addClass("orange");
+			
+			$("#mirror").text(15);
+			
+			let nextM = 15;
+			 
+             mirrorTimer = setInterval(function() {
+                
+                nextM--;
+                
+                if (nextM > 5) {
+                    
+                    $("#mirror").text(nextM);
+                     
+                } else if (nextM === 5) {
+					
+					$("#mirrorArea").removeClass("orange").addClass("red");
+					
+                    $("#mirror").text(nextM);
+					
+				} else if (nextM > 0) {
+					
+					$("#mirror").text(nextM);
+					
+				} else {
+					
+                    clearInterval(mirrorTimer);
+					
+					document.getElementById("attention").play();
+					
+					$("#mirrorArea").removeClass("red").addClass("green");
+					
+					$("#mirror").text(13);
+					
+				}}, 1000);
+			
 		} else {
 			
 			clearInterval(mirrorTimer);
@@ -563,7 +609,7 @@ $(function(){
 			
 			document.getElementById("cameraOn").play();
 			
-			$("#cameraArea").removeClass("green").addClass("red");
+			$("#cameraArea").removeClass("green").addClass("redStart");
 			 
 			 let nextC = 105;
 			 
@@ -579,7 +625,7 @@ $(function(){
 					
 					document.getElementById("cameraOff").play();
                     
-                    $("#cameraArea").removeClass("red").addClass("orange");
+                    $("#cameraArea").removeClass("redStart").addClass("orange");
                     
                     $("#camera").text(nextC);
                     
@@ -611,6 +657,50 @@ $(function(){
                 
              }, 1000);
 		
+		} else if ($("#cameraArea").hasClass("redStart")) {
+			
+			clearInterval(cameraTimer);
+			
+			document.getElementById("cameraOff").play();
+			
+            $("#cameraArea").removeClass("redStart").addClass("orange");
+				
+			$("#camera").text(45);
+			
+			let nextC = 45;
+			 
+             cameraTimer = setInterval(function() {
+                
+                nextC--;
+                
+                if (nextC > 5) {
+                    
+                    $("#camera").text(nextC);
+                     
+                } else if (nextC === 5) {
+					
+					$("#cameraArea").removeClass("orange").addClass("red");
+                    
+                    $("#camera").text(nextC);
+					
+				} else if (nextC > 0) {
+					
+					$("#camera").text(nextC);
+					
+				} else {
+                    
+                    clearInterval(cameraTimer);
+					
+					document.getElementById("attention").play();
+                    
+                    $("#cameraArea").removeClass("red").addClass("green");
+					
+					$("#camera").text(60);                    
+                    
+                }
+                
+             }, 1000);
+			
 		} else {
            
             clearInterval(cameraTimer);
@@ -959,7 +1049,7 @@ $(function(){
 	<audio id="trumpSound" src="mp3/trump.mp3" preload="auto" muted></audio>
 	
 	<div id="startArea" class="all green">
-		<div id="start"><span>Happy Halloween!</span></div>
+		<div id="start">START</div>
 		<div id="quenchingText">焼き入れ<br>効果まで</div>
 		<div id="quenchingText2">焼き入れ効果</div>
 		<div id="decodeText">解読加速<br>まで</div>
