@@ -86,11 +86,6 @@ svg, img, #start,#quenchingText2, .tools, #trump, #trumpAlert, #reset, span {
   	left: 50%;
 }
 
-span {
-	font-size: 5.5vh;
-	line-height: 1.2;
-}
-
 #quenchingText {
 	font-size: 5vmin;
 	line-height: 1.2;
