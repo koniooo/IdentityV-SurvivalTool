@@ -14,13 +14,29 @@ $(function(){
 	
 	//green, orangeStart, redStart, decode, decodeRed, detension, detensionRed, detensionOrange, over
 	
+	const 	startArea = document.getElementById("startArea"),
+			presenceArea = document.getElementById("presenceArea"),
+			mirrorArea = document.getElementById("mirrorArea"),
+			warpArea = document.getElementById("warpArea"),
+			cameraArea = document.getElementById("cameraArea"),
+			patrollerArea = document.getElementById("patrollerArea"),
+			teleportArea = document.getElementById("teleportArea"),
+			blinkArea = document.getElementById("blinkArea"),
+			trumpArea = document.getElementById("trumpArea"),
+			muteArea = document.getElementById("muteArea"),
+			resetArea = document.getElementById("resetArea"),
+			tap = document.getElementById("tap"),
+			attention = document.getElementById("attention"),
+			presenceSound = document.getElementById("presenceSound");
 	
-	
-	
-	
-	$("#startArea").click(function() {
+
+
+
+
+
+	startArea.addEventListener("click", () => {
         
-        if ($("#startArea").hasClass("green")){
+        if (document.getElementById("startArea").classList.contains("green")){
             
 			clearInterval(mirrorTimer);
 			clearInterval(warpTimer);
@@ -34,31 +50,46 @@ $(function(){
 			
 			document.getElementById("startSound").play();
 			
-			$("#presenceArea").removeClass("orange red").addClass("green");
-			
-			$(".presence").hide();
+			presenceArea.classList.remove("orange", "red");
+			presenceArea.classList.add("green");
+
+			const presenceClass = document.getElementsByClassName("presence");
+			for (let i = 0; i < presenceClass.length; i++) {
+				presenceClass[i].style.display = "none";
+			}
 			
 			presence = 0;
-			
-			$(".openingsArea").removeClass("green orange red over").addClass("orangeStart");
-			
+
+			const openingsAreaClass = document.getElementsByClassName("openingsArea");
+			for (let i = 0; i < openingsAreaClass.length; i++) {
+				openingsAreaClass[i].classList.remove("green", "orange", "red", "over");
+				openingsAreaClass[i].classList.add("orangeStart");
+			}
+
+
+
+
             $(".openings").each(function(){$(this).text($(this).data("init"));});
             
-			$("#mirrorArea").removeClass("green red").addClass("orange");
+			mirrorArea.classList.remove("green", "red");
+			mirrorArea.classList.add("orange");
 			
 			$("#mirror").text(8);
 			
-			$("#warpArea").removeClass("orange red").addClass("green");
+			warpArea.classList.remove("orange", "red");
+			warpArea.classList.add("green");
 			
 			$("#warp").text(30);
 			
-			$("#cameraArea").removeClass("orange red").addClass("green");
+			cameraArea.classList.remove("orange", "red", "redStart");
+			cameraArea.classList.add("green");
 			
 			$("#camera").text(60);
 			
 			$("#trumpAlert").text("");
 			
-            $("#startArea").removeClass("green").addClass("orangeStart");
+            startArea.classList.remove("green");
+			startArea.classList.add("orangeStart");
 			
 			$("#start").text(50);
 			
@@ -140,7 +171,7 @@ $(function(){
 					
 					if (h === 1 || h ===2) {
 						
-						document.getElementById("attention").play();
+						attention.play();
 						
 					}
 					
@@ -186,7 +217,7 @@ $(function(){
             
             clearInterval(quenchingTimer);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
             $("#startArea").removeClass("orangeStart redStart decode decodeRed").addClass("detension");
 			
@@ -222,7 +253,7 @@ $(function(){
                     
                     clearInterval(detensionTimer);
 					
-					document.getElementById("attention").play();
+					attention.play();
 					
                     $("#startArea").removeClass("detensionOrange").addClass("over");
 					
@@ -234,7 +265,7 @@ $(function(){
             
             clearInterval(detensionTimer);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
             $("#startArea").removeClass("detensionRed detensionOrange").addClass("over");
 			
@@ -248,82 +279,89 @@ $(function(){
 	
 	
 	
-	$("#presenceArea").click(function() {
-		
+	presenceArea.addEventListener("click", () => {
+
 		switch (presence) {
 			
 			case 0:
-				document.getElementById("tap").play();
-				$("#pre1").show();
-				$("#sence1").show();
+				tap.play();
+				document.getElementById("pre1").style.display = "block";
+				document.getElementById("sence1").style.display = "block";
 				presence = presence + 2;
 				break;
 		
 			case 1:
-				document.getElementById("tap").play();
-				$("#sence1").show();
+				tap.play();
+				document.getElementById("sence1").style.display = "block";
 				presence ++;
 				break;
 				
 			case 2:
-				document.getElementById("tap").play();
-				document.getElementById("presenceSound").play();
-				$("#presenceArea").removeClass("green").addClass("orange");
-				$("#pre2").show();
-				$("#sence2").show();
+				tap.play();
+				presenceSound.play();
+				presenceArea.classList.remove("green");
+				presenceArea.classList.add("orange");
+				document.getElementById("pre2").style.display = "block";
+				document.getElementById("sence2").style.display = "block";
 				presence = presence + 2;
 				break;
 			
 			case 3:
-				document.getElementById("tap").play();
-				document.getElementById("presenceSound").play();
-				$("#presenceArea").removeClass("green").addClass("orange");
-				$("#sence2").show();
+				tap.play();
+				presenceSound.play();
+				presenceArea.classList.remove("green");
+				presenceArea.classList.add("orange");
+				document.getElementById("sence2").style.display = "block";
 				presence ++;
 				break;
 			
 			case 4:
-				document.getElementById("tap").play();
-				$("#pre3").show();
+				tap.play();
+				document.getElementById("pre3").style.display = "block";
 				presence ++;
 				break;
 			
 			case 5:
-				document.getElementById("tap").play();
-				$("#sence3").show();
+				tap.play();
+				document.getElementById("sence3").style.display = "block";
 				presence ++;
 				break;
 				
 			case 6:
-				document.getElementById("tap").play();
-				$("#pre4").show();
+				tap.play();
+				document.getElementById("pre4").style.display = "block";
 				presence ++;
 				break;
 				
 			case 7:
-				document.getElementById("tap").play();
-				$("#sence4").show();
+				tap.play();
+				document.getElementById("sence4").style.display = "block";
 				presence ++;
 				break;
 				
 			case 8:
-				document.getElementById("attention").play();
-				$("#presenceArea").removeClass("orange").addClass("red");
-				$("#pre5").show();
+				attention.play();
+				presenceArea.classList.remove("orange");
+				presenceArea.classList.add("red")
+				document.getElementById("pre5").style.display = "block";
 				presence ++;
 				break;
 			
 			case 9:
-				document.getElementById("tap").play();
-				document.getElementById("presenceSound").play();
-				$("#sence5").show();
+				tap.play();
+				presenceSound.play();
+				document.getElementById("sence5").style.display = "block";
 				presence ++;
 				break;
 			
 			case 10:
-				document.getElementById("tap").play();
-				$("#presenceArea").removeClass("red").addClass("green");
-				$(".presence").hide();
+				tap.play();
+				presenceArea.classList.remove("red");
+				presenceArea.classList.add("green");
+				const presenceClass = document.getElementsByClassName("presence");
+				for (let i = 0; i < presenceClass.length; i++) {
+					presenceClass[i].style.display = "none";
+				}
 				presence = 0;
 				break;
 		}});
@@ -366,7 +404,7 @@ $(function(){
                     
                     clearInterval(skillTimer[i]);
 					
-					document.getElementById("attention").play();
+					attention.play();
 					
                     $(".skillsArea").eq(i).removeClass("red").addClass("green");
 					
@@ -384,7 +422,7 @@ $(function(){
 			
 			clearInterval(trumpTimer[i]);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
 			$(".skillsArea").eq(i).removeClass("orange red orangeStart redStart").addClass("green");
 			
@@ -396,7 +434,7 @@ $(function(){
     
 	
 	
-	$("#mirrorArea").click(function() {
+	mirrorArea.addEventListener("click", () =>  {
 		
 		if ($("#mirrorArea").hasClass("green")) {
 			
@@ -438,7 +476,7 @@ $(function(){
 					
                     clearInterval(mirrorTimer);
 					
-					document.getElementById("attention").play();
+					attention.play();
 					
 					$("#mirrorArea").removeClass("red").addClass("green");
 					
@@ -450,7 +488,7 @@ $(function(){
 			
 			clearInterval(mirrorTimer);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
             $("#mirrorArea").removeClass("redStart").addClass("orange");
 			
@@ -480,7 +518,7 @@ $(function(){
 					
                     clearInterval(mirrorTimer);
 					
-					document.getElementById("attention").play();
+					attention.play();
 					
 					$("#mirrorArea").removeClass("red").addClass("green");
 					
@@ -492,7 +530,7 @@ $(function(){
 			
 			clearInterval(mirrorTimer);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
             $("#mirrorArea").removeClass("orange red").addClass("green");
 				
@@ -538,7 +576,7 @@ $(function(){
                     
                     clearInterval(warpTimer);
 					
-					document.getElementById("attention").play();
+					attention.play();
                     
                     $("#warpArea").removeClass("red").addClass("green");
 					
@@ -552,7 +590,7 @@ $(function(){
            
             clearInterval(warpTimer);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
             $("#warpArea").removeClass("orange red").addClass("green");
 				
@@ -610,7 +648,7 @@ $(function(){
                     
                     clearInterval(cameraTimer);
 					
-					document.getElementById("attention").play();
+					attention.play();
                     
                     $("#cameraArea").removeClass("red").addClass("green");
 					
@@ -654,7 +692,7 @@ $(function(){
                     
                     clearInterval(cameraTimer);
 					
-					document.getElementById("attention").play();
+					attention.play();
                     
                     $("#cameraArea").removeClass("red").addClass("green");
 					
@@ -668,7 +706,7 @@ $(function(){
            
             clearInterval(cameraTimer);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
             $("#cameraArea").removeClass("orange red").addClass("green");
 				
@@ -892,7 +930,7 @@ $(function(){
             
             clearInterval(openingTimer[3]);
 			
-			document.getElementById("tap").play();
+			tap.play();
 			
             $("#trumpArea").removeClass("orangeStart redStart").addClass("green");
 			
@@ -905,16 +943,15 @@ $(function(){
 	
 	
 	
-	
-	$("#muteArea").click(function() {
+	muteArea.addEventListener("click", () => {
 		
-		$("#muteArea").toggleClass("red");
-		document.getElementById("tap").muted = !document.getElementById("tap").muted;
-		document.getElementById("attention").muted = !document.getElementById("attention").muted;
+		muteArea.classList.toggle("red");
+		tap.muted = !tap.muted;
+		attention.muted = !attention.muted;
 		document.getElementById("startSound").muted = !document.getElementById("startSound").muted;
 		document.getElementById("decodeSound").muted = !document.getElementById("decodeSound").muted;
 		document.getElementById("detensionSound").muted = !document.getElementById("detensionSound").muted;
-		document.getElementById("presenceSound").muted = !document.getElementById("presenceSound").muted;
+		presenceSound.muted = !presenceSound.muted;
 		document.getElementById("mirrorSound").muted = !document.getElementById("mirrorSound").muted;
 		document.getElementById("warpSound").muted = !document.getElementById("warpSound").muted;
 		document.getElementById("cameraOn").muted = !document.getElementById("cameraOn").muted;
@@ -924,66 +961,62 @@ $(function(){
 		document.getElementById("blinkSound").muted = !document.getElementById("blinkSound").muted;
 		document.getElementById("error").muted = !document.getElementById("error").muted;
 		document.getElementById("trumpSound").muted = !document.getElementById("trumpSound").muted;
-		document.getElementById("attention").play();
+		attention.play();
 	
 	});
 	
 	
 	
 	
-	
-	$("#resetArea").click(function(){window.location.reload(false);});
-	
-	
-	
+	resetArea.addEventListener("click",()=>{window.location.reload(false);});
 	
 	
 	$(window).keydown(function(e){
 		
-		switch(e.keyCode){
+		switch(e.keyCode) {
 				
 			case 48:case 96:
-				document.getElementById("trumpArea").click();
+				trumpArea.click();
 				break;
 				
     		case 49:case 97:
-				document.getElementById("patrollerArea").click();
+				patrollerArea.click();
 				break;
 				
     		case 50:case 98:
-				document.getElementById("teleportArea").click();
+				teleportArea.click();
 				break;
 				
 			case 51:case 99:
-				document.getElementById("blinkArea").click();
+				blinkArea.click();
 				break;
 				
 			case 52:case 100:
-				document.getElementById("mirrorArea").click();
+				mirrorArea.click();
 				break;
 				
 			case 53:case 101:
-				document.getElementById("warpArea").click();
+				warpArea.click();
 				break;
 			
 			case 54:case 102:
-				document.getElementById("cameraArea").click();
+				cameraArea.click();
 				break;
 				
 			case 55:case 56:case 103:case 104:
-				document.getElementById("startArea").click();
+				startArea.click();
 				break;
 				
 			case 57:case 105:
-				document.getElementById("presenceArea").click();
+				presenceArea.click();
 				break;
 				
 			case 110:case 190:
-				document.getElementById("muteArea").click();
+				muteArea.click();
 				break;
 				
 			case 13:
-				document.getElementById("resetArea").click();
+				resetArea.click();
 				break;
 		}});
-    });
+	});
