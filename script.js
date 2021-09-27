@@ -4,6 +4,8 @@ $(function(){
 	
 	window.onresize = function(){document.documentElement.style.setProperty('--vh', window.innerHeight/100 + 'px');};
 	
+	document.getElementById("attention").volume = 0.5;
+	
 	let openingTimer = [],
 		mirrorTimer = [],
 		warpTimer = [],
