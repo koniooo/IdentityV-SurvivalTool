@@ -52,7 +52,7 @@ $(function(){
 			
 			$("#warp").text(30);
 			
-			$("#cameraArea").removeClass("orange red").addClass("green");
+			$("#cameraArea").removeClass("orange red redStart").addClass("green");
 			
 			$("#camera").text(60);
 			
