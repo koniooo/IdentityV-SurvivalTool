@@ -39,11 +39,13 @@ body {
 #trumpArea,
 #muteArea,
 #resetArea {
-  height: calc(15.5 * var(--vh));
+  height: calc(var(--vh, 1vh) * 15.5);
+  line-height: calc(var(--vh, 1vh) * 15.5);
 }
 
 .toolsArea {
-  height: calc(31 * var(--vh));
+  height: calc(var(--vh, 1vh) * 31);
+  line-height: calc(var(--vh, 1vh) * 31);
 }
 
 svg,
@@ -61,7 +63,7 @@ img,
 #quenchingText,
 #decodeText {
   position: absolute;
-  transform: translate(0, -50%);
+  transform: translateY(-50%);
   top: 50%;
   left: 3%;
 }
@@ -104,8 +106,8 @@ img,
   cursor: pointer;
   position: relative;
   float: left;
-  border-radius: 2vh;
-  margin: calc(1.4 * var(--vh)) 0 0 2.5%;
+  border-radius: calc(var(--vh, 1vh) * 2);
+  margin: calc(var(--vh, 1vh) * 1.4) 0 0 2.5%;
 }
 
 .orange,
@@ -256,7 +258,7 @@ img,
 #trump,
 #trumpAlert {
   left: 30%;
-  top: 50%;
+  top: 47.5%;
 }
 
 #trumpAlert {
