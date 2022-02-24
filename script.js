@@ -707,7 +707,12 @@ $(function () {
       } else {
         document.getElementById("error").play();
 
-        $("#trumpAlert").html("特質を1つ<br>だけ選択");
+        const path = window.location.pathname;
+        if (path.endsWith("/en/") || path.endsWith("/en")) {
+          $("#trumpAlert").html("activate<br>one Trait");
+        } else {
+          $("#trumpAlert").html("特質を1つ<br>だけ選択");
+        }
       }
     } else if (
       $("#trumpArea").hasClass("orangeStart") ||
