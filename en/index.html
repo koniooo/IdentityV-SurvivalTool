@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-92Y1482T9T"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-92Y1482T9T");
+    </script>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=1.0, minimum-scale=1.0, maximum-scale=1.0"
+    />
+    <title>IdentityV Survival Tool</title>
+    <meta
+      name="description"
+      content="A useful tool for survivors, managing a cool-time of hunter skills or a presence. Also supports Quenching Effect and Trump Card!"
+    />
+    <meta
+      property="og:url"
+      content="https://koniooo.github.io/IdentityV-SurvivalTool/"
+    />
+    <meta property="og:title" content="IdentityV Survival Tool" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="A useful tool for survivors, managing a cool-time of hunter skills or a presence. Also supports Quenching Effect and Trump Card!"
+    />
+    <meta
+      property="og:image"
+      content="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/card.png"
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@konio_tracy" />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_16.png"
+      sizes="16x16"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_24.png"
+      sizes="24x24"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_32.png"
+      sizes="32x32"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_48.png"
+      sizes="48x48"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_64.png"
+      sizes="64x64"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_128.png"
+      sizes="128x128"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_192.png"
+      sizes="192x192"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_256.png"
+      sizes="256x256"
+      type="image/png"
+    />
+    <link
+      rel="icon"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_512.png"
+      sizes="512x512"
+      type="image/png"
+    />
+    <link
+      rel="apple-touch-icon-precomposed"
+      href="https://raw.githubusercontent.com/koniooo/IdentityV-SurvivalTool/master/png/favicon_256.png"
+    />
+    <link rel="stylesheet" type="text/css" href="../css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="../css/styles.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <audio id="tap" src="../mp3/tap.mp3" preload="auto" muted></audio>
+    <audio
+      id="attention"
+      src="../mp3/attention.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio id="startSound" src="../mp3/start.mp3" preload="auto" muted></audio>
+    <audio
+      id="decodeSound"
+      src="../mp3/decode.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio
+      id="detensionSound"
+      src="../mp3/detension.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio
+      id="presenceSound"
+      src="../mp3/presence.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio
+      id="mirrorSound"
+      src="../mp3/mirror.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio id="warpSound" src="../mp3/warp.mp3" preload="auto" muted></audio>
+    <audio id="cameraOn" src="../mp3/cameraOn.mp3" preload="auto" muted></audio>
+    <audio
+      id="cameraOff"
+      src="../mp3/cameraOff.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio
+      id="patrollerSound"
+      class="skillsSound"
+      src="../mp3/patroller.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio
+      id="teleportSound"
+      class="skillsSound"
+      src="../mp3/teleport.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio
+      id="blinkSound"
+      class="skillsSound"
+      src="../mp3/blink.mp3"
+      preload="auto"
+      muted
+    ></audio>
+    <audio id="error" src="../mp3/error.mp3" preload="auto" muted></audio>
+    <audio id="trumpSound" src="../mp3/trump.mp3" preload="auto" muted></audio>
+
+    <div id="startArea" class="all green">
+      <div id="start">START</div>
+      <div id="quenchingText">Quenching<br />Effect</div>
+      <div id="quenchingText2">Quenching Effect</div>
+      <div id="decodeText">Accelerate<br />Decoding</div>
+      <img
+        id="quenchingSvg"
+        class="startSvgs"
+        src="../svg/quenching.svg"
+        alt=""
+      />
+      <img id="decodeSvg" class="startSvgs" src="../svg/decode.svg" alt="" />
+      <img id="detension" class="startSvgs" src="../svg/detention.svg" alt="" />
+      <a
+        href="https://twitter.com/konio_tracy"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <img id="twitter" class="startSvgs" src="../svg/twitter.svg" alt="" />
+      </a>
+    </div>
+
+    <div id="presenceArea" class="green all">
+      <img id="pre1" class="presence" src="../svg/pre.svg" alt="" />
+      <img id="sence1" class="presence" src="../svg/sence.svg" alt="" />
+      <img id="pre2" class="presence" src="../svg/pre.svg" alt="" />
+      <img id="sence2" class="presence" src="../svg/sence.svg" alt="" />
+      <img id="pre3" class="presence" src="../svg/pre.svg" alt="" />
+      <img id="sence3" class="presence" src="../svg/sence.svg" alt="" />
+      <img id="pre4" class="presence" src="../svg/pre.svg" alt="" />
+      <img id="sence4" class="presence" src="../svg/sence.svg" alt="" />
+      <img id="pre5" class="presence" src="../svg/pre.svg" alt="" />
+      <img id="sence5" class="presence" src="../svg/sence.svg" alt="" />
+    </div>
+
+    <div id="mirrorArea" class="green all toolsArea">
+      <div id="mirror" class="tools" data-num="13">13</div>
+      <img id="mirrorSvg" class="centerSvg" src="../svg/mirror.svg" alt="" />
+    </div>
+
+    <div id="warpArea" class="green all toolsArea">
+      <div id="warp" class="tools" data-num="30">30</div>
+      <img id="warpSvg" class="centerSvg" src="../svg/warp.svg" alt="" />
+    </div>
+
+    <div id="cameraArea" class="green all toolsArea">
+      <div id="camera" class="tools">60</div>
+      <img id="cameraSvg" class="centerSvg" src="../svg/camera.svg" alt="" />
+    </div>
+
+    <div id="patrollerArea" class="green all toolsArea skillsArea openingsArea">
+      <div
+        id="patroller"
+        class="openings skills tools"
+        data-init="30"
+        data-num="90"
+      >
+        90
+      </div>
+      <img
+        id="patrollerSvg"
+        class="toolsSvg"
+        src="../svg/patroller.svg"
+        alt=""
+      />
+      <img id="abnormal" class="toolsSvg" src="../svg/abnormal.svg" alt="" />
+      <img id="owl" src="../svg/owl.svg" alt="" />
+    </div>
+
+    <div id="teleportArea" class="green all openingsArea toolsArea skillsArea">
+      <div
+        id="teleport"
+        class="openings skills tools"
+        data-init="45"
+        data-num="100"
+      >
+        100
+      </div>
+      <img id="teleportSvg" class="toolsSvg" src="../svg/teleport.svg" alt="" />
+      <img
+        id="excitement"
+        class="toolsSvg"
+        src="../svg/excitement.svg"
+        alt=""
+      />
+    </div>
+
+    <div id="blinkArea" class="green all openingsArea toolsArea skillsArea">
+      <div
+        id="blink"
+        class="openings skills tools"
+        data-init="60"
+        data-num="150"
+      >
+        150
+      </div>
+      <img id="blinkSvg" class="centerSvg" src="../svg/blink.svg" alt="" />
+    </div>
+
+    <div id="trumpArea" class="green all openingsArea">
+      <div id="trump" class="openings" data-init="120" data-num=""></div>
+      <div id="trumpAlert"></div>
+      <img id="trumpSvg" src="../svg/trump.svg" alt="" />
+    </div>
+
+    <div id="muteArea" class="all">
+      <img id="muteSvg" src="../svg/mute.svg" alt="" />
+      <img id="listen" src="../svg/listen.svg" alt="" />
+    </div>
+
+    <div id="resetArea" class="all">
+      <img id="resetSvg" src="../svg/reload.svg" alt="" />
+    </div>
+    <script src="../script.js"></script>
+  </body>
+</html>
