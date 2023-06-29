@@ -1,0 +1,48 @@
+.startButton {
+  .flexContainer {
+    position: absolute;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
+    display: flex;
+
+    p {
+      line-height: 5vh; // 文字部分とカウントダウン数字部分のline-heightを揃えることで高さが揃う
+      &.text {
+        font-size: var(--text-middle);
+      }
+      &.time {
+        font-size: var(--number-small);
+        margin-left: 1vh;
+        margin-left: calc(var(--vh, 1vh) * 1);
+      }
+    }
+
+    &.start {
+      top: 42.5%;
+      p {
+        font-size: var(--number-large);
+      }
+    }
+
+    &.description {
+      top: 80%;
+      p {
+        font-size: var(--text-small);
+      }
+    }
+
+    &.firstLine {
+      top: 30%;
+    }
+
+    &.secondLine {
+      top: 70%;
+    }
+
+    &.gateOpen {
+      font-size: 5vh;
+      font-size: calc(var(--vh, 1vh) * 5);
+    }
+  }
+}

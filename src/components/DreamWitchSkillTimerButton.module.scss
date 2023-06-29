@@ -1,0 +1,15 @@
+.skillText {
+  top: 70%;
+  span {
+    font-size: var(--text-small) !important;
+  }
+}
+
+.description {
+  font-size: var(--text-x-small);
+
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 92%;
+  left: 50%;
+}

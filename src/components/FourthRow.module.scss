@@ -1,0 +1,8 @@
+.trump {
+  width: calc(var(--oneThirdWidth) * 2 + var(--padding));
+  margin-right: var(--padding);
+}
+
+.ultraLong {
+  width: var(--oneThirdWidth);
+}

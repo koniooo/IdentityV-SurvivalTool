@@ -1,0 +1,64 @@
+.persona {
+  height: var(--middleHeight);
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 90%;
+    max-height: 80%;
+  }
+  .vertical {
+    height: var(--hunterSelectHeight);
+    margin-bottom: var(--halfPadding);
+
+    &.top {
+      display: flex;
+      .confinedSpace {
+        margin-right: var(--halfPadding);
+        width: calc(
+          var(--oneThirdWidth) - var(--wantedOrderWidth) - var(--halfPadding)
+        );
+      }
+
+      .wantedOrder {
+        width: var(--wantedOrderWidth);
+      }
+    }
+  }
+}
+
+.flexContainer {
+  display: flex;
+  .horizontal {
+    height: calc(var(--hunterSelectHeight) * 2);
+    width: calc((var(--oneThirdWidth) - var(--halfPadding)) / 2);
+    margin-bottom: var(--halfPadding);
+    svg {
+      max-height: 50%;
+    }
+    &.left {
+      margin-right: var(--halfPadding);
+      p {
+        position: absolute;
+        top: 17.5%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-size: var(--number-x-small);
+      }
+      .insolenceMeter {
+        top: 40%;
+        max-height: 15%;
+        .none {
+          display: none;
+        }
+      }
+      .insolenceIcon {
+        &.insolenceTimerActive {
+          top: 75%;
+          max-height: 45%;
+        }
+      }
+    }
+  }
+}

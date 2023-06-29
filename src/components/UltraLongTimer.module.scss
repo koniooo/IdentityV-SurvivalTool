@@ -1,0 +1,18 @@
+.ultraLongTimer {
+  height: 100%;
+  p {
+    position: absolute;
+    top: 27.5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: var(--number-middle);
+  }
+  svg {
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 6vh;
+    width: calc(var(--vh, 1vh) * 6);
+  }
+}

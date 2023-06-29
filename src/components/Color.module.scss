@@ -1,0 +1,41 @@
+.green {
+  background-color: var(--myGreen);
+}
+
+.yellow {
+  background-color: var(--myYellow);
+}
+
+.red {
+  background-color: var(--myRed);
+}
+
+.filledGreen {
+  fill: var(--myGreen);
+}
+
+.filledYellow {
+  fill: var(--myYellow);
+}
+
+.filledRed {
+  fill: var(--myRed);
+}
+
+.greenText {
+  p span {
+    color: var(--myGreen);
+  }
+}
+
+.yellowText {
+  p span {
+    color: var(--myYellow);
+  }
+}
+
+.redText {
+  p span {
+    color: var(--myRed);
+  }
+}

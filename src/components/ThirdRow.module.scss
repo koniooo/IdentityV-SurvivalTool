@@ -1,0 +1,34 @@
+.traitTimeText {
+  font-size: var(--number-large);
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.centralSvg,
+.leftSvg,
+.rightSvg {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  top: 75%;
+  max-height: 40%;
+}
+
+.leftSvg,
+.rightSvg {
+  width: 45%;
+}
+
+.centralSvg {
+  left: 50%;
+  width: 66.7%;
+}
+
+.leftSvg {
+  left: 25%;
+}
+
+.rightSvg {
+  left: 75%;
+}

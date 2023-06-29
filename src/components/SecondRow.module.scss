@@ -1,0 +1,67 @@
+.secondRowRightDiv {
+  width: calc(var(--oneThirdWidth) * 2 + var(--padding));
+
+  .hunterSelectAndLanguage {
+    height: var(--hunterSelectHeight);
+    margin-bottom: var(--halfPadding);
+    display: flex;
+    .minusHunterId,
+    .plusHunterId {
+      width: var(--wantedOrderWidth);
+
+      &.disabled {
+        button {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+
+      button {
+        background-color: var(--myGreen);
+        svg {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          width: 40%;
+          max-height: 40%;
+        }
+      }
+    }
+
+    .minusHunterId {
+      margin-right: calc(var(--halfPadding) / 2);
+      button {
+        border-radius: var(--padding) 0 0 var(--padding);
+      }
+    }
+
+    .plusHunterId {
+      margin-right: var(--padding);
+      button {
+        border-radius: 0 var(--padding) var(--padding) 0;
+      }
+    }
+
+    .hunterSelectSec {
+      width: calc(
+        var(--oneThirdWidth) * 2 + var(--padding) -
+          (
+            var(--wantedOrderWidth) * 2 + var(--padding) + var(--halfPadding) +
+              var(--languageSwitchWidth)
+          )
+      );
+      height: 100%;
+      margin-right: calc(var(--halfPadding) / 2);
+    }
+
+    .languageSwitch {
+      width: var(--languageSwitchWidth);
+    }
+  }
+
+  .hunterSkillTimerSec {
+    display: flex;
+    height: var(--hunterTimerHeight);
+  }
+}

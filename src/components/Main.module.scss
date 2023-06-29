@@ -1,0 +1,11 @@
+.main {
+  padding: var(--padding);
+  background-color: var(--myGray);
+  font-weight: 900;
+  white-space: nowrap;
+  margin: 0 auto;
+  height: 100vh;
+  height: calc(var(--vh, 1vh) * 100);
+  width: 100vw;
+  text-align: center;
+}

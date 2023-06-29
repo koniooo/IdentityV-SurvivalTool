@@ -1,0 +1,19 @@
+.timeText {
+  position: absolute;
+  top: 33.3%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.skillText {
+  position: absolute;
+  top: 75%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  background-color: var(--myGray);
+  padding: 0.6vh;
+  padding: calc(var(--vh, 1vh) * 0.6);
+  border-radius: 1vh;
+  border-radius: calc(var(--vh, 1vh) * 1);
+}

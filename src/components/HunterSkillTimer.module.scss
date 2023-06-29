@@ -1,0 +1,40 @@
+.single,
+.double,
+.triple {
+  p {
+    white-space: pre;
+    span {
+      display: block;
+      line-height: 1.4;
+      font-size: var(--text-middle);
+    }
+  }
+}
+
+.triple {
+  width: calc(
+    (var(--oneThirdWidth) * 2 + var(--padding) - (var(--padding) * 2)) / 3
+  );
+  &:not(:last-child) {
+    margin-right: var(--padding);
+  }
+
+  p {
+    font-size: var(--number-middle);
+  }
+}
+
+.double {
+  width: 100%;
+  display: flex;
+  p {
+    font-size: var(--number-large);
+  }
+}
+
+.single {
+  width: 100%;
+  p {
+    font-size: var(--number-large);
+  }
+}
