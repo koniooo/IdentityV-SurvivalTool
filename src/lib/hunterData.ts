@@ -275,4 +275,17 @@ export const hunterData: readonly hunterDatum[] = [
     secondaryNameEn: "WindWalk",
     secondaryCoolTime: [5],
   },
+  {
+    nameJa: "オペラ歌手",
+    nameEn: "Opera Singer",
+    primaryNameJa: "暗影の跳躍",
+    primaryNameEn: "Shadow Leap",
+    primaryCoolTime: [8],
+    secondaryNameJa: "影の追想",
+    secondaryNameEn: "Shadow Dance",
+    secondaryCoolTime: [15],
+    tertiaryNameJa: "影襲",
+    tertiaryNameEn: "Shadowstrike",
+    tertiaryCoolTime: [15, 5],
+  },
 ];
