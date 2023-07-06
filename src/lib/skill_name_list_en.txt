@@ -1,0 +1,112 @@
+Freezing Fog
+Spinning
+Preying Leap
+Mirror Image
+Remote-Controlled Bomb
+
+------------------------
+
+Yellow
+Puppet
+
+Red
+Puppet
+
+Rocket Dash
+Rocket Dash
+"Resistance"
+
+Chain Hook
+Trap
+Dash Hit
+Butterfly
+charge
+
+Camera
+World
+
+move record
+Nightmare
+Attack
+
+Nightmare
+Gaze
+
+Leech
+(presence 0)
+
+Assimilation
+(presence 1)
+
+Swoop
+Catwalk
+Sonata
+Rhapsody
+sculptures
+charge
+
+Hieroglyphic
+Graveyard
+
+Charged
+Strike
+
+Energy
+Conversion
+
+Spearfishing
+Surging
+Tides
+
+Raven
+Bad Omen
+Inspect
+Record
+& Invalid
+
+Tempest
+WindWalk
+
+
+
+---------------
+
+Summon
+Siphon
+Soul
+
+Wavering
+Soul
+
+fence
+disap-
+pearance
+
+nearby
+undecoded
+Machines
+
+Overclock
+Dispel
+Souls
+
+Resentful
+Souls
+revolving
+
+Restful
+Road
+
+Pessimistic
+Wheel of
+Impalement
+Ridicule
+Wax-coated
+unusable
+time
+
+Solid Wax
+Molten Wax
+Miracle
+Meditation
+Attachment
