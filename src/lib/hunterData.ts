@@ -278,14 +278,14 @@ export const hunterData: readonly hunterDatum[] = [
   {
     nameJa: "オペラ歌手",
     nameEn: "Opera Singer",
-    primaryNameJa: "暗影の跳躍",
-    primaryNameEn: "Shadow Leap",
+    primaryNameJa: "暗影の\n跳躍",
+    primaryNameEn: "Shadow\nLeap",
     primaryCoolTime: [8],
     secondaryNameJa: "影の追想",
-    secondaryNameEn: "Shadow Dance",
+    secondaryNameEn: "Shadow\nDance",
     secondaryCoolTime: [15],
     tertiaryNameJa: "影襲",
-    tertiaryNameEn: "Shadowstrike",
+    tertiaryNameEn: "Shadow-\nstrike",
     tertiaryCoolTime: [15, 5],
   },
 ];
