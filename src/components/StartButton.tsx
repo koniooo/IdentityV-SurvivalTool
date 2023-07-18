@@ -3,8 +3,8 @@ import { readyTime, bloodyQueenId } from "components/Main";
 import colors from "components/Color.module.scss";
 import styles from "components/StartButton.module.scss";
 
-const patrollerDefaultTime = 30;
-const teleportDefaultTime = 45;
+export const patrollerDefaultTime = 30;
+export const teleportDefaultTime = 45;
 const blinkDefaultTime = 60;
 const ultraLongDefaultTime = 30;
 const bloodyQueenDefaultTime = 8;

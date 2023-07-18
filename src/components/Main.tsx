@@ -262,6 +262,8 @@ export const Main = () => {
         blinkTime={blinkTime}
         isBlinkTimerActive={isBlinkTimerActive}
         setIsBlinkTimerActive={setIsBlinkTimerActive}
+        elapsedTime={elapsedTime}
+        isStartTimerActive={isStartTimerActive}
       />
       <FourthRow
         isTrumpCardTimerActive={isTrumpCardTimerActive}
