@@ -283,7 +283,7 @@ export const hunterData: readonly hunterDatum[] = [
     primaryCoolTime: [8],
     secondaryNameJa: "影の追想",
     secondaryNameEn: "Shadow\nDance",
-    secondaryCoolTime: [15],
+    secondaryCoolTime: [17],
     tertiaryNameJa: "影襲",
     tertiaryNameEn: "Shadow-\nstrike",
     tertiaryCoolTime: [15, 5],
