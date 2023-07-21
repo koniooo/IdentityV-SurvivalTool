@@ -24,12 +24,17 @@
         font-size: var(--number-large);
       }
     }
+    
 
     &.description {
       top: 80%;
       p {
         font-size: var(--text-small);
       }
+    }
+
+    &.ready {
+      top: 42.5%;
     }
 
     &.firstLine {

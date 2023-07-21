@@ -203,10 +203,17 @@ export const StartButton = ({
     } else if (isSecondStatus) {
       if (elapsedTime < 0) {
         return (
-          <div className={styles.flexContainer}>
-            <p className={styles.text}>to game start</p>
-            <p className={styles.time}>{-elapsedTime}</p>
-          </div>
+          <>
+            <div className={`${styles.flexContainer} ${styles.ready}`}>
+              <p className={styles.text}>to game start</p>
+              <p className={styles.time}>{-elapsedTime}</p>
+            </div>
+            <div className={`${styles.flexContainer} ${styles.description}`}>
+              <p>
+                *tap to start the game immediately
+              </p>
+            </div>
+          </>
         );
       } else if (elapsedTime < constrainTime) {
         return (
