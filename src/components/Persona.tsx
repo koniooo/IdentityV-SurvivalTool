@@ -129,7 +129,11 @@ export const Persona = ({
                     <path
                       className={`${
                         hasInsolence ? colors.filledRed : colors.filledYellow
-                      } ${calculateInsolenceValue() < 250 && styles.none}`}
+                      } ${
+                        calculateInsolenceValue() < 250 &&
+                        elapsedTime % 2 !== 0 &&
+                        styles.none
+                      }`}
                       d="M50,81.25c-17.231,0-31.25-14.019-31.25-31.25S32.769,18.75,50,18.75h31.25
 		c6.203,0,11.25,5.047,11.25,11.25v40c0,6.203-5.047,11.25-11.25,11.25H50z"
                     />
@@ -147,7 +151,13 @@ export const Persona = ({
                     <path
                       className={`${
                         hasInsolence ? colors.filledRed : colors.filledYellow
-                      } ${calculateInsolenceValue() < 500 && styles.none}`}
+                      } ${
+                        calculateInsolenceValue() < 250
+                          ? styles.none
+                          : calculateInsolenceValue() < 500 &&
+                            elapsedTime % 2 !== 0 &&
+                            styles.none
+                      }`}
                       d="M126.25,81.25C120.047,81.25,115,76.203,115,70V30c0-6.203,5.047-11.25,11.25-11.25h51.25
 		c6.203,0,11.25,5.047,11.25,11.25v40c0,6.203-5.047,11.25-11.25,11.25H126.25z"
                     />
@@ -164,7 +174,13 @@ export const Persona = ({
                     <path
                       className={`${
                         hasInsolence ? colors.filledRed : colors.filledYellow
-                      } ${calculateInsolenceValue() < 750 && styles.none}`}
+                      } ${
+                        calculateInsolenceValue() < 500
+                          ? styles.none
+                          : calculateInsolenceValue() < 750 &&
+                            elapsedTime % 2 !== 0 &&
+                            styles.none
+                      }`}
                       d="M222.5,81.25c-6.203,0-11.25-5.047-11.25-11.25V30c0-6.203,5.047-11.25,11.25-11.25h51.25
 		c6.203,0,11.25,5.047,11.25,11.25v40c0,6.203-5.047,11.25-11.25,11.25H222.5z"
                     />
@@ -181,7 +197,13 @@ export const Persona = ({
                     <path
                       className={`${
                         hasInsolence ? colors.filledRed : colors.filledYellow
-                      } ${calculateInsolenceValue() < 1000 && styles.none}`}
+                      } ${
+                        calculateInsolenceValue() < 750
+                          ? styles.none
+                          : calculateInsolenceValue() < 1000 &&
+                            elapsedTime % 2 !== 0 &&
+                            styles.none
+                      }`}
                       d="M318.75,81.25c-6.203,0-11.25-5.047-11.25-11.25V30c0-6.203,5.047-11.25,11.25-11.25H350
 		c17.231,0,31.25,14.019,31.25,31.25S367.231,81.25,350,81.25H318.75z"
                     />
