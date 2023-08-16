@@ -4,8 +4,8 @@ const nextConfig = {
   output: "export",
 
   distDir: "docs", // 開発中はコメントアウトする（ホットリロードが効かなくなるため）
-  assetPrefix: "./", // 上に同じ
-  basePath: "/IdentityV-SurvivalTool", // 上に同じ
+  assetPrefix: "./", // 同じく
+  basePath: "/IdentityV-SurvivalTool", // 同じく
 };
 
 module.exports = nextConfig;
