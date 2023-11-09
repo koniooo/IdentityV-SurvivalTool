@@ -291,14 +291,14 @@ export const hunterData: readonly hunterDatum[] = [
   {
     nameJa: "「フールズ・ゴールド」",
     nameEn: '"Fool\'s Gold"',
-    primaryNameJa: "不安定エリア",
-    primaryNameEn: "Unstable Ground",
+    primaryNameJa: "不安定\nエリア",
+    primaryNameEn: "Unstable\nGround",
     primaryCoolTime: [22],
     secondaryNameJa: "磁力変換",
-    secondaryNameEn: "Magnetic Conversion",
+    secondaryNameEn: "Magnetic\nConversion",
     secondaryCoolTime: [20, 5],
     tertiaryNameJa: "一触即発",
-    tertiaryNameEn: "Instant Reaction",
+    tertiaryNameEn: "Instant\nReaction",
     tertiaryCoolTime: [20],
   },
 ];

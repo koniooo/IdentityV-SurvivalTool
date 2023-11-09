@@ -118,3 +118,12 @@ Shadow
 Dance
 Shadow-
 strike
+
+Unstable
+Ground
+
+Magnetic
+Conversion
+
+Instant
+Reaction
