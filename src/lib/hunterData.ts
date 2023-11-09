@@ -288,4 +288,17 @@ export const hunterData: readonly hunterDatum[] = [
     tertiaryNameEn: "Shadow-\nstrike",
     tertiaryCoolTime: [15, 5],
   },
+  {
+    nameJa: "「フールズ・ゴールド」",
+    nameEn: '"Fool\'s Gold"',
+    primaryNameJa: "不安定エリア",
+    primaryNameEn: "Unstable Ground",
+    primaryCoolTime: [22],
+    secondaryNameJa: "磁力変換",
+    secondaryNameEn: "Magnetic Conversion",
+    secondaryCoolTime: [20, 5],
+    tertiaryNameJa: "一触即発",
+    tertiaryNameEn: "Instant Reaction",
+    tertiaryCoolTime: [20],
+  },
 ];
