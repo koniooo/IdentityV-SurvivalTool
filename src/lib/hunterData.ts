@@ -217,7 +217,7 @@ export const hunterData: readonly hunterDatum[] = [
     primaryCoolTime: [19, 9],
     secondaryNameJa: "驚波",
     secondaryNameEn: "Surging\nTides",
-    secondaryCoolTime: [18],
+    secondaryCoolTime: [15],
   },
   {
     nameJa: "蝋人形師",
@@ -283,7 +283,7 @@ export const hunterData: readonly hunterDatum[] = [
     primaryCoolTime: [8],
     secondaryNameJa: "影の追想",
     secondaryNameEn: "Shadow\nDance",
-    secondaryCoolTime: [17],
+    secondaryCoolTime: [20],
     tertiaryNameJa: "影襲",
     tertiaryNameEn: "Shadow-\nstrike",
     tertiaryCoolTime: [15, 5],
