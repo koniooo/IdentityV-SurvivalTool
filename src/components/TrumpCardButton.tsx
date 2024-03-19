@@ -123,6 +123,10 @@ export const TrumpCardButton = ({
               setIsBlinkTimerActive
             );
           } else {
+            // 鬼没から変更する場合
+            // この場合のみ元の鬼没のタイマーをストップさせる
+            setIsBlinkTimerActive(false);
+
             trumpCardFunc(
               blinkTime,
               blinkCoolTime,
