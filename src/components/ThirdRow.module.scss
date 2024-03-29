@@ -7,28 +7,49 @@
 }
 
 .centralSvg,
-.leftSvg,
-.rightSvg {
+.patroller,
+.abnormal,
+.teleport,
+.excitement,
+.warp {
   position: absolute;
   transform: translate(-50%, -50%);
   top: 75%;
   max-height: 40%;
 }
 
-.leftSvg,
-.rightSvg {
-  width: 45%;
-}
-
 .centralSvg {
-  left: 50%;
   width: 66.7%;
 }
 
-.leftSvg {
+.patroller,
+.abnormal {
+  width: 45%;
+}
+
+.teleport,
+.excitement,
+.warp {
+  width: 33%;
+}
+
+.centralSvg,
+.excitement {
+  left: 50%;
+}
+
+.patroller {
   left: 25%;
 }
 
-.rightSvg {
+.abnormal {
   left: 75%;
+}
+
+.teleport {
+  left: 20%;
+}
+
+.warp {
+  left: 84%;
 }

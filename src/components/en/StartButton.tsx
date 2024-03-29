@@ -5,7 +5,7 @@ import styles from "components/StartButton.module.scss";
 import stylesEn from "components/en/StartButton.module.scss";
 
 const patrollerDefaultTime = 30;
-const teleportDefaultTime = 45;
+const warpDefaultTime = 40;
 const blinkDefaultTime = 60;
 const ultraLongDefaultTime = 30;
 const bloodyQueenDefaultTime = 8;
@@ -144,7 +144,7 @@ export const StartButton = ({
       triggerTimer(
         isTeleportTimerActive,
         teleportTimerId,
-        teleportDefaultTime,
+        warpDefaultTime,
         setTeleportTime,
         setIsTeleportTimerActive
       );
@@ -209,9 +209,7 @@ export const StartButton = ({
               <p className={styles.time}>{-elapsedTime}</p>
             </div>
             <div className={`${styles.flexContainer} ${styles.description}`}>
-              <p>
-                *tap to start the game immediately
-              </p>
+              <p>*tap to start the game immediately</p>
             </div>
           </>
         );

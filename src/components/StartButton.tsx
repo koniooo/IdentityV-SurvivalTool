@@ -4,7 +4,7 @@ import colors from "components/Color.module.scss";
 import styles from "components/StartButton.module.scss";
 
 export const patrollerDefaultTime = 30;
-export const teleportDefaultTime = 45;
+export const warpDefaultTime = 40;
 const blinkDefaultTime = 60;
 const ultraLongDefaultTime = 30;
 const bloodyQueenDefaultTime = 8;
@@ -143,7 +143,7 @@ export const StartButton = ({
       triggerTimer(
         isTeleportTimerActive,
         teleportTimerId,
-        teleportDefaultTime,
+        warpDefaultTime,
         setTeleportTime,
         setIsTeleportTimerActive
       );
