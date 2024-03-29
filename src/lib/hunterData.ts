@@ -301,4 +301,17 @@ export const hunterData: readonly hunterDatum[] = [
     tertiaryNameEn: "Instant\nReaction",
     tertiaryCoolTime: [20],
   },
+  {
+    nameJa: "時空の影",
+    nameEn: "The shadow",
+    primaryNameJa: "古の面",
+    primaryNameEn: "Ancient\nVisage",
+    primaryCoolTime: [15],
+    secondaryNameJa: "憑依(第\n1スキル\n解放後)",
+    secondaryNameEn: "infection\n(1st skill\nunlocked)",
+    secondaryCoolTime: [30],
+    tertiaryNameJa: "空間転送",
+    tertiaryNameEn: "Inter-\ndimensional\nTravel",
+    tertiaryCoolTime: [45],
+  },
 ];
