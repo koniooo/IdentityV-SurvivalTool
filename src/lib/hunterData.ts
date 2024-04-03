@@ -309,7 +309,7 @@ export const hunterData: readonly hunterDatum[] = [
     primaryCoolTime: [15],
     secondaryNameJa: "憑依(第\n1スキル\n解放後)",
     secondaryNameEn: "infection\n(1st skill\nunlocked)",
-    secondaryCoolTime: [30],
+    secondaryCoolTime: [38],
     tertiaryNameJa: "空間転送",
     tertiaryNameEn: "Inter-\ndimensional\nTravel",
     tertiaryCoolTime: [45],
