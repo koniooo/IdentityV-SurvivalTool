@@ -280,7 +280,7 @@ export const StartButton = ({
       } else {
         return (
           <div className={styles.flexContainer}>
-            <p className={styles.text}>&quot;破译加速&quot;中</p>
+            <p className={styles.text}>等待&quot;破译加速&quot;</p>
             <p className={styles.time}>
               {accelerateDecodingTime - elapsedTime}
             </p>
