@@ -1,10 +1,10 @@
 import styles from "components/SecondRow.module.scss";
 import { RowContainer } from "components/RowContainer";
 import { OneThirdColumn } from "components/OneThirdColumn";
-import { HunterSkillTimer } from "components/en/HunterSkillTimer";
+import { HunterSkillTimer } from "components/cn/HunterSkillTimer";
 import { Persona } from "components/Persona";
-import { HunterSelect } from "components/en/HunterSelect";
-import { LanguageSwitch } from "components/en/LanguageSwitch";
+import { HunterSelect } from "components/cn/HunterSelect";
+import { LanguageSwitch } from "components/cn/LanguageSwitch";
 import { hunterData } from "lib/hunterData";
 
 export type Props = {
