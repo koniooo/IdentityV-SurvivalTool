@@ -1,0 +1,17 @@
+.main {
+  --text-x-small: min(2.75vw, 1.75vh); /* dream witch description */
+  --text-small: min(
+    3vw,
+    2vh
+  ); /* start button description, dream witch skill timer text, trumpcard alert text (, triple timer skill text in English) */
+  --text-middle: min(4vw, 2.75vh); /* start button, skill timer text */
+  --text-large: min(4.25vw, 3vh); /* hunter select */
+
+  --number-x-small: min(5vw, 3.5vh); /* insolence value */
+  --number-small: min(6.5vw, 5vh); /* start button timer */
+  --number-middle: min(
+    10vw,
+    7.5vh
+  ); /* trumpCard, ultraLong, triple skill timer */
+  --number-large: min(13.5vw, 9vh); /* trait, skill timer, START text  */
+}
