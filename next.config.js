@@ -2,10 +2,7 @@
 const nextConfig = {
   reactStrictMode: true,
   output: "export",
-
-  distDir: "docs", // 開発中はコメントアウトする（ホットリロードが効かなくなるため）
-  assetPrefix: "./", // 同じく
-  basePath: "/IdentityV-SurvivalTool", // 同じく
+  basePath: process.env.NODE_ENV === "production" ? "/IdentityV-SurvivalTool" : ""
 };
 
 module.exports = nextConfig;
