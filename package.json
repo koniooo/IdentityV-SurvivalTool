@@ -6,15 +6,15 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@types/node": "22.15.14",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint": "9.26.0",
-    "eslint-config-next": "15.3.2",
-    "next": "15.3.2",
+    "eslint-config-next": "^16.4.2",
+    "next": "^16.4.2",
     "react": "^19.3.1",
     "react-dom": "^19.3.1",
     "typescript": "5.8.3"
