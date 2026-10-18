@@ -5,7 +5,7 @@ export default defineConfig([
   ...nextVitals,
   {
     rules: {
-      "react-hooks/exhaustive-deps": "off", 
+      "react-hooks/exhaustive-deps": "warn",
       "react-hooks/refs": "warn",
       "react-hooks/set-state-in-effect": "warn",
       "react-hooks/immutability": "warn",
