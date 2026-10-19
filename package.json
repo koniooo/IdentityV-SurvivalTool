@@ -9,7 +9,6 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "@types/node": "22.15.14",
     "@types/react": "^19.3.0",
     "@types/react-dom": "^19.3.0",
     "eslint-config-next": "^16.4.2",
@@ -19,6 +18,7 @@
     "typescript": "5.8.3"
   },
   "devDependencies": {
+    "@types/node": "26.6.5",
     "eslint": "^9.39.5",
     "sass": "^1.105.2"
   }
