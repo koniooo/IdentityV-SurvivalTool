@@ -5,6 +5,7 @@ import { SecondRow } from "components/SecondRow";
 import { ThirdRow } from "components/ThirdRow";
 import { FourthRow } from "components/FourthRow";
 import { hunterData } from "lib/hunterData";
+import { calculateTotalCoolTime } from "lib/coolTime"
 import variables from "styles/Variables.module.scss";
 import styles from "components/Main.module.scss";
 
@@ -123,20 +124,13 @@ export const Main = () => {
   const selectedSecondaryCoolTime = selectedHunter.secondaryCoolTime;
   const selectedTertiaryCoolTime = selectedHunter.tertiaryCoolTime;
 
-  const calculateTotalCooltime = (array: number[]) => {
-    if (array.length === 1) {
-      return array[0];
-    } else {
-      return array[0] + array[1];
-    }
-  };
-  const primaryTotalCoolTime = calculateTotalCooltime(selectedPrimaryCoolTime);
+  const primaryTotalCoolTime = calculateTotalCoolTime(selectedPrimaryCoolTime);
   const secondaryTotalCoolTime = selectedSecondaryCoolTime
-    ? calculateTotalCooltime(selectedSecondaryCoolTime)
+    ? calculateTotalCoolTime(selectedSecondaryCoolTime)
     : 0;
 
   const tertiaryTotalCoolTime = selectedTertiaryCoolTime
-    ? calculateTotalCooltime(selectedTertiaryCoolTime)
+    ? calculateTotalCoolTime(selectedTertiaryCoolTime)
     : 0;
 
   useTimer(
