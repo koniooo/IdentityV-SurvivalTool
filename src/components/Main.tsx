@@ -71,6 +71,9 @@ export const Main = () => {
         clearInterval(timerId.current);
         setTime(coolTime);
       }
+      return () => {
+        clearInterval(timerId.current);
+      }
     }, [isTimerActive]);
 
     useEffect(() => {
