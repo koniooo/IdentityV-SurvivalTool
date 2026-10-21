@@ -20,9 +20,9 @@ type Props = {
   setTertiaryTime: React.Dispatch<React.SetStateAction<number>>;
   isTertiaryTimerActive: boolean;
   setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  primaryTimerId: React.MutableRefObject<number>;
-  secondaryTimerId: React.MutableRefObject<number>;
-  tertiaryTimerId: React.MutableRefObject<number>;
+  restartPrimaryTimer: () => void;
+  restartSecondaryTimer: () => void;
+  restartTertiaryTimer: () => void;
 };
 
 export const HunterSkillTimer = ({
@@ -39,9 +39,9 @@ export const HunterSkillTimer = ({
   setIsPrimaryTimerActive,
   setIsSecondaryTimerActive,
   setIsTertiaryTimerActive,
-  primaryTimerId,
-  secondaryTimerId,
-  tertiaryTimerId,
+  restartPrimaryTimer,
+  restartSecondaryTimer,
+  restartTertiaryTimer,
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
   if (hunterId === dreamWitchId) {
@@ -78,7 +78,7 @@ export const HunterSkillTimer = ({
             setTime={setPrimaryTime}
             isTimerActive={isPrimaryTimerActive}
             setIsTimerActive={setIsPrimaryTimerActive}
-            timerId={primaryTimerId}
+            restartTimer={restartPrimaryTimer}
           />
         </section>
         <section className={styles.triple}>
@@ -89,7 +89,7 @@ export const HunterSkillTimer = ({
             setTime={setSecondaryTime}
             isTimerActive={isSecondaryTimerActive}
             setIsTimerActive={setIsSecondaryTimerActive}
-            timerId={secondaryTimerId}
+            restartTimer={restartSecondaryTimer}
           />
         </section>
         <section className={styles.triple}>
@@ -100,7 +100,7 @@ export const HunterSkillTimer = ({
             setTime={setTertiaryTime}
             isTimerActive={isTertiaryTimerActive}
             setIsTimerActive={setIsTertiaryTimerActive}
-            timerId={tertiaryTimerId}
+            restartTimer={restartTertiaryTimer}
           />
         </section>
       </>
@@ -116,7 +116,7 @@ export const HunterSkillTimer = ({
             setTime={setPrimaryTime}
             isTimerActive={isPrimaryTimerActive}
             setIsTimerActive={setIsPrimaryTimerActive}
-            timerId={primaryTimerId}
+            restartTimer={restartPrimaryTimer}
           />
         </OneThirdColumn>
         <OneThirdColumn>
@@ -127,7 +127,7 @@ export const HunterSkillTimer = ({
             setTime={setSecondaryTime}
             isTimerActive={isSecondaryTimerActive}
             setIsTimerActive={setIsSecondaryTimerActive}
-            timerId={secondaryTimerId}
+            restartTimer={restartSecondaryTimer}
           />
         </OneThirdColumn>
       </div>
@@ -142,7 +142,7 @@ export const HunterSkillTimer = ({
           setTime={setPrimaryTime}
           isTimerActive={isPrimaryTimerActive}
           setIsTimerActive={setIsPrimaryTimerActive}
-          timerId={primaryTimerId}
+          restartTimer={restartPrimaryTimer}
         />
       </div>
     );

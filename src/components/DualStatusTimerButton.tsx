@@ -6,8 +6,8 @@ type Props = {
   secondCoolTime: number;
   isTimerActive: boolean;
   setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  timerId: React.MutableRefObject<number>;
   children: React.ReactNode;
+  restartTimer: () => void;
 };
 export const DualStatusTimerButton = ({
   time,
@@ -15,8 +15,8 @@ export const DualStatusTimerButton = ({
   secondCoolTime,
   isTimerActive,
   setIsTimerActive,
-  timerId,
   children,
+  restartTimer,
 }: Props) => {
   return (
     <button
@@ -25,19 +25,15 @@ export const DualStatusTimerButton = ({
         !isTimerActive
           ? `${colors.green} ${colors.greenText}`
           : time > secondCoolTime || time <= 3
-          ? `${colors.red} ${colors.redText}`
-          : `${colors.yellow} ${colors.yellowText}`
+            ? `${colors.red} ${colors.redText}`
+            : `${colors.yellow} ${colors.yellowText}`
       }`}
       onClick={() => {
         if (!isTimerActive || time <= secondCoolTime) {
           setIsTimerActive(!isTimerActive);
         } else {
-          clearInterval(timerId.current);
           setTime(secondCoolTime);
-          const id = setInterval(() => {
-            setTime((t) => t - 1);
-          }, 1000);
-          timerId.current = Number(id);
+          restartTimer();
         }
       }}
     >

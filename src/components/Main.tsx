@@ -5,7 +5,7 @@ import { SecondRow } from "components/SecondRow";
 import { ThirdRow } from "components/ThirdRow";
 import { FourthRow } from "components/FourthRow";
 import { hunterData } from "lib/hunterData";
-import { calculateTotalCoolTime } from "lib/coolTime"
+import { calculateTotalCoolTime } from "lib/coolTime";
 import variables from "styles/Variables.module.scss";
 import styles from "components/Main.module.scss";
 
@@ -42,6 +42,9 @@ export const Main = () => {
   const [isPrimaryTimerActive, setIsPrimaryTimerActive] = useState(false);
   const [isSecondaryTimerActive, setIsSecondaryTimerActive] = useState(false);
   const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
+  const [primaryTimerRestartKey, setPrimaryTimerRestartKey] = useState(0);
+  const [secondaryTimerRestartKey, setSecondaryTimerRestartKey] = useState(0);
+  const [tertiaryTimerRestartKey, setTertiaryTimerRestartKey] = useState(0);
   const [isTrumpCardUsed, setIsTrumpCardUsed] = useState(false);
   const [isTrumpCardAlertOn, setIsTrumpCardAlertOn] = useState(false);
 
@@ -59,7 +62,8 @@ export const Main = () => {
     setTime: React.Dispatch<React.SetStateAction<number>>,
     isTimerActive: boolean,
     setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>,
-    timerId: React.MutableRefObject<number>
+    timerId: React.MutableRefObject<number>,
+    restartKey: number = 0,
   ) => {
     useEffect(() => {
       if (isTimerActive) {
@@ -73,8 +77,8 @@ export const Main = () => {
       }
       return () => {
         clearInterval(timerId.current);
-      }
-    }, [isTimerActive]);
+      };
+    }, [isTimerActive, restartKey]);
 
     useEffect(() => {
       if (time !== 0) return;
@@ -92,7 +96,7 @@ export const Main = () => {
     setPatrollerTime,
     isPatrollerTimerActive,
     setIsPatrollerTimerActive,
-    patrollerTimerId
+    patrollerTimerId,
   );
 
   useTimer(
@@ -101,7 +105,7 @@ export const Main = () => {
     setTeleportTime,
     isTeleportTimerActive,
     setIsTeleportTimerActive,
-    teleportTimerId
+    teleportTimerId,
   );
 
   useTimer(
@@ -110,7 +114,7 @@ export const Main = () => {
     setBlinkTime,
     isBlinkTimerActive,
     setIsBlinkTimerActive,
-    blinkTimerId
+    blinkTimerId,
   );
 
   useTimer(
@@ -119,7 +123,7 @@ export const Main = () => {
     setUltraLongTime,
     isUltraLongTimerActive,
     setIsUltraLongTimerActive,
-    ultraLongTimerId
+    ultraLongTimerId,
   );
 
   const selectedHunter = hunterData[hunterId];
@@ -142,7 +146,8 @@ export const Main = () => {
     setPrimaryTime,
     isPrimaryTimerActive,
     setIsPrimaryTimerActive,
-    primaryTimerId
+    primaryTimerId,
+    primaryTimerRestartKey,
   );
 
   useTimer(
@@ -151,7 +156,8 @@ export const Main = () => {
     setSecondaryTime,
     isSecondaryTimerActive,
     setIsSecondaryTimerActive,
-    secondaryTimerId
+    secondaryTimerId,
+    secondaryTimerRestartKey,
   );
 
   useTimer(
@@ -160,7 +166,8 @@ export const Main = () => {
     setTertiaryTime,
     isTertiaryTimerActive,
     setIsTertiaryTimerActive,
-    tertiaryTimerId
+    tertiaryTimerId,
+    tertiaryTimerRestartKey,
   );
 
   useEffect(() => {
@@ -175,6 +182,18 @@ export const Main = () => {
 
   const isTrumpCardTimerActive =
     isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
+
+  const restartPrimaryTimer = () => {
+    setPrimaryTimerRestartKey((key) => key + 1);
+  };
+
+  const restartSecondaryTimer = () => {
+    setSecondaryTimerRestartKey((key) => key + 1);
+  };
+
+  const restartTertiaryTimer = () => {
+    setTertiaryTimerRestartKey((key) => key + 1);
+  };
 
   return (
     <main className={`${styles.main} ${variables.main}`}>
@@ -245,9 +264,9 @@ export const Main = () => {
         setIsSecondaryTimerActive={setIsSecondaryTimerActive}
         setIsPrimaryTimerActive={setIsPrimaryTimerActive}
         setIsTertiaryTimerActive={setIsTertiaryTimerActive}
-        primaryTimerId={primaryTimerId}
-        secondaryTimerId={secondaryTimerId}
-        tertiaryTimerId={tertiaryTimerId}
+        restartPrimaryTimer={restartPrimaryTimer}
+        restartSecondaryTimer={restartSecondaryTimer}
+        restartTertiaryTimer={restartTertiaryTimer}
       />
       <ThirdRow
         patrollerTime={patrollerTime}

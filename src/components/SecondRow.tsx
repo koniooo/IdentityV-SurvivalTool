@@ -35,9 +35,9 @@ export type Props = {
   setTertiaryTime: React.Dispatch<React.SetStateAction<number>>;
   isTertiaryTimerActive: boolean;
   setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  primaryTimerId: React.MutableRefObject<number>;
-  secondaryTimerId: React.MutableRefObject<number>;
-  tertiaryTimerId: React.MutableRefObject<number>;
+  restartPrimaryTimer: () => void;
+  restartSecondaryTimer: () => void;
+  restartTertiaryTimer: () => void;
 };
 
 export const SecondRow = ({
@@ -68,9 +68,9 @@ export const SecondRow = ({
   setIsPrimaryTimerActive,
   setIsSecondaryTimerActive,
   setIsTertiaryTimerActive,
-  primaryTimerId,
-  secondaryTimerId,
-  tertiaryTimerId,
+  restartPrimaryTimer,
+  restartSecondaryTimer,
+  restartTertiaryTimer,
 }: Props) => {
   return (
     <RowContainer isEdgeRow={false}>
@@ -160,9 +160,9 @@ export const SecondRow = ({
               setIsSecondaryTimerActive={setIsSecondaryTimerActive}
               setIsPrimaryTimerActive={setIsPrimaryTimerActive}
               setIsTertiaryTimerActive={setIsTertiaryTimerActive}
-              primaryTimerId={primaryTimerId}
-              secondaryTimerId={secondaryTimerId}
-              tertiaryTimerId={tertiaryTimerId}
+              restartPrimaryTimer={restartPrimaryTimer}
+              restartSecondaryTimer={restartSecondaryTimer}
+              restartTertiaryTimer={restartTertiaryTimer}
             />
           </section>
         </div>
