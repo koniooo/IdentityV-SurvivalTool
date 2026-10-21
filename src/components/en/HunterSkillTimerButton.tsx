@@ -10,7 +10,7 @@ type Props = {
   setTime: React.Dispatch<React.SetStateAction<number>>;
   isTimerActive: boolean;
   setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  timerId: React.MutableRefObject<number>;
+  restartTimer: () => void;
 };
 
 export const HunterSkillTimerButton = ({
@@ -20,7 +20,7 @@ export const HunterSkillTimerButton = ({
   setIsTimerActive,
   hunterId,
   setTime,
-  timerId,
+  restartTimer,
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
   const selectedPrimaryCoolTime = selectedHunter.primaryCoolTime;
@@ -31,8 +31,8 @@ export const HunterSkillTimerButton = ({
     skill === "primary"
       ? selectedPrimaryCoolTime.length === 1
       : skill === "secondary"
-      ? selectedSecondaryCoolTime.length === 1
-      : selectedTertiaryCoolTime.length === 1;
+        ? selectedSecondaryCoolTime.length === 1
+        : selectedTertiaryCoolTime.length === 1;
 
   if (haveSingleStatus) {
     return (
@@ -66,14 +66,14 @@ export const HunterSkillTimerButton = ({
           skill === "primary"
             ? selectedPrimaryCoolTime[1]
             : skill === "secondary"
-            ? selectedSecondaryCoolTime[1]
-            : selectedTertiaryCoolTime[1]
+              ? selectedSecondaryCoolTime[1]
+              : selectedTertiaryCoolTime[1]
         }
         time={time}
         setTime={setTime}
         isTimerActive={isTimerActive}
         setIsTimerActive={setIsTimerActive}
-        timerId={timerId}
+        restartTimer={restartTimer}
       >
         {skill === "primary" &&
           (time > selectedPrimaryCoolTime[1] ? (
