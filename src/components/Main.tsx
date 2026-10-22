@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { RowContainer } from "components/RowContainer";
 import { StartButton } from "components/StartButton";
 import { SecondRow } from "components/SecondRow";
@@ -6,6 +6,7 @@ import { ThirdRow } from "components/ThirdRow";
 import { FourthRow } from "components/FourthRow";
 import { hunterData } from "lib/hunterData";
 import { calculateTotalCoolTime } from "lib/coolTime";
+import { useTimer } from "@/hooks/useTimer";
 import variables from "styles/Variables.module.scss";
 import styles from "components/Main.module.scss";
 
@@ -42,89 +43,40 @@ export const Main = () => {
   const [isPrimaryTimerActive, setIsPrimaryTimerActive] = useState(false);
   const [isSecondaryTimerActive, setIsSecondaryTimerActive] = useState(false);
   const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
-  const [primaryTimerRestartKey, setPrimaryTimerRestartKey] = useState(0);
-  const [secondaryTimerRestartKey, setSecondaryTimerRestartKey] = useState(0);
-  const [tertiaryTimerRestartKey, setTertiaryTimerRestartKey] = useState(0);
   const [isTrumpCardUsed, setIsTrumpCardUsed] = useState(false);
   const [isTrumpCardAlertOn, setIsTrumpCardAlertOn] = useState(false);
 
-  const patrollerTimerId = useRef(0);
-  const teleportTimerId = useRef(0);
-  const blinkTimerId = useRef(0);
-  const ultraLongTimerId = useRef(0);
-  const primaryTimerId = useRef(0);
-  const secondaryTimerId = useRef(0);
-  const tertiaryTimerId = useRef(0);
+  const restartPatrollerTimer = useTimer({
+    coolTime: patrollerCoolTime,
+    time: patrollerTime,
+    setTime: setPatrollerTime,
+    isTimerActive: isPatrollerTimerActive,
+    setIsTimerActive: setIsPatrollerTimerActive,
+  });
 
-  const useTimer = (
-    coolTime: number,
-    time: number,
-    setTime: React.Dispatch<React.SetStateAction<number>>,
-    isTimerActive: boolean,
-    setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>,
-    timerId: React.MutableRefObject<number>,
-    restartKey: number = 0,
-  ) => {
-    useEffect(() => {
-      if (isTimerActive) {
-        const id = setInterval(() => {
-          setTime((t) => t - 1);
-        }, 1000);
-        timerId.current = Number(id);
-      } else {
-        clearInterval(timerId.current);
-        setTime(coolTime);
-      }
-      return () => {
-        clearInterval(timerId.current);
-      };
-    }, [isTimerActive, restartKey]);
+  const restartTeleportTimer = useTimer({
+    coolTime: teleportCoolTime,
+    time: teleportTime,
+    setTime: setTeleportTime,
+    isTimerActive: isTeleportTimerActive,
+    setIsTimerActive: setIsTeleportTimerActive,
+  });
 
-    useEffect(() => {
-      if (time !== 0) return;
-      else {
-        clearInterval(timerId.current);
-        setIsTimerActive(false);
-        setTime(coolTime);
-      }
-    }, [time]);
-  };
+  const restartBlinkTimer = useTimer({
+    coolTime: blinkCoolTime,
+    time: blinkTime,
+    setTime: setBlinkTime,
+    isTimerActive: isBlinkTimerActive,
+    setIsTimerActive: setIsBlinkTimerActive,
+  });
 
-  useTimer(
-    patrollerCoolTime,
-    patrollerTime,
-    setPatrollerTime,
-    isPatrollerTimerActive,
-    setIsPatrollerTimerActive,
-    patrollerTimerId,
-  );
-
-  useTimer(
-    teleportCoolTime,
-    teleportTime,
-    setTeleportTime,
-    isTeleportTimerActive,
-    setIsTeleportTimerActive,
-    teleportTimerId,
-  );
-
-  useTimer(
-    blinkCoolTime,
-    blinkTime,
-    setBlinkTime,
-    isBlinkTimerActive,
-    setIsBlinkTimerActive,
-    blinkTimerId,
-  );
-
-  useTimer(
-    ultraLongCoolTime,
-    ultraLongTime,
-    setUltraLongTime,
-    isUltraLongTimerActive,
-    setIsUltraLongTimerActive,
-    ultraLongTimerId,
-  );
+  const restartUltraLongTimer = useTimer({
+    coolTime: ultraLongCoolTime,
+    time: ultraLongTime,
+    setTime: setUltraLongTime,
+    isTimerActive: isUltraLongTimerActive,
+    setIsTimerActive: setIsUltraLongTimerActive,
+  });
 
   const selectedHunter = hunterData[hunterId];
   const selectedPrimaryCoolTime = selectedHunter.primaryCoolTime;
@@ -140,35 +92,29 @@ export const Main = () => {
     ? calculateTotalCoolTime(selectedTertiaryCoolTime)
     : 0;
 
-  useTimer(
-    primaryTotalCoolTime,
-    primaryTime,
-    setPrimaryTime,
-    isPrimaryTimerActive,
-    setIsPrimaryTimerActive,
-    primaryTimerId,
-    primaryTimerRestartKey,
-  );
+  const restartPrimaryTimer = useTimer({
+    coolTime: primaryTotalCoolTime,
+    time: primaryTime,
+    setTime: setPrimaryTime,
+    isTimerActive: isPrimaryTimerActive,
+    setIsTimerActive: setIsPrimaryTimerActive,
+  });
 
-  useTimer(
-    secondaryTotalCoolTime,
-    secondaryTime,
-    setSecondaryTime,
-    isSecondaryTimerActive,
-    setIsSecondaryTimerActive,
-    secondaryTimerId,
-    secondaryTimerRestartKey,
-  );
+  const restartSecondaryTimer = useTimer({
+    coolTime: secondaryTotalCoolTime,
+    time: secondaryTime,
+    setTime: setSecondaryTime,
+    isTimerActive: isSecondaryTimerActive,
+    setIsTimerActive: setIsSecondaryTimerActive,
+  });
 
-  useTimer(
-    tertiaryTotalCoolTime,
-    tertiaryTime,
-    setTertiaryTime,
-    isTertiaryTimerActive,
-    setIsTertiaryTimerActive,
-    tertiaryTimerId,
-    tertiaryTimerRestartKey,
-  );
+  const restartTertiaryTimer = useTimer({
+    coolTime: tertiaryTotalCoolTime,
+    time: tertiaryTime,
+    setTime: setTertiaryTime,
+    isTimerActive: isTertiaryTimerActive,
+    setIsTimerActive: setIsTertiaryTimerActive,
+  });
 
   useEffect(() => {
     setIsPrimaryTimerActive(false);
@@ -183,18 +129,6 @@ export const Main = () => {
   const isTrumpCardTimerActive =
     isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
 
-  const restartPrimaryTimer = () => {
-    setPrimaryTimerRestartKey((key) => key + 1);
-  };
-
-  const restartSecondaryTimer = () => {
-    setSecondaryTimerRestartKey((key) => key + 1);
-  };
-
-  const restartTertiaryTimer = () => {
-    setTertiaryTimerRestartKey((key) => key + 1);
-  };
-
   return (
     <main className={`${styles.main} ${variables.main}`}>
       <RowContainer isEdgeRow={true}>
@@ -207,11 +141,11 @@ export const Main = () => {
           setElapsedTime={setElapsedTime}
           isStartTimerActive={isStartTimerActive}
           setIsStartTimerActive={setIsStartTimerActive}
-          patrollerTimerId={patrollerTimerId}
-          teleportTimerId={teleportTimerId}
-          blinkTimerId={blinkTimerId}
-          ultraLongTimerId={ultraLongTimerId}
-          primaryTimerId={primaryTimerId}
+          restartPatrollerTimer={restartPatrollerTimer}
+          restartTeleportTimer={restartTeleportTimer}
+          restartBlinkTimer={restartBlinkTimer}
+          restartUltraLongTimer={restartUltraLongTimer}
+          restartPrimaryTimer={restartPrimaryTimer}
           setPatrollerTime={setPatrollerTime}
           setTeleportTime={setTeleportTime}
           setBlinkTime={setBlinkTime}

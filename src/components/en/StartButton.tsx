@@ -22,11 +22,11 @@ type Props = {
   setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
   isStartTimerActive: boolean;
   setIsStartTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  patrollerTimerId: React.MutableRefObject<number>;
-  teleportTimerId: React.MutableRefObject<number>;
-  blinkTimerId: React.MutableRefObject<number>;
-  ultraLongTimerId: React.MutableRefObject<number>;
-  primaryTimerId: React.MutableRefObject<number>;
+  restartPatrollerTimer: () => void;
+  restartTeleportTimer: () => void;
+  restartBlinkTimer: () => void;
+  restartUltraLongTimer: () => void;
+  restartPrimaryTimer: () => void;
   setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
   setTeleportTime: React.Dispatch<React.SetStateAction<number>>;
   setBlinkTime: React.Dispatch<React.SetStateAction<number>>;
@@ -63,11 +63,11 @@ export const StartButton = ({
   setElapsedTime,
   isStartTimerActive,
   setIsStartTimerActive,
-  patrollerTimerId,
-  teleportTimerId,
-  blinkTimerId,
-  ultraLongTimerId,
-  primaryTimerId,
+  restartPatrollerTimer,
+  restartTeleportTimer,
+  restartBlinkTimer,
+  restartUltraLongTimer,
+  restartPrimaryTimer,
   setPatrollerTime,
   setTeleportTime,
   setBlinkTime,
@@ -95,18 +95,14 @@ export const StartButton = ({
 
   const triggerTimer = (
     isTimerActive: boolean,
-    timerId: React.MutableRefObject<number>,
     defaultTime: number,
     setTime: React.Dispatch<React.SetStateAction<number>>,
-    setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>
+    setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>,
+    restartTimer: () => void,
   ) => {
     if (isTimerActive) {
-      clearInterval(timerId.current);
       setTime(defaultTime);
-      const id = setInterval(() => {
-        setTime((t) => t - 1);
-      }, 1000);
-      timerId.current = Number(id);
+      restartTimer();
     } else {
       setTime(defaultTime);
       setIsTimerActive(true);
@@ -126,43 +122,43 @@ export const StartButton = ({
         // 画面が回転してる間にハンターを特定している可能性があるため
         triggerTimer(
           isPrimaryTimerActive,
-          primaryTimerId,
           bloodyQueenDefaultTime,
           setPrimaryTime,
-          setIsPrimaryTimerActive
+          setIsPrimaryTimerActive,
+          restartPrimaryTimer,
         );
       }
 
       triggerTimer(
         isPatrollerTimerActive,
-        patrollerTimerId,
         patrollerDefaultTime,
         setPatrollerTime,
-        setIsPatrollerTimerActive
+        setIsPatrollerTimerActive,
+        restartPatrollerTimer,
       );
 
       triggerTimer(
         isTeleportTimerActive,
-        teleportTimerId,
         warpDefaultTime,
         setTeleportTime,
-        setIsTeleportTimerActive
+        setIsTeleportTimerActive,
+        restartTeleportTimer,
       );
 
       triggerTimer(
         isBlinkTimerActive,
-        blinkTimerId,
         blinkDefaultTime,
         setBlinkTime,
-        setIsBlinkTimerActive
+        setIsBlinkTimerActive,
+        restartBlinkTimer,
       );
 
       triggerTimer(
         isUltraLongTimerActive,
-        ultraLongTimerId,
         ultraLongDefaultTime,
         setUltraLongTime,
-        setIsUltraLongTimerActive
+        setIsUltraLongTimerActive,
+        restartUltraLongTimer,
       );
     } else if (elapsedTime === accelerateDecodingTime + detentionTime + 10) {
       clearInterval(startTimerId.current);
