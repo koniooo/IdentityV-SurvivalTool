@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { Main } from "components/en/Main";
+import { Main } from "components/Main";
 
 export default function survivalTool() {
   return (
@@ -39,7 +39,7 @@ export default function survivalTool() {
           sizes="any"
         />
       </Head>
-      <Main />
+      <Main language="en" />
     </>
   );
 }
