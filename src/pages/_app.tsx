@@ -12,6 +12,10 @@ export default function App({ Component, pageProps }: AppProps) {
     };
     window.addEventListener("resize", setFillHeight);
     setFillHeight();
+
+    return () => {
+      window.removeEventListener("resize", setFillHeight);
+    };
   }, []);
 
   const router = useRouter();
