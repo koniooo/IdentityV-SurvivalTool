@@ -7,7 +7,11 @@ import { FourthRow } from "components/FourthRow";
 import { hunterData } from "lib/hunterData";
 import { calculateTotalCoolTime } from "lib/coolTime";
 import { useTimer } from "@/hooks/useTimer";
+import { StartButton as EnglishStartButton } from "components/en/StartButton";
+import { SecondRow as EnglishSecondRow } from "components/en/SecondRow";
+import { FourthRow as EnglishFourthRow } from "components/en/FourthRow";
 import variables from "styles/Variables.module.scss";
+import variablesEn from "styles/VariablesEn.module.scss";
 import styles from "components/Main.module.scss";
 
 export const patrollerCoolTime = 90;
@@ -20,7 +24,11 @@ export const trumpCardTime = 120;
 export const readyTime = 5;
 export const bloodyQueenId = 13;
 
-export const Main = () => {
+type Props = {
+  language: "ja" | "en";
+};
+
+export const Main = ({ language }: Props) => {
   const [elapsedTime, setElapsedTime] = useState(-readyTime);
   const [patrollerTime, setPatrollerTime] = useState(patrollerCoolTime);
   const [teleportTime, setTeleportTime] = useState(teleportCoolTime);
@@ -45,6 +53,13 @@ export const Main = () => {
   const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
   const [isTrumpCardUsed, setIsTrumpCardUsed] = useState(false);
   const [isTrumpCardAlertOn, setIsTrumpCardAlertOn] = useState(false);
+
+  const StartButtonComponent =
+    language === "ja" ? StartButton : EnglishStartButton;
+  const SecondRowComponent = language === "ja" ? SecondRow : EnglishSecondRow;
+  const FourthRowComponent = language === "ja" ? FourthRow : EnglishFourthRow;
+
+  const pageVariables = language === "ja" ? variables : variablesEn;
 
   const restartPatrollerTimer = useTimer({
     coolTime: patrollerCoolTime,
@@ -130,9 +145,9 @@ export const Main = () => {
     isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
 
   return (
-    <main className={`${styles.main} ${variables.main}`}>
+    <main className={`${styles.main} ${pageVariables.main}`}>
       <RowContainer isEdgeRow={true}>
-        <StartButton
+        <StartButtonComponent
           isPatrollerTimerActive={isPatrollerTimerActive}
           isTeleportTimerActive={isTeleportTimerActive}
           isBlinkTimerActive={isBlinkTimerActive}
@@ -170,7 +185,7 @@ export const Main = () => {
           setIsTrumpCardUsed={setIsTrumpCardUsed}
         />
       </RowContainer>
-      <SecondRow
+      <SecondRowComponent
         isTrumpCardTimerActive={isTrumpCardTimerActive}
         elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
@@ -215,7 +230,7 @@ export const Main = () => {
         elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
       />
-      <FourthRow
+      <FourthRowComponent
         isTrumpCardTimerActive={isTrumpCardTimerActive}
         patrollerTime={patrollerTime}
         setPatrollerTime={setPatrollerTime}

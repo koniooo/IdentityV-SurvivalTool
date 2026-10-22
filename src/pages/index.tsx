@@ -15,7 +15,10 @@ export default function survivalTool() {
           content="ハンターの特質・スキルのクールタイム管理や人格メモ機能など、サバイバーに役立つ機能が揃ったツール。全ハンターに対応！"
         />
         <meta name="theme-color" content="#292b2f" />
-        <meta property="og:url" content="https://koniooo.github.io/IdentityV-SurvivalTool/" />
+        <meta
+          property="og:url"
+          content="https://koniooo.github.io/IdentityV-SurvivalTool/"
+        />
         <meta property="og:title" content="第五人格サバイバルツール" />
         <meta property="og:type" content="website" />
         <meta
@@ -29,14 +32,14 @@ export default function survivalTool() {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@konio_tracy" />
 
-        <link 
+        <link
           rel="icon"
           href="https://koniooo.github.io/IdentityV-SurvivalTool/favicon.svg"
           type="image/svg+xml"
           sizes="any"
         />
       </Head>
-      <Main />
+      <Main language="ja" />
     </>
   );
 }
