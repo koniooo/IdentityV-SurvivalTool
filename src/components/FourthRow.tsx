@@ -4,6 +4,7 @@ import { UltraLongTimer } from "components/UltraLongTimer";
 import styles from "components/FourthRow.module.scss";
 
 type Props = {
+  language: "ja" | "en";
   isTrumpCardTimerActive: boolean;
   patrollerTime: number;
   setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
@@ -28,6 +29,7 @@ type Props = {
   setIsTrumpCardAlertOn: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const FourthRow = ({
+  language,
   isTrumpCardTimerActive,
   patrollerTime,
   setPatrollerTime,
@@ -55,6 +57,7 @@ export const FourthRow = ({
     <RowContainer isEdgeRow={true}>
       <section className={styles.trump}>
         <TrumpCardButton
+          language={language}
           isTrumpCardTimerActive={isTrumpCardTimerActive}
           patrollerTime={patrollerTime}
           setPatrollerTime={setPatrollerTime}
