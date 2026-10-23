@@ -7,7 +7,6 @@ import { FourthRow } from "components/FourthRow";
 import { hunterData } from "lib/hunterData";
 import { calculateTotalCoolTime } from "lib/coolTime";
 import { useTimer } from "@/hooks/useTimer";
-import { StartButton as EnglishStartButton } from "components/en/StartButton";
 import { FourthRow as EnglishFourthRow } from "components/en/FourthRow";
 import variables from "styles/Variables.module.scss";
 import variablesEn from "styles/VariablesEn.module.scss";
@@ -53,8 +52,6 @@ export const Main = ({ language }: Props) => {
   const [isTrumpCardUsed, setIsTrumpCardUsed] = useState(false);
   const [isTrumpCardAlertOn, setIsTrumpCardAlertOn] = useState(false);
 
-  const StartButtonComponent =
-    language === "ja" ? StartButton : EnglishStartButton;
   const FourthRowComponent = language === "ja" ? FourthRow : EnglishFourthRow;
 
   const pageVariables = language === "ja" ? variables : variablesEn;
@@ -145,7 +142,8 @@ export const Main = ({ language }: Props) => {
   return (
     <main className={`${styles.main} ${pageVariables.main}`}>
       <RowContainer isEdgeRow={true}>
-        <StartButtonComponent
+        <StartButton
+          language={language}
           isPatrollerTimerActive={isPatrollerTimerActive}
           isTeleportTimerActive={isTeleportTimerActive}
           isBlinkTimerActive={isBlinkTimerActive}
