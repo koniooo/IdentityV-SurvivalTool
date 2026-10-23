@@ -1,13 +1,16 @@
 import { RowContainer } from "components/RowContainer";
 import { OneThirdColumn } from "components/OneThirdColumn";
 import { HunterSkillTimer } from "components/HunterSkillTimer";
+import { HunterSkillTimer as EnglishHunterSkillTimer } from "components/en/HunterSkillTimer";
 import { Persona } from "components/Persona";
 import { HunterSelect } from "components/HunterSelect";
+import { HunterSelect as EnglishHunterSelect } from "components/en/HunterSelect";
 import { LanguageSwitch } from "components/LanguageSwitch";
 import { hunterData } from "lib/hunterData";
 import styles from "components/SecondRow.module.scss";
 
 export type Props = {
+  language: "ja" | "en";
   isTrumpCardTimerActive: boolean;
   elapsedTime: number;
   isStartTimerActive: boolean;
@@ -41,6 +44,7 @@ export type Props = {
 };
 
 export const SecondRow = ({
+  language,
   isTrumpCardTimerActive,
   elapsedTime,
   isStartTimerActive,
@@ -72,6 +76,11 @@ export const SecondRow = ({
   restartSecondaryTimer,
   restartTertiaryTimer,
 }: Props) => {
+  const HunterSelectComponent =
+    language === "ja" ? HunterSelect : EnglishHunterSelect;
+  const HunterSkillTimerComponent =
+    language === "ja" ? HunterSkillTimer : EnglishHunterSkillTimer;
+
   return (
     <RowContainer isEdgeRow={false}>
       <OneThirdColumn>
@@ -116,7 +125,10 @@ export const SecondRow = ({
             </button>
           </section>
           <section className={styles.hunterSelectSec}>
-            <HunterSelect hunterId={hunterId} setHunterId={setHunterId} />
+            <HunterSelectComponent
+              hunterId={hunterId}
+              setHunterId={setHunterId}
+            />
           </section>
           <section
             className={`${styles.plusHunterId} ${
@@ -141,12 +153,12 @@ export const SecondRow = ({
             </button>
           </section>
           <section className={styles.languageSwitch}>
-            <LanguageSwitch />
+            <LanguageSwitch language={language} />
           </section>
         </div>
         <div>
           <section className={styles.hunterSkillTimerSec}>
-            <HunterSkillTimer
+            <HunterSkillTimerComponent
               hunterId={hunterId}
               primaryTime={primaryTime}
               secondaryTime={secondaryTime}

@@ -1,9 +1,15 @@
 import Link from "next/link";
 import styles from "components/LanguageSwitch.module.scss";
 
-export const LanguageSwitch = () => {
+type Props = {
+  language: "ja" | "en";
+};
+
+export const LanguageSwitch = ({ language }: Props) => {
+  const href = language === "ja" ? "/en" : "/";
+
   return (
-    <Link className={styles.a} href="/en">
+    <Link className={styles.a} href={href}>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 500 500"
