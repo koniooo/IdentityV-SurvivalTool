@@ -8,7 +8,6 @@ import { hunterData } from "lib/hunterData";
 import { calculateTotalCoolTime } from "lib/coolTime";
 import { useTimer } from "@/hooks/useTimer";
 import { StartButton as EnglishStartButton } from "components/en/StartButton";
-import { SecondRow as EnglishSecondRow } from "components/en/SecondRow";
 import { FourthRow as EnglishFourthRow } from "components/en/FourthRow";
 import variables from "styles/Variables.module.scss";
 import variablesEn from "styles/VariablesEn.module.scss";
@@ -56,7 +55,6 @@ export const Main = ({ language }: Props) => {
 
   const StartButtonComponent =
     language === "ja" ? StartButton : EnglishStartButton;
-  const SecondRowComponent = language === "ja" ? SecondRow : EnglishSecondRow;
   const FourthRowComponent = language === "ja" ? FourthRow : EnglishFourthRow;
 
   const pageVariables = language === "ja" ? variables : variablesEn;
@@ -185,7 +183,8 @@ export const Main = ({ language }: Props) => {
           setIsTrumpCardUsed={setIsTrumpCardUsed}
         />
       </RowContainer>
-      <SecondRowComponent
+      <SecondRow
+        language={language}
         isTrumpCardTimerActive={isTrumpCardTimerActive}
         elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
