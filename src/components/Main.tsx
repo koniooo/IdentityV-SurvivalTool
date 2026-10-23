@@ -7,7 +7,6 @@ import { FourthRow } from "components/FourthRow";
 import { hunterData } from "lib/hunterData";
 import { calculateTotalCoolTime } from "lib/coolTime";
 import { useTimer } from "@/hooks/useTimer";
-import { FourthRow as EnglishFourthRow } from "components/en/FourthRow";
 import variables from "styles/Variables.module.scss";
 import variablesEn from "styles/VariablesEn.module.scss";
 import styles from "components/Main.module.scss";
@@ -51,8 +50,6 @@ export const Main = ({ language }: Props) => {
   const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
   const [isTrumpCardUsed, setIsTrumpCardUsed] = useState(false);
   const [isTrumpCardAlertOn, setIsTrumpCardAlertOn] = useState(false);
-
-  const FourthRowComponent = language === "ja" ? FourthRow : EnglishFourthRow;
 
   const pageVariables = language === "ja" ? variables : variablesEn;
 
@@ -227,7 +224,8 @@ export const Main = ({ language }: Props) => {
         elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
       />
-      <FourthRowComponent
+      <FourthRow
+        language={language}
         isTrumpCardTimerActive={isTrumpCardTimerActive}
         patrollerTime={patrollerTime}
         setPatrollerTime={setPatrollerTime}

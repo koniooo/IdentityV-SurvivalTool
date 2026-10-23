@@ -10,6 +10,7 @@ import styles from "components/TrumpCardButton.module.scss";
 let id: NodeJS.Timeout;
 
 type Props = {
+  language: "ja" | "en";
   isTrumpCardTimerActive: boolean;
   patrollerTime: number;
   setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
@@ -32,6 +33,7 @@ type Props = {
 };
 
 export const TrumpCardButton = ({
+  language,
   isTrumpCardTimerActive,
   patrollerTime,
   setPatrollerTime,
@@ -57,10 +59,10 @@ export const TrumpCardButton = ({
     sourceTraitCoolTime: number,
     targetTraitCoolTime: number,
     setTargetTraitTime: React.Dispatch<React.SetStateAction<number>>,
-    setIsTargetTraitTimerActive: React.Dispatch<React.SetStateAction<boolean>>
+    setIsTargetTraitTimerActive: React.Dispatch<React.SetStateAction<boolean>>,
   ) => {
     const targetTraitTime = Math.floor(
-      targetTraitCoolTime * (sourceTraitTime / sourceTraitCoolTime)
+      targetTraitCoolTime * (sourceTraitTime / sourceTraitCoolTime),
     );
     setTargetTraitTime(targetTraitTime);
     setIsTargetTraitTimerActive(true);
@@ -96,7 +98,7 @@ export const TrumpCardButton = ({
               patrollerCoolTime,
               teleportCoolTime,
               setTeleportTime,
-              setIsTeleportTimerActive
+              setIsTeleportTimerActive,
             );
 
             trumpCardFunc(
@@ -104,7 +106,7 @@ export const TrumpCardButton = ({
               patrollerCoolTime,
               blinkCoolTime,
               setBlinkTime,
-              setIsBlinkTimerActive
+              setIsBlinkTimerActive,
             );
           } else if (isTeleportTimerActive) {
             trumpCardFunc(
@@ -112,7 +114,7 @@ export const TrumpCardButton = ({
               teleportCoolTime,
               patrollerCoolTime,
               setPatrollerTime,
-              setIsPatrollerTimerActive
+              setIsPatrollerTimerActive,
             );
 
             trumpCardFunc(
@@ -120,7 +122,7 @@ export const TrumpCardButton = ({
               teleportCoolTime,
               blinkCoolTime,
               setBlinkTime,
-              setIsBlinkTimerActive
+              setIsBlinkTimerActive,
             );
           } else {
             // 鬼没から変更する場合
@@ -132,7 +134,7 @@ export const TrumpCardButton = ({
               blinkCoolTime,
               patrollerCoolTime,
               setPatrollerTime,
-              setIsPatrollerTimerActive
+              setIsPatrollerTimerActive,
             );
 
             trumpCardFunc(
@@ -140,7 +142,7 @@ export const TrumpCardButton = ({
               blinkCoolTime,
               teleportCoolTime,
               setTeleportTime,
-              setIsTeleportTimerActive
+              setIsTeleportTimerActive,
             );
           }
         } else {
@@ -154,9 +156,19 @@ export const TrumpCardButton = ({
     >
       {isTrumpCardAlertOn && (
         <p className={`${styles.text} ${styles.alertText}`}>
-          ※カウント中の特質が
-          <br />
-          一つだけの時にタップ
+          {language === "ja" ? (
+            <>
+              ※カウント中の特質が
+              <br />
+              一つだけの時にタップ
+            </>
+          ) : (
+            <>
+              *tap when there is only
+              <br />
+              one trait in the count
+            </>
+          )}
         </p>
       )}
 
