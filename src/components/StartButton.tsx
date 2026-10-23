@@ -16,7 +16,44 @@ export const accelerateDecodingTime = 202;
 const claustrophobiaTime = 20; // 幽閉の恐怖
 export const detentionTime = 120;
 
+const startButtonMessages = {
+  ja: {
+    startDescription: "※画面が割れてカメラが回り始める瞬間にタップ",
+    ready: "ゲーム開始まで",
+    startImmediately: "※タップで即座にゲーム開始",
+    constrainActive: "【封鎖】発動中",
+    toQuenchingAndFlywheel: "【焼き入れ効果・フライホイール効果】まで",
+    constrainDeactivated: "【封鎖】解除済み",
+    quenchingActive: "【焼き入れ効果】発動中",
+    quenchingDeactivated: "【焼き入れ効果】発動済み",
+    toAccelerateDecoding: "【解読加速】まで",
+    gateOpen: "【通電】",
+    claustrophobiaActive: "【幽閉の恐怖】発動中",
+    claustrophobiaDeactivated: "【幽閉の恐怖】解除済み",
+    detentionActive: "【引き留める】発動中",
+    detentionDeactivated: "【引き留める】解除済み",
+  },
+  en: {
+    startDescription:
+      "*tap when the camera begins to revolve after the screen cracks",
+    ready: "Game starts in",
+    startImmediately: "*tap to start the game immediately",
+    constrainActive: '"Constrain" active',
+    toQuenchingAndFlywheel: 'to "Quenching Effect / Flywheel Effect"',
+    constrainDeactivated: '"Constrain" deactivated',
+    quenchingActive: '"Quenching Effect" active',
+    quenchingDeactivated: '"Quenching Effect" deactivated',
+    toAccelerateDecoding: 'to "Accelerate Decoding"',
+    gateOpen: "Exit Gate activation",
+    claustrophobiaActive: '"Claustrophobia" active',
+    claustrophobiaDeactivated: '"Claustrophobia" deactivated',
+    detentionActive: '"Detention" active',
+    detentionDeactivated: '"Detention" deactivated',
+  },
+} as const;
+
 type Props = {
+  language: "ja" | "en";
   elapsedTime: number;
   setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
   isStartTimerActive: boolean;
@@ -54,6 +91,7 @@ type Props = {
   setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 export const StartButton = ({
+  language,
   isPatrollerTimerActive,
   isTeleportTimerActive,
   isBlinkTimerActive,
@@ -90,6 +128,8 @@ export const StartButton = ({
   setIsTrumpCardAlertOn,
   setIsTrumpCardUsed,
 }: Props) => {
+  const messages = startButtonMessages[language];
+
   const startTimerId = useRef<number>(0);
 
   const triggerTimer = (
@@ -189,7 +229,7 @@ export const StartButton = ({
             <p>START</p>
           </div>
           <div className={`${styles.flexContainer} ${styles.description}`}>
-            <p>※画面が割れてカメラが回り始める瞬間にタップ</p>
+            <p>{messages.startDescription}</p>
           </div>
         </>
       );
@@ -198,11 +238,11 @@ export const StartButton = ({
         return (
           <>
             <div className={`${styles.flexContainer} ${styles.ready}`}>
-              <p className={styles.text}>ゲーム開始まで</p>
+              <p className={styles.text}>{messages.ready}</p>
               <p className={styles.time}>{-elapsedTime}</p>
             </div>
             <div className={`${styles.flexContainer} ${styles.description}`}>
-              <p>※タップで即座にゲーム開始</p>
+              <p>{messages.startImmediately}</p>
             </div>
           </>
         );
@@ -210,13 +250,11 @@ export const StartButton = ({
         return (
           <>
             <div className={`${styles.flexContainer} ${styles.firstLine}`}>
-              <p className={styles.text}>【封鎖】発動中</p>
+              <p className={styles.text}>{messages.constrainActive}</p>
               <p className={styles.time}>{constrainTime - elapsedTime}</p>
             </div>
             <div className={`${styles.flexContainer} ${styles.secondLine}`}>
-              <p className={styles.text}>
-                【焼き入れ効果・フライホイール効果】まで
-              </p>
+              <p className={styles.text}>{messages.toQuenchingAndFlywheel}</p>
               <p className={styles.time}>
                 {quenchingEffectStartTime - elapsedTime}
               </p>
@@ -227,12 +265,10 @@ export const StartButton = ({
         return (
           <>
             <div className={`${styles.flexContainer} ${styles.firstLine}`}>
-              <p className={styles.text}>【封鎖】解除済み</p>
+              <p className={styles.text}>{messages.constrainDeactivated}</p>
             </div>
             <div className={`${styles.flexContainer} ${styles.secondLine}`}>
-              <p className={styles.text}>
-                【焼き入れ効果・フライホイール効果】まで
-              </p>
+              <p className={styles.text}>{messages.toQuenchingAndFlywheel}</p>
               <p className={styles.time}>
                 {quenchingEffectStartTime - elapsedTime}
               </p>
@@ -245,7 +281,7 @@ export const StartButton = ({
       ) {
         return (
           <div className={styles.flexContainer}>
-            <p className={styles.text}>【焼き入れ効果】発動中</p>
+            <p className={styles.text}>{messages.quenchingActive}</p>
             <p className={styles.time}>
               {quenchingEffectStartTime + quenchingEffectDuration - elapsedTime}
             </p>
@@ -258,10 +294,10 @@ export const StartButton = ({
         return (
           <>
             <div className={`${styles.flexContainer} ${styles.firstLine}`}>
-              <p className={styles.text}>【焼き入れ効果】発動済み</p>
+              <p className={styles.text}>{messages.quenchingDeactivated}</p>
             </div>
             <div className={`${styles.flexContainer} ${styles.secondLine}`}>
-              <p className={styles.text}>【解読加速】まで</p>
+              <p className={styles.text}>{messages.toAccelerateDecoding}</p>
               <p className={styles.time}>
                 {accelerateDecodingTime - elapsedTime}
               </p>
@@ -271,7 +307,7 @@ export const StartButton = ({
       } else {
         return (
           <div className={styles.flexContainer}>
-            <p className={styles.text}>【解読加速】まで</p>
+            <p className={styles.text}>{messages.toAccelerateDecoding}</p>
             <p className={styles.time}>
               {accelerateDecodingTime - elapsedTime}
             </p>
@@ -280,8 +316,10 @@ export const StartButton = ({
       }
     } else if (isThirdStatus) {
       return (
-        <div className={`${styles.flexContainer} ${styles.gateOpen}`}>
-          <p>【通電】</p>
+        <div
+          className={`${styles.flexContainer} ${styles.gateOpen} ${language === "en" ? styles.englishGateOpen : ""}`}
+        >
+          <p>{messages.gateOpen}</p>
         </div>
       );
     } else if (isFourthStatus) {
@@ -289,13 +327,13 @@ export const StartButton = ({
         return (
           <>
             <div className={`${styles.flexContainer} ${styles.firstLine}`}>
-              <p className={styles.text}>【幽閉の恐怖】発動中</p>
+              <p className={styles.text}>{messages.claustrophobiaActive}</p>
               <p className={styles.time}>
                 {accelerateDecodingTime + claustrophobiaTime - elapsedTime}
               </p>
             </div>
             <div className={`${styles.flexContainer} ${styles.secondLine}`}>
-              <p className={styles.text}>【引き留める】発動中</p>
+              <p className={styles.text}>{messages.detentionActive}</p>
               <p className={styles.time}>
                 {accelerateDecodingTime + detentionTime - elapsedTime}
               </p>
@@ -309,10 +347,12 @@ export const StartButton = ({
         return (
           <>
             <div className={`${styles.flexContainer} ${styles.firstLine}`}>
-              <p className={styles.text}>【幽閉の恐怖】解除済み</p>
+              <p className={styles.text}>
+                {messages.claustrophobiaDeactivated}
+              </p>
             </div>
             <div className={`${styles.flexContainer} ${styles.secondLine}`}>
-              <p className={styles.text}>【引き留める】発動中</p>
+              <p className={styles.text}>{messages.detentionActive}</p>
               <p className={styles.time}>
                 {accelerateDecodingTime + detentionTime - elapsedTime}
               </p>
@@ -322,7 +362,7 @@ export const StartButton = ({
       } else if (elapsedTime < accelerateDecodingTime + detentionTime) {
         return (
           <div className={styles.flexContainer}>
-            <p className={styles.text}>【引き留める】発動中</p>
+            <p className={styles.text}>{messages.detentionActive}</p>
             <p className={styles.time}>
               {accelerateDecodingTime + detentionTime - elapsedTime}
             </p>
@@ -331,7 +371,7 @@ export const StartButton = ({
       } else {
         return (
           <div className={styles.flexContainer}>
-            <p className={styles.text}>【引き留める】解除済み</p>
+            <p className={styles.text}>{messages.detentionDeactivated}</p>
           </div>
         );
       }

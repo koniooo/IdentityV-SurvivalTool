@@ -24,7 +24,6 @@
         font-size: var(--number-large);
       }
     }
-    
 
     &.description {
       top: 80%;
@@ -48,6 +47,10 @@
     &.gateOpen {
       font-size: 5vh;
       font-size: calc(var(--vh, 1vh) * 5);
+    }
+
+    &.englishGateOpen p {
+      font-size: 7vmin;
     }
   }
 }
