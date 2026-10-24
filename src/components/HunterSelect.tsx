@@ -2,11 +2,12 @@ import { hunterData } from "lib/hunterData";
 import styles from "components/HunterSelect.module.scss";
 
 type Props = {
+  language: "ja" | "en";
   hunterId: number;
   setHunterId: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const HunterSelect = ({ hunterId, setHunterId }: Props) => {
+export const HunterSelect = ({ language, hunterId, setHunterId }: Props) => {
   return (
     <select
       className={styles.hunterSelect}
@@ -21,7 +22,7 @@ export const HunterSelect = ({ hunterId, setHunterId }: Props) => {
       {hunterData.map((hunterDatum, index) => {
         return (
           <option value={index} key={index}>
-            {hunterDatum.name.ja}
+            {hunterDatum.name[language]}
           </option>
         );
       })}

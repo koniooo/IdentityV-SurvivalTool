@@ -3,7 +3,6 @@ import { OneThirdColumn } from "components/OneThirdColumn";
 import { HunterSkillTimer } from "components/HunterSkillTimer";
 import { Persona } from "components/Persona";
 import { HunterSelect } from "components/HunterSelect";
-import { HunterSelect as EnglishHunterSelect } from "components/en/HunterSelect";
 import { LanguageSwitch } from "components/LanguageSwitch";
 import { hunterData } from "lib/hunterData";
 import styles from "components/SecondRow.module.scss";
@@ -75,9 +74,6 @@ export const SecondRow = ({
   restartSecondaryTimer,
   restartTertiaryTimer,
 }: Props) => {
-  const HunterSelectComponent =
-    language === "ja" ? HunterSelect : EnglishHunterSelect;
-
   return (
     <RowContainer isEdgeRow={false}>
       <OneThirdColumn>
@@ -122,7 +118,8 @@ export const SecondRow = ({
             </button>
           </section>
           <section className={styles.hunterSelectSec}>
-            <HunterSelectComponent
+            <HunterSelect
+              language={language}
               hunterId={hunterId}
               setHunterId={setHunterId}
             />
