@@ -5,6 +5,7 @@ import colors from "components/Color.module.scss";
 import styles from "components/DreamWitchSkillTimerButton.module.scss";
 
 type Props = {
+  language: "en" | "ja";
   skill: "primary" | "secondary";
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export const DreamWitchSkillTimerButton = ({
+  language,
   time,
   setTime,
   isTimerActive,
@@ -42,19 +44,23 @@ export const DreamWitchSkillTimerButton = ({
       <p className={common.timeText}>{time}</p>
       {skill === "primary" && (
         <p className={`${common.skillText} ${styles.skillText}`}>
-          <span>{selectedHunter.skills.primary.name.ja}</span>
+          <span>{selectedHunter.skills.primary.name[language]}</span>
         </p>
       )}
       {skill === "secondary" && (
         <p className={`${common.skillText} ${styles.skillText}`}>
-          <span>{selectedHunter.skills.secondary?.name.ja}</span>
+          <span>{selectedHunter.skills.secondary?.name[language]}</span>
         </p>
       )}
       {skill === "primary" && (
-        <div className={styles.description}>※オリジナルの攻撃が</div>
+        <div className={styles.description}>
+          {language === "ja" ? "※オリジナルの攻撃が" : "*tap each time Spawn"}
+        </div>
       )}
       {skill === "secondary" && (
-        <div className={styles.description}>命中するたびにタップ</div>
+        <div className={styles.description}>
+          {language === "ja" ? "命中するたびにタップ" : "Follower attack hits"}
+        </div>
       )}
     </button>
   );
