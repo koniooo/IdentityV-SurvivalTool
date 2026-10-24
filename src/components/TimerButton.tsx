@@ -20,8 +20,8 @@ export const TimerButton = ({
         !isTimerActive
           ? `${colors.green} ${colors.greenText}`
           : time > 3
-          ? `${colors.yellow} ${colors.yellowText}`
-          : `${colors.red} ${colors.redText}`
+            ? `${colors.yellow} ${colors.yellowText}`
+            : `${colors.red} ${colors.redText}`
       }
       onClick={() => {
         setIsTimerActive(!isTimerActive);

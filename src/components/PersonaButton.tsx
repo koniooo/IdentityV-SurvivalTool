@@ -20,8 +20,8 @@ export const PersonaButton = ({
         hasPersona
           ? colors.red
           : isPersonaTimerActive
-          ? colors.yellow
-          : colors.green
+            ? colors.yellow
+            : colors.green
       }
       onClick={() => {
         setHasPersona(!hasPersona);
