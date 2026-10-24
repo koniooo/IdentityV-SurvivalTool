@@ -58,7 +58,7 @@ export const Persona = ({
       return Math.round(
         presenceUnit +
           (presenceUnit / insolenceStandardTime) *
-            (elapsedTime - insolenceSwitchTime)
+            (elapsedTime - insolenceSwitchTime),
       );
     } else {
       return maxPresence;
