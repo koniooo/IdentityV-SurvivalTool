@@ -86,9 +86,9 @@ export const Main = ({ language }: Props) => {
   });
 
   const selectedHunter = hunterData[hunterId];
-  const selectedPrimaryCoolTime = selectedHunter.primaryCoolTime;
-  const selectedSecondaryCoolTime = selectedHunter.secondaryCoolTime;
-  const selectedTertiaryCoolTime = selectedHunter.tertiaryCoolTime;
+  const selectedPrimaryCoolTime = selectedHunter.skills.primary.coolTime;
+  const selectedSecondaryCoolTime = selectedHunter.skills.secondary?.coolTime;
+  const selectedTertiaryCoolTime = selectedHunter.skills.tertiary?.coolTime;
 
   const primaryTotalCoolTime = calculateTotalCoolTime(selectedPrimaryCoolTime);
   const secondaryTotalCoolTime = selectedSecondaryCoolTime

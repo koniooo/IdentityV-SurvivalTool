@@ -21,7 +21,7 @@ export const HunterSelect = ({ hunterId, setHunterId }: Props) => {
       {hunterData.map((hunterDatum, index) => {
         return (
           <option value={index} key={index}>
-            {hunterDatum.nameEn}
+            {hunterDatum.name.en}
           </option>
         );
       })}

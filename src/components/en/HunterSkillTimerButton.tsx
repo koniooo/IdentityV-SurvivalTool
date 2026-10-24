@@ -23,9 +23,9 @@ export const HunterSkillTimerButton = ({
   restartTimer,
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
-  const selectedPrimaryCoolTime = selectedHunter.primaryCoolTime;
-  const selectedSecondaryCoolTime = selectedHunter.secondaryCoolTime || [0, 0]; // undefinedとなる可能性があるためundefinedの場合は[0, 0]というデフォルト値を設定する（or演算子は左辺がfalsyな場合に右辺を返す）
-  const selectedTertiaryCoolTime = selectedHunter.tertiaryCoolTime || [0, 0];
+  const selectedPrimaryCoolTime = selectedHunter.skills.primary.coolTime;
+  const selectedSecondaryCoolTime = selectedHunter.skills.secondary?.coolTime || [0, 0]; // undefinedとなる可能性があるためundefinedの場合は[0, 0]というデフォルト値を設定する（or演算子は左辺がfalsyな場合に右辺を返す）
+  const selectedTertiaryCoolTime = selectedHunter.skills.tertiary?.coolTime || [0, 0];
 
   const haveSingleStatus =
     skill === "primary"
@@ -44,17 +44,17 @@ export const HunterSkillTimerButton = ({
         <p className={styles.timeText}>{time}</p>
         {skill === "primary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.primaryNameEn}</span>
+            <span>{selectedHunter.skills.primary.name.en}</span>
           </p>
         )}
         {skill === "secondary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.secondaryNameEn}</span>
+            <span>{selectedHunter.skills.secondary?.name.en}</span>
           </p>
         )}
         {skill === "tertiary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.tertiaryNameEn}</span>
+            <span>{selectedHunter.skills.tertiary?.name.en}</span>
           </p>
         )}
       </TimerButton>
@@ -85,7 +85,7 @@ export const HunterSkillTimerButton = ({
           ))}
         {skill === "primary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.primaryNameEn}</span>
+            <span>{selectedHunter.skills.primary.name.en}</span>
           </p>
         )}
         {skill === "secondary" &&
@@ -98,7 +98,7 @@ export const HunterSkillTimerButton = ({
           ))}
         {skill === "secondary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.secondaryNameEn}</span>
+            <span>{selectedHunter.skills.secondary?.name.en}</span>
           </p>
         )}
         {skill === "tertiary" &&
@@ -111,7 +111,7 @@ export const HunterSkillTimerButton = ({
           ))}
         {skill === "tertiary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.tertiaryNameEn}</span>
+            <span>{selectedHunter.skills.tertiary?.name.en}</span>
           </p>
         )}
       </DualStatusTimerButton>

@@ -67,7 +67,7 @@ export const HunterSkillTimer = ({
         </OneThirdColumn>
       </div>
     );
-  } else if (selectedHunter.tertiaryCoolTime) {
+  } else if (selectedHunter.skills.tertiary) {
     return (
       <>
         <section className={styles.triple}>
@@ -105,7 +105,7 @@ export const HunterSkillTimer = ({
         </section>
       </>
     );
-  } else if (selectedHunter.secondaryCoolTime) {
+  } else if (selectedHunter.skills.secondary) {
     return (
       <div className={styles.double}>
         <OneThirdColumn>

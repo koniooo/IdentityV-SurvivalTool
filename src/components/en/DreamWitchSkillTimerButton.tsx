@@ -41,12 +41,12 @@ export const DreamWitchSkillTimerButton = ({
       <p className={common.timeText}>{time}</p>
       {skill === "primary" && (
         <p className={`${common.skillText} ${styles.skillText}`}>
-          <span>{selectedHunter.primaryNameEn}</span>
+          <span>{selectedHunter.skills.primary.name.en}</span>
         </p>
       )}
       {skill === "secondary" && (
         <p className={`${common.skillText} ${styles.skillText}`}>
-          <span>{selectedHunter.secondaryNameEn}</span>
+          <span>{selectedHunter.skills.secondary?.name.en}</span>
         </p>
       )}
       {skill === "primary" && (
