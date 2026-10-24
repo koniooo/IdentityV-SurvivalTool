@@ -24,6 +24,12 @@
   }
 }
 
+.tripleEn {
+  p span {
+    font-size: var(--text-small);
+  }
+}
+
 .double {
   width: 100%;
   display: flex;

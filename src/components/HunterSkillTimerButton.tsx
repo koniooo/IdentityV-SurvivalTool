@@ -4,6 +4,7 @@ import { hunterData } from "lib/hunterData";
 import styles from "components/HunterSkillTimerButton.module.scss";
 
 type Props = {
+  language: "ja" | "en";
   skill: "primary" | "secondary" | "tertiary";
   hunterId: number;
   time: number;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export const HunterSkillTimerButton = ({
+  language,
   skill,
   isTimerActive,
   time,
@@ -24,8 +26,11 @@ export const HunterSkillTimerButton = ({
 }: Props) => {
   const selectedHunter = hunterData[hunterId];
   const selectedPrimaryCoolTime = selectedHunter.skills.primary.coolTime;
-  const selectedSecondaryCoolTime = selectedHunter.skills.secondary?.coolTime || [0, 0]; // undefinedとなる可能性があるためundefinedの場合は[0, 0]というデフォルト値を設定する（or演算子は左辺がfalsyな場合に右辺を返す）
-  const selectedTertiaryCoolTime = selectedHunter.skills.tertiary?.coolTime || [0, 0];
+  const selectedSecondaryCoolTime = selectedHunter.skills.secondary
+    ?.coolTime || [0, 0]; // undefinedとなる可能性があるためundefinedの場合は[0, 0]というデフォルト値を設定する（or演算子は左辺がfalsyな場合に右辺を返す）
+  const selectedTertiaryCoolTime = selectedHunter.skills.tertiary?.coolTime || [
+    0, 0,
+  ];
 
   const haveSingleStatus =
     skill === "primary"
@@ -44,17 +49,17 @@ export const HunterSkillTimerButton = ({
         <p className={styles.timeText}>{time}</p>
         {skill === "primary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.skills.primary.name.ja}</span>
+            <span>{selectedHunter.skills.primary.name[language]}</span>
           </p>
         )}
         {skill === "secondary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.skills.secondary?.name.ja}</span>
+            <span>{selectedHunter.skills.secondary?.name[language]}</span>
           </p>
         )}
         {skill === "tertiary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.skills.tertiary?.name.ja}</span>
+            <span>{selectedHunter.skills.tertiary?.name[language]}</span>
           </p>
         )}
       </TimerButton>
@@ -85,7 +90,7 @@ export const HunterSkillTimerButton = ({
           ))}
         {skill === "primary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.skills.primary.name.ja}</span>
+            <span>{selectedHunter.skills.primary.name[language]}</span>
           </p>
         )}
         {skill === "secondary" &&
@@ -98,7 +103,7 @@ export const HunterSkillTimerButton = ({
           ))}
         {skill === "secondary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.skills.secondary?.name.ja}</span>
+            <span>{selectedHunter.skills.secondary?.name[language]}</span>
           </p>
         )}
         {skill === "tertiary" &&
@@ -111,7 +116,7 @@ export const HunterSkillTimerButton = ({
           ))}
         {skill === "tertiary" && (
           <p className={styles.skillText}>
-            <span>{selectedHunter.skills.tertiary?.name.ja}</span>
+            <span>{selectedHunter.skills.tertiary?.name[language]}</span>
           </p>
         )}
       </DualStatusTimerButton>

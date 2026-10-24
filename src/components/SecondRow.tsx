@@ -1,7 +1,6 @@
 import { RowContainer } from "components/RowContainer";
 import { OneThirdColumn } from "components/OneThirdColumn";
 import { HunterSkillTimer } from "components/HunterSkillTimer";
-import { HunterSkillTimer as EnglishHunterSkillTimer } from "components/en/HunterSkillTimer";
 import { Persona } from "components/Persona";
 import { HunterSelect } from "components/HunterSelect";
 import { HunterSelect as EnglishHunterSelect } from "components/en/HunterSelect";
@@ -78,8 +77,6 @@ export const SecondRow = ({
 }: Props) => {
   const HunterSelectComponent =
     language === "ja" ? HunterSelect : EnglishHunterSelect;
-  const HunterSkillTimerComponent =
-    language === "ja" ? HunterSkillTimer : EnglishHunterSkillTimer;
 
   return (
     <RowContainer isEdgeRow={false}>
@@ -158,7 +155,8 @@ export const SecondRow = ({
         </div>
         <div>
           <section className={styles.hunterSkillTimerSec}>
-            <HunterSkillTimerComponent
+            <HunterSkillTimer
+              language={language}
               hunterId={hunterId}
               primaryTime={primaryTime}
               secondaryTime={secondaryTime}
