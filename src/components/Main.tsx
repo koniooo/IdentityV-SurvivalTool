@@ -1,11 +1,10 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { RowContainer } from "components/RowContainer";
 import { StartButton } from "components/StartButton";
 import { SecondRow } from "components/SecondRow";
 import { ThirdRow } from "components/ThirdRow";
 import { FourthRow } from "components/FourthRow";
-import { hunterData } from "lib/hunterData";
-import { calculateTotalCoolTime } from "lib/coolTime";
+import { getHunterTotalCoolTimes } from "lib/coolTime";
 import { useTimer } from "@/hooks/useTimer";
 import variables from "styles/Variables.module.scss";
 import variablesEn from "styles/VariablesEn.module.scss";
@@ -20,6 +19,8 @@ export const trumpCardTime = 120;
 
 export const readyTime = 5;
 export const bloodyQueenId = 13;
+
+const bloodyQueenTotalCoolTimes = getHunterTotalCoolTimes(bloodyQueenId);
 
 type Props = {
   language: "ja" | "en";
@@ -42,9 +43,15 @@ export const Main = ({ language }: Props) => {
   const [hasInsolence, setHasInsolence] = useState(false);
   const [hasDetention, setHasDetention] = useState(false);
   const [hunterId, setHunterId] = useState(bloodyQueenId);
-  const [primaryTime, setPrimaryTime] = useState(0);
-  const [secondaryTime, setSecondaryTime] = useState(0);
-  const [tertiaryTime, setTertiaryTime] = useState(0);
+  const [primaryTime, setPrimaryTime] = useState(
+    bloodyQueenTotalCoolTimes.primary,
+  );
+  const [secondaryTime, setSecondaryTime] = useState(
+    bloodyQueenTotalCoolTimes.secondary,
+  );
+  const [tertiaryTime, setTertiaryTime] = useState(
+    bloodyQueenTotalCoolTimes.tertiary,
+  );
   const [isPrimaryTimerActive, setIsPrimaryTimerActive] = useState(false);
   const [isSecondaryTimerActive, setIsSecondaryTimerActive] = useState(false);
   const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
@@ -85,22 +92,23 @@ export const Main = ({ language }: Props) => {
     setIsTimerActive: setIsUltraLongTimerActive,
   });
 
-  const selectedHunter = hunterData[hunterId];
-  const selectedPrimaryCoolTime = selectedHunter.skills.primary.coolTime;
-  const selectedSecondaryCoolTime = selectedHunter.skills.secondary?.coolTime;
-  const selectedTertiaryCoolTime = selectedHunter.skills.tertiary?.coolTime;
+  const changeHunter = (nextId: number) => {
+    setHunterId(nextId);
+    setIsPrimaryTimerActive(false);
+    setIsSecondaryTimerActive(false);
+    setIsTertiaryTimerActive(false);
 
-  const primaryTotalCoolTime = calculateTotalCoolTime(selectedPrimaryCoolTime);
-  const secondaryTotalCoolTime = selectedSecondaryCoolTime
-    ? calculateTotalCoolTime(selectedSecondaryCoolTime)
-    : 0;
+    const { primary, secondary, tertiary } = getHunterTotalCoolTimes(nextId);
 
-  const tertiaryTotalCoolTime = selectedTertiaryCoolTime
-    ? calculateTotalCoolTime(selectedTertiaryCoolTime)
-    : 0;
+    setPrimaryTime(primary);
+    setSecondaryTime(secondary);
+    setTertiaryTime(tertiary);
+  };
+
+  const totalCoolTimes = getHunterTotalCoolTimes(hunterId);
 
   const restartPrimaryTimer = useTimer({
-    coolTime: primaryTotalCoolTime,
+    coolTime: totalCoolTimes.primary,
     time: primaryTime,
     setTime: setPrimaryTime,
     isTimerActive: isPrimaryTimerActive,
@@ -108,7 +116,7 @@ export const Main = ({ language }: Props) => {
   });
 
   const restartSecondaryTimer = useTimer({
-    coolTime: secondaryTotalCoolTime,
+    coolTime: totalCoolTimes.secondary,
     time: secondaryTime,
     setTime: setSecondaryTime,
     isTimerActive: isSecondaryTimerActive,
@@ -116,22 +124,12 @@ export const Main = ({ language }: Props) => {
   });
 
   const restartTertiaryTimer = useTimer({
-    coolTime: tertiaryTotalCoolTime,
+    coolTime: totalCoolTimes.tertiary,
     time: tertiaryTime,
     setTime: setTertiaryTime,
     isTimerActive: isTertiaryTimerActive,
     setIsTimerActive: setIsTertiaryTimerActive,
   });
-
-  useEffect(() => {
-    setIsPrimaryTimerActive(false);
-    setIsSecondaryTimerActive(false);
-    setIsTertiaryTimerActive(false);
-
-    setPrimaryTime(primaryTotalCoolTime);
-    setSecondaryTime(secondaryTotalCoolTime);
-    setTertiaryTime(tertiaryTotalCoolTime);
-  }, [hunterId]);
 
   const isTrumpCardTimerActive =
     isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
@@ -194,7 +192,6 @@ export const Main = ({ language }: Props) => {
         hasDetention={hasDetention}
         setHasDetention={setHasDetention}
         hunterId={hunterId}
-        setHunterId={setHunterId}
         primaryTime={primaryTime}
         secondaryTime={secondaryTime}
         tertiaryTime={tertiaryTime}
@@ -210,6 +207,7 @@ export const Main = ({ language }: Props) => {
         restartPrimaryTimer={restartPrimaryTimer}
         restartSecondaryTimer={restartSecondaryTimer}
         restartTertiaryTimer={restartTertiaryTimer}
+        changeHunter={changeHunter}
       />
       <ThirdRow
         patrollerTime={patrollerTime}

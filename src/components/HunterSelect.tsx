@@ -4,10 +4,10 @@ import styles from "components/HunterSelect.module.scss";
 type Props = {
   language: "ja" | "en";
   hunterId: number;
-  setHunterId: React.Dispatch<React.SetStateAction<number>>;
+  changeHunter: (nextId: number) => void;
 };
 
-export const HunterSelect = ({ language, hunterId, setHunterId }: Props) => {
+export const HunterSelect = ({ language, hunterId, changeHunter }: Props) => {
   return (
     <select
       className={styles.hunterSelect}
@@ -16,7 +16,7 @@ export const HunterSelect = ({ language, hunterId, setHunterId }: Props) => {
       value={hunterId}
       onChange={(event) => {
         const targetValue = Number(event.target.value);
-        setHunterId(targetValue);
+        changeHunter(targetValue);
       }}
     >
       {hunterData.map((hunterDatum, index) => {
