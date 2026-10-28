@@ -13,7 +13,6 @@ export type Props = {
   elapsedTime: number;
   isStartTimerActive: boolean;
   hunterId: number;
-  setHunterId: React.Dispatch<React.SetStateAction<number>>;
   hasConfinedSpace: boolean;
   setHasConfinedSpace: React.Dispatch<React.SetStateAction<boolean>>;
   hasWantedOrder: boolean;
@@ -39,6 +38,7 @@ export type Props = {
   restartPrimaryTimer: () => void;
   restartSecondaryTimer: () => void;
   restartTertiaryTimer: () => void;
+  changeHunter: (nextId: number) => void;
 };
 
 export const SecondRow = ({
@@ -57,7 +57,6 @@ export const SecondRow = ({
   hasDetention,
   setHasDetention,
   hunterId,
-  setHunterId,
   primaryTime,
   secondaryTime,
   tertiaryTime,
@@ -73,6 +72,7 @@ export const SecondRow = ({
   restartPrimaryTimer,
   restartSecondaryTimer,
   restartTertiaryTimer,
+  changeHunter,
 }: Props) => {
   return (
     <RowContainer isEdgeRow={false}>
@@ -105,7 +105,7 @@ export const SecondRow = ({
                 if (hunterId === 0) {
                   return;
                 }
-                setHunterId((t) => t - 1);
+                changeHunter(hunterId - 1);
               }}
             >
               <svg
@@ -121,7 +121,7 @@ export const SecondRow = ({
             <HunterSelect
               language={language}
               hunterId={hunterId}
-              setHunterId={setHunterId}
+              changeHunter={changeHunter}
             />
           </section>
           <section
@@ -134,7 +134,7 @@ export const SecondRow = ({
                 if (hunterId === hunterData.length - 1) {
                   return;
                 }
-                setHunterId((t) => t + 1);
+                changeHunter(hunterId + 1);
               }}
             >
               <svg
