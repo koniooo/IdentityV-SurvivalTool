@@ -209,6 +209,12 @@ export const StartButton = ({
     }
   }, [elapsedTime]);
 
+  useEffect(() => {
+    return () => {
+      clearInterval(startTimerId.current);
+    };
+  }, []);
+
   const isFirstStatus = elapsedTime === -readyTime && !isStartTimerActive;
   const isSecondStatus =
     -readyTime <= elapsedTime &&
