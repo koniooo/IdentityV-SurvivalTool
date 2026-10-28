@@ -1,4 +1,4 @@
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useEffectEvent } from "react";
 import { readyTime, bloodyQueenId } from "components/Main";
 import colors from "components/Color.module.scss";
 import styles from "components/StartButton.module.scss";
@@ -148,15 +148,15 @@ export const StartButton = ({
     }
   };
 
-  useEffect(() => {
+  const handleElapsedTimeChange = useEffectEvent((time: number) => {
     if (
-      elapsedTime !== 0 &&
-      elapsedTime !== accelerateDecodingTime &&
-      elapsedTime !== accelerateDecodingTime + detentionTime + 10 &&
-      elapsedTime !== -readyTime
-    ) {
+      time !== 0 &&
+      time !== accelerateDecodingTime &&
+      time !== accelerateDecodingTime + detentionTime + 10 &&
+      time !== -readyTime
+    )
       return;
-    } else if (elapsedTime === 0) {
+    else if (time === 0) {
       if (hunterId === bloodyQueenId) {
         // 画面が回転してる間にハンターを特定している可能性があるため
         triggerTimer(
@@ -199,7 +199,7 @@ export const StartButton = ({
         setIsUltraLongTimerActive,
         restartUltraLongTimer,
       );
-    } else if (elapsedTime === accelerateDecodingTime + detentionTime + 10) {
+    } else if (time === accelerateDecodingTime + detentionTime + 10) {
       clearInterval(startTimerId.current);
       setIsStartTimerActive(false);
       setElapsedTime(-readyTime);
@@ -207,6 +207,10 @@ export const StartButton = ({
       clearInterval(startTimerId.current);
       setIsStartTimerActive(false);
     }
+  });
+
+  useEffect(() => {
+    handleElapsedTimeChange(elapsedTime);
   }, [elapsedTime]);
 
   useEffect(() => {
