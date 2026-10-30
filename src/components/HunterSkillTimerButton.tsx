@@ -1,12 +1,11 @@
 import { TimerButton } from "components/TimerButton";
 import { DualStatusTimerButton } from "components/DualStatusTimerButton";
-import { hunterData } from "lib/hunterData";
+import type { SkillData } from "lib/hunterData";
 import styles from "components/HunterSkillTimerButton.module.scss";
 
 type Props = {
   language: "ja" | "en";
-  skill: "primary" | "secondary" | "tertiary";
-  hunterId: number;
+  skill: SkillData;
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
   isTimerActive: boolean;
@@ -20,26 +19,12 @@ export const HunterSkillTimerButton = ({
   isTimerActive,
   time,
   setIsTimerActive,
-  hunterId,
   setTime,
   restartTimer,
 }: Props) => {
-  const selectedHunter = hunterData[hunterId];
-  const selectedPrimaryCoolTime = selectedHunter.skills.primary.coolTime;
-  const selectedSecondaryCoolTime = selectedHunter.skills.secondary
-    ?.coolTime || [0, 0]; // undefinedとなる可能性があるためundefinedの場合は[0, 0]というデフォルト値を設定する（or演算子は左辺がfalsyな場合に右辺を返す）
-  const selectedTertiaryCoolTime = selectedHunter.skills.tertiary?.coolTime || [
-    0, 0,
-  ];
+  const { secondStageSeconds } = skill.coolTime;
 
-  const haveSingleStatus =
-    skill === "primary"
-      ? selectedPrimaryCoolTime.length === 1
-      : skill === "secondary"
-        ? selectedSecondaryCoolTime.length === 1
-        : selectedTertiaryCoolTime.length === 1;
-
-  if (haveSingleStatus) {
+  if (secondStageSeconds === undefined) {
     return (
       <TimerButton
         time={time}
@@ -47,79 +32,28 @@ export const HunterSkillTimerButton = ({
         setIsTimerActive={setIsTimerActive}
       >
         <p className={styles.timeText}>{time}</p>
-        {skill === "primary" && (
-          <p className={styles.skillText}>
-            <span>{selectedHunter.skills.primary.name[language]}</span>
-          </p>
-        )}
-        {skill === "secondary" && (
-          <p className={styles.skillText}>
-            <span>{selectedHunter.skills.secondary?.name[language]}</span>
-          </p>
-        )}
-        {skill === "tertiary" && (
-          <p className={styles.skillText}>
-            <span>{selectedHunter.skills.tertiary?.name[language]}</span>
-          </p>
-        )}
+        <p className={styles.skillText}>
+          <span>{skill.name[language]}</span>
+        </p>
       </TimerButton>
     );
-  } else {
-    return (
-      <DualStatusTimerButton
-        secondCoolTime={
-          skill === "primary"
-            ? selectedPrimaryCoolTime[1]
-            : skill === "secondary"
-              ? selectedSecondaryCoolTime[1]
-              : selectedTertiaryCoolTime[1]
-        }
-        time={time}
-        setTime={setTime}
-        isTimerActive={isTimerActive}
-        setIsTimerActive={setIsTimerActive}
-        restartTimer={restartTimer}
-      >
-        {skill === "primary" &&
-          (time > selectedPrimaryCoolTime[1] ? (
-            <p className={styles.timeText}>
-              {time - selectedPrimaryCoolTime[1]}
-            </p>
-          ) : (
-            <p className={styles.timeText}>{time}</p>
-          ))}
-        {skill === "primary" && (
-          <p className={styles.skillText}>
-            <span>{selectedHunter.skills.primary.name[language]}</span>
-          </p>
-        )}
-        {skill === "secondary" &&
-          (time > selectedSecondaryCoolTime[1] ? (
-            <p className={styles.timeText}>
-              {time - selectedSecondaryCoolTime[1]}
-            </p>
-          ) : (
-            <p className={styles.timeText}>{time}</p>
-          ))}
-        {skill === "secondary" && (
-          <p className={styles.skillText}>
-            <span>{selectedHunter.skills.secondary?.name[language]}</span>
-          </p>
-        )}
-        {skill === "tertiary" &&
-          (time > selectedTertiaryCoolTime[1] ? (
-            <p className={styles.timeText}>
-              {time - selectedTertiaryCoolTime[1]}
-            </p>
-          ) : (
-            <p className={styles.timeText}>{time}</p>
-          ))}
-        {skill === "tertiary" && (
-          <p className={styles.skillText}>
-            <span>{selectedHunter.skills.tertiary?.name[language]}</span>
-          </p>
-        )}
-      </DualStatusTimerButton>
-    );
   }
+
+  return (
+    <DualStatusTimerButton
+      secondCoolTime={secondStageSeconds}
+      time={time}
+      setTime={setTime}
+      isTimerActive={isTimerActive}
+      setIsTimerActive={setIsTimerActive}
+      restartTimer={restartTimer}
+    >
+      <p className={styles.timeText}>
+        {time > secondStageSeconds ? time - secondStageSeconds : time}
+      </p>
+      <p className={styles.skillText}>
+        <span>{skill.name[language]}</span>
+      </p>
+    </DualStatusTimerButton>
+  );
 };
