@@ -1,16 +1,16 @@
-import { hunterData } from "lib/hunterData";
-import { dreamWitchId } from "components/HunterSkillTimer";
+import type { SkillData } from "lib/hunterData";
 import common from "components/HunterSkillTimerButton.module.scss";
 import colors from "components/Color.module.scss";
 import styles from "components/DreamWitchSkillTimerButton.module.scss";
 
 type Props = {
   language: "en" | "ja";
-  skill: "primary" | "secondary";
+  skill: SkillData;
   time: number;
   setTime: React.Dispatch<React.SetStateAction<number>>;
   isTimerActive: boolean;
   setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  note: string;
 };
 
 export const DreamWitchSkillTimerButton = ({
@@ -20,8 +20,8 @@ export const DreamWitchSkillTimerButton = ({
   isTimerActive,
   setIsTimerActive,
   skill,
+  note,
 }: Props) => {
-  const selectedHunter = hunterData[dreamWitchId];
   return (
     <button
       type="button"
@@ -42,26 +42,10 @@ export const DreamWitchSkillTimerButton = ({
       }}
     >
       <p className={common.timeText}>{time}</p>
-      {skill === "primary" && (
-        <p className={`${common.skillText} ${styles.skillText}`}>
-          <span>{selectedHunter.skills.primary.name[language]}</span>
-        </p>
-      )}
-      {skill === "secondary" && (
-        <p className={`${common.skillText} ${styles.skillText}`}>
-          <span>{selectedHunter.skills.secondary?.name[language]}</span>
-        </p>
-      )}
-      {skill === "primary" && (
-        <div className={styles.description}>
-          {language === "ja" ? "※オリジナルの攻撃が" : "*tap each time Spawn"}
-        </div>
-      )}
-      {skill === "secondary" && (
-        <div className={styles.description}>
-          {language === "ja" ? "命中するたびにタップ" : "Follower attack hits"}
-        </div>
-      )}
+      <p className={`${common.skillText} ${styles.skillText}`}>
+        <span>{skill.name[language]}</span>
+      </p>
+      <div className={styles.note}>{note}</div>
     </button>
   );
 };
