@@ -1,31 +1,23 @@
 import colors from "components/Color.module.scss";
+import type { Timer } from "@/hooks/useTimer";
 
 type Props = {
-  isTimerActive: boolean;
-  time: number;
-  setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  timer: Timer;
   children: React.ReactNode;
 };
 
-export const TimerButton = ({
-  time,
-  isTimerActive,
-  setIsTimerActive,
-  children,
-}: Props) => {
+export const TimerButton = ({ timer, children }: Props) => {
   return (
     <button
       type="button"
       className={
-        !isTimerActive
+        !timer.isActive
           ? `${colors.green} ${colors.greenText}`
-          : time > 3
+          : timer.time > 3
             ? `${colors.yellow} ${colors.yellowText}`
             : `${colors.red} ${colors.redText}`
       }
-      onClick={() => {
-        setIsTimerActive(!isTimerActive);
-      }}
+      onClick={timer.toggle}
     >
       {children}
     </button>

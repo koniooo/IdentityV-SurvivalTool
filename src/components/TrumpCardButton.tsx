@@ -4,6 +4,7 @@ import {
   teleportCoolTime,
   blinkCoolTime,
 } from "components/Main";
+import type { Timer } from "@/hooks/useTimer";
 import colors from "components/Color.module.scss";
 import styles from "components/TrumpCardButton.module.scss";
 
@@ -12,18 +13,9 @@ let id: NodeJS.Timeout;
 type Props = {
   language: "ja" | "en";
   isTrumpCardTimerActive: boolean;
-  patrollerTime: number;
-  setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
-  isPatrollerTimerActive: boolean;
-  setIsPatrollerTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  teleportTime: number;
-  setTeleportTime: React.Dispatch<React.SetStateAction<number>>;
-  isTeleportTimerActive: boolean;
-  setIsTeleportTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  blinkTime: number;
-  setBlinkTime: React.Dispatch<React.SetStateAction<number>>;
-  isBlinkTimerActive: boolean;
-  setIsBlinkTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  patrollerTimer: Timer;
+  teleportTimer: Timer;
+  blinkTimer: Timer;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
   elapsedTime: number;
   isTrumpCardUsed: boolean;
@@ -35,18 +27,9 @@ type Props = {
 export const TrumpCardButton = ({
   language,
   isTrumpCardTimerActive,
-  patrollerTime,
-  setPatrollerTime,
-  isPatrollerTimerActive,
-  setIsPatrollerTimerActive,
-  teleportTime,
-  setTeleportTime,
-  isTeleportTimerActive,
-  setIsTeleportTimerActive,
-  blinkTime,
-  setBlinkTime,
-  isBlinkTimerActive,
-  setIsBlinkTimerActive,
+  patrollerTimer,
+  teleportTimer,
+  blinkTimer,
   setHasTrumpCard,
   elapsedTime,
   isTrumpCardUsed,
@@ -58,14 +41,12 @@ export const TrumpCardButton = ({
     sourceTraitTime: number,
     sourceTraitCoolTime: number,
     targetTraitCoolTime: number,
-    setTargetTraitTime: React.Dispatch<React.SetStateAction<number>>,
-    setIsTargetTraitTimerActive: React.Dispatch<React.SetStateAction<boolean>>,
+    targetTimer: Timer,
   ) => {
     const targetTraitTime = Math.floor(
       targetTraitCoolTime * (sourceTraitTime / sourceTraitCoolTime),
     );
-    setTargetTraitTime(targetTraitTime);
-    setIsTargetTraitTimerActive(true);
+    targetTimer.startFrom(targetTraitTime);
   };
 
   return (
@@ -80,9 +61,9 @@ export const TrumpCardButton = ({
         }
 
         const activeTraitList = [
-          isPatrollerTimerActive,
-          isTeleportTimerActive,
-          isBlinkTimerActive,
+          patrollerTimer.isActive,
+          teleportTimer.isActive,
+          blinkTimer.isActive,
         ].filter((isActive) => {
           return isActive;
         });
@@ -92,57 +73,51 @@ export const TrumpCardButton = ({
           setHasTrumpCard(true);
           setIsTrumpCardUsed(true);
           setIsTrumpCardAlertOn(false);
-          if (isPatrollerTimerActive) {
+          if (patrollerTimer.isActive) {
             trumpCardFunc(
-              patrollerTime,
+              patrollerTimer.time,
               patrollerCoolTime,
               teleportCoolTime,
-              setTeleportTime,
-              setIsTeleportTimerActive,
+              teleportTimer,
             );
 
             trumpCardFunc(
-              patrollerTime,
+              patrollerTimer.time,
               patrollerCoolTime,
               blinkCoolTime,
-              setBlinkTime,
-              setIsBlinkTimerActive,
+              blinkTimer,
             );
-          } else if (isTeleportTimerActive) {
+          } else if (teleportTimer.isActive) {
             trumpCardFunc(
-              teleportTime,
+              teleportTimer.time,
               teleportCoolTime,
               patrollerCoolTime,
-              setPatrollerTime,
-              setIsPatrollerTimerActive,
+              patrollerTimer,
             );
 
             trumpCardFunc(
-              teleportTime,
+              teleportTimer.time,
               teleportCoolTime,
               blinkCoolTime,
-              setBlinkTime,
-              setIsBlinkTimerActive,
+              blinkTimer,
             );
           } else {
             // 鬼没から変更する場合
             // この場合のみ元の鬼没のタイマーをストップさせる
-            setIsBlinkTimerActive(false);
+            blinkTimer.reset(blinkCoolTime);
 
             trumpCardFunc(
-              blinkTime,
+              blinkTimer.time,
               blinkCoolTime,
               patrollerCoolTime,
-              setPatrollerTime,
-              setIsPatrollerTimerActive,
+              patrollerTimer,
             );
 
             trumpCardFunc(
-              blinkTime,
+              blinkTimer.time,
               blinkCoolTime,
               teleportCoolTime,
-              setTeleportTime,
-              setIsTeleportTimerActive,
+              teleportTimer,
             );
           }
         } else {

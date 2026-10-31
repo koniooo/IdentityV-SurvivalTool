@@ -1,4 +1,5 @@
 import type { SkillData } from "lib/hunterData";
+import type { Timer } from "@/hooks/useTimer";
 import common from "components/HunterSkillTimerButton.module.scss";
 import colors from "components/Color.module.scss";
 import styles from "components/DreamWitchSkillTimerButton.module.scss";
@@ -6,38 +7,34 @@ import styles from "components/DreamWitchSkillTimerButton.module.scss";
 type Props = {
   language: "en" | "ja";
   skill: SkillData;
-  time: number;
-  setTime: React.Dispatch<React.SetStateAction<number>>;
-  isTimerActive: boolean;
-  setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  timer: Timer;
   note: string;
 };
 
 export const DreamWitchSkillTimerButton = ({
   language,
-  time,
-  setTime,
-  isTimerActive,
-  setIsTimerActive,
+  timer,
   skill,
   note,
 }: Props) => {
+  const { isActive, time, setRemainingTime, toggle } = timer;
+
   return (
     <button
       type="button"
       className={
-        !isTimerActive
+        !isActive
           ? `${colors.green} ${colors.greenText}`
           : time > 3
             ? `${colors.yellow} ${colors.yellowText}`
             : `${colors.red} ${colors.redText}`
       }
       onClick={() => {
-        if (isTimerActive) {
+        if (isActive) {
           const nextTime = Math.floor(time * 0.6);
-          setTime(nextTime);
+          setRemainingTime(nextTime);
         } else {
-          setIsTimerActive(true);
+          toggle();
         }
       }}
     >

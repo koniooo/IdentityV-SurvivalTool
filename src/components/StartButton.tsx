@@ -1,5 +1,13 @@
 import { useRef, useEffect, useEffectEvent } from "react";
-import { readyTime, bloodyQueenId } from "components/Main";
+import {
+  readyTime,
+  bloodyQueenId,
+  ultraLongCoolTime,
+  blinkCoolTime,
+  patrollerCoolTime,
+  teleportCoolTime,
+} from "components/Main";
+import type { Timer } from "@/hooks/useTimer";
 import colors from "components/Color.module.scss";
 import styles from "components/StartButton.module.scss";
 
@@ -58,95 +66,45 @@ type Props = {
   setElapsedTime: React.Dispatch<React.SetStateAction<number>>;
   isStartTimerActive: boolean;
   setIsStartTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  restartPatrollerTimer: () => void;
-  restartTeleportTimer: () => void;
-  restartBlinkTimer: () => void;
-  restartUltraLongTimer: () => void;
-  restartPrimaryTimer: () => void;
-  setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
-  setTeleportTime: React.Dispatch<React.SetStateAction<number>>;
-  setBlinkTime: React.Dispatch<React.SetStateAction<number>>;
-  setUltraLongTime: React.Dispatch<React.SetStateAction<number>>;
-  setIsPatrollerTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsTeleportTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsBlinkTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsUltraLongTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  ultraLongTimer: Timer;
   setHasConfinedSpace: React.Dispatch<React.SetStateAction<boolean>>;
   setHasWantedOrder: React.Dispatch<React.SetStateAction<boolean>>;
   setHasInsolence: React.Dispatch<React.SetStateAction<boolean>>;
   setHasDetention: React.Dispatch<React.SetStateAction<boolean>>;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
-  setHunterId: React.Dispatch<React.SetStateAction<number>>;
-  isPatrollerTimerActive: boolean;
-  isTeleportTimerActive: boolean;
-  isBlinkTimerActive: boolean;
-  isUltraLongTimerActive: boolean;
-  setPrimaryTime: React.Dispatch<React.SetStateAction<number>>;
-  setIsPrimaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  isPrimaryTimerActive: boolean;
-  setIsSecondaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  changeHunter: (nextId: number) => void;
   hunterId: number;
   setIsTrumpCardAlertOn: React.Dispatch<React.SetStateAction<boolean>>;
   setIsTrumpCardUsed: React.Dispatch<React.SetStateAction<boolean>>;
+  patrollerTimer: Timer;
+  teleportTimer: Timer;
+  blinkTimer: Timer;
+  primaryTimer: Timer;
 };
 export const StartButton = ({
   language,
-  isPatrollerTimerActive,
-  isTeleportTimerActive,
-  isBlinkTimerActive,
-  isUltraLongTimerActive,
+  ultraLongTimer,
   elapsedTime,
   setElapsedTime,
   isStartTimerActive,
   setIsStartTimerActive,
-  restartPatrollerTimer,
-  restartTeleportTimer,
-  restartBlinkTimer,
-  restartUltraLongTimer,
-  restartPrimaryTimer,
-  setPatrollerTime,
-  setTeleportTime,
-  setBlinkTime,
-  setUltraLongTime,
-  setIsPatrollerTimerActive,
-  setIsTeleportTimerActive,
-  setIsBlinkTimerActive,
-  setIsUltraLongTimerActive,
   setHasConfinedSpace,
   setHasWantedOrder,
   setHasInsolence,
   setHasDetention,
   setHasTrumpCard,
-  setHunterId,
-  setPrimaryTime,
-  isPrimaryTimerActive,
-  setIsPrimaryTimerActive,
-  setIsSecondaryTimerActive,
-  setIsTertiaryTimerActive,
+  changeHunter,
   hunterId,
   setIsTrumpCardAlertOn,
   setIsTrumpCardUsed,
+  patrollerTimer,
+  teleportTimer,
+  blinkTimer,
+  primaryTimer,
 }: Props) => {
   const messages = startButtonMessages[language];
 
   const startTimerId = useRef<number>(0);
-
-  const triggerTimer = (
-    isTimerActive: boolean,
-    defaultTime: number,
-    setTime: React.Dispatch<React.SetStateAction<number>>,
-    setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>,
-    restartTimer: () => void,
-  ) => {
-    if (isTimerActive) {
-      setTime(defaultTime);
-      restartTimer();
-    } else {
-      setTime(defaultTime);
-      setIsTimerActive(true);
-    }
-  };
 
   const handleElapsedTimeChange = useEffectEvent((time: number) => {
     if (
@@ -159,46 +117,12 @@ export const StartButton = ({
     else if (time === 0) {
       if (hunterId === bloodyQueenId) {
         // 画面が回転してる間にハンターを特定している可能性があるため
-        triggerTimer(
-          isPrimaryTimerActive,
-          bloodyQueenDefaultTime,
-          setPrimaryTime,
-          setIsPrimaryTimerActive,
-          restartPrimaryTimer,
-        );
+        primaryTimer.startFrom(bloodyQueenDefaultTime);
       }
-
-      triggerTimer(
-        isPatrollerTimerActive,
-        patrollerDefaultTime,
-        setPatrollerTime,
-        setIsPatrollerTimerActive,
-        restartPatrollerTimer,
-      );
-
-      triggerTimer(
-        isTeleportTimerActive,
-        warpDefaultTime,
-        setTeleportTime,
-        setIsTeleportTimerActive,
-        restartTeleportTimer,
-      );
-
-      triggerTimer(
-        isBlinkTimerActive,
-        blinkDefaultTime,
-        setBlinkTime,
-        setIsBlinkTimerActive,
-        restartBlinkTimer,
-      );
-
-      triggerTimer(
-        isUltraLongTimerActive,
-        ultraLongDefaultTime,
-        setUltraLongTime,
-        setIsUltraLongTimerActive,
-        restartUltraLongTimer,
-      );
+      patrollerTimer.startFrom(patrollerDefaultTime);
+      teleportTimer.startFrom(warpDefaultTime);
+      blinkTimer.startFrom(blinkDefaultTime);
+      ultraLongTimer.startFrom(ultraLongDefaultTime);
     } else if (time === accelerateDecodingTime + detentionTime + 10) {
       clearInterval(startTimerId.current);
       setIsStartTimerActive(false);
@@ -396,21 +320,17 @@ export const StartButton = ({
       }`}
       onClick={() => {
         if (isFirstStatus) {
-          setIsPatrollerTimerActive(false);
-          setIsTeleportTimerActive(false);
-          setIsBlinkTimerActive(false);
-          setIsUltraLongTimerActive(false);
-          setIsPrimaryTimerActive(false);
-          setIsSecondaryTimerActive(false);
-          setIsTertiaryTimerActive(false);
+          changeHunter(bloodyQueenId);
+          patrollerTimer.reset(patrollerCoolTime);
+          teleportTimer.reset(teleportCoolTime);
+          blinkTimer.reset(blinkCoolTime);
+          ultraLongTimer.reset(ultraLongCoolTime);
 
           setHasConfinedSpace(false);
           setHasWantedOrder(false);
           setHasInsolence(false);
           setHasTrumpCard(false);
           setHasDetention(false);
-
-          setHunterId(bloodyQueenId);
 
           setIsTrumpCardUsed(false);
           setIsTrumpCardAlertOn(false);
