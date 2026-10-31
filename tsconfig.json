@@ -14,6 +14,13 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "verbatimModuleSyntax": true,
+    "noFallthroughCasesInSwitch": true,
+    "exactOptionalPropertyTypes": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
     "paths": {
       "@/*": ["./src/*"],
       "components/*": ["./src/components/*"],
