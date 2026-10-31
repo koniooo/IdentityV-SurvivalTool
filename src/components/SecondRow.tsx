@@ -5,6 +5,7 @@ import { Persona } from "components/Persona";
 import { HunterSelect } from "components/HunterSelect";
 import { LanguageSwitch } from "components/LanguageSwitch";
 import { hunterData } from "lib/hunterData";
+import type { Timer } from "@/hooks/useTimer";
 import styles from "components/SecondRow.module.scss";
 
 export type Props = {
@@ -23,21 +24,9 @@ export type Props = {
   setHasDetention: React.Dispatch<React.SetStateAction<boolean>>;
   hasTrumpCard: boolean;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
-  primaryTime: number;
-  setPrimaryTime: React.Dispatch<React.SetStateAction<number>>;
-  isPrimaryTimerActive: boolean;
-  setIsPrimaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  secondaryTime: number;
-  setSecondaryTime: React.Dispatch<React.SetStateAction<number>>;
-  isSecondaryTimerActive: boolean;
-  setIsSecondaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  tertiaryTime: number;
-  setTertiaryTime: React.Dispatch<React.SetStateAction<number>>;
-  isTertiaryTimerActive: boolean;
-  setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  restartPrimaryTimer: () => void;
-  restartSecondaryTimer: () => void;
-  restartTertiaryTimer: () => void;
+  primaryTimer: Timer;
+  secondaryTimer: Timer;
+  tertiaryTimer: Timer;
   changeHunter: (nextId: number) => void;
 };
 
@@ -57,21 +46,9 @@ export const SecondRow = ({
   hasDetention,
   setHasDetention,
   hunterId,
-  primaryTime,
-  secondaryTime,
-  tertiaryTime,
-  setPrimaryTime,
-  setSecondaryTime,
-  setTertiaryTime,
-  isPrimaryTimerActive,
-  isSecondaryTimerActive,
-  isTertiaryTimerActive,
-  setIsPrimaryTimerActive,
-  setIsSecondaryTimerActive,
-  setIsTertiaryTimerActive,
-  restartPrimaryTimer,
-  restartSecondaryTimer,
-  restartTertiaryTimer,
+  primaryTimer,
+  secondaryTimer,
+  tertiaryTimer,
   changeHunter,
 }: Props) => {
   return (
@@ -155,21 +132,9 @@ export const SecondRow = ({
             <HunterSkillTimer
               language={language}
               hunterId={hunterId}
-              primaryTime={primaryTime}
-              secondaryTime={secondaryTime}
-              tertiaryTime={tertiaryTime}
-              setPrimaryTime={setPrimaryTime}
-              setSecondaryTime={setSecondaryTime}
-              setTertiaryTime={setTertiaryTime}
-              isPrimaryTimerActive={isPrimaryTimerActive}
-              isSecondaryTimerActive={isSecondaryTimerActive}
-              isTertiaryTimerActive={isTertiaryTimerActive}
-              setIsSecondaryTimerActive={setIsSecondaryTimerActive}
-              setIsPrimaryTimerActive={setIsPrimaryTimerActive}
-              setIsTertiaryTimerActive={setIsTertiaryTimerActive}
-              restartPrimaryTimer={restartPrimaryTimer}
-              restartSecondaryTimer={restartSecondaryTimer}
-              restartTertiaryTimer={restartTertiaryTimer}
+              primaryTimer={primaryTimer}
+              secondaryTimer={secondaryTimer}
+              tertiaryTimer={tertiaryTimer}
             />
           </section>
         </div>

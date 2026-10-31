@@ -1,36 +1,22 @@
 import { TimerButton } from "components/TimerButton";
 import { DualStatusTimerButton } from "components/DualStatusTimerButton";
 import type { SkillData } from "lib/hunterData";
+import type { Timer } from "@/hooks/useTimer";
 import styles from "components/HunterSkillTimerButton.module.scss";
 
 type Props = {
   language: "ja" | "en";
   skill: SkillData;
-  time: number;
-  setTime: React.Dispatch<React.SetStateAction<number>>;
-  isTimerActive: boolean;
-  setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  restartTimer: () => void;
+  timer: Timer;
 };
 
-export const HunterSkillTimerButton = ({
-  language,
-  skill,
-  isTimerActive,
-  time,
-  setIsTimerActive,
-  setTime,
-  restartTimer,
-}: Props) => {
+export const HunterSkillTimerButton = ({ language, skill, timer }: Props) => {
   const { secondStageSeconds } = skill.coolTime;
+  const { time } = timer;
 
   if (secondStageSeconds === undefined) {
     return (
-      <TimerButton
-        time={time}
-        isTimerActive={isTimerActive}
-        setIsTimerActive={setIsTimerActive}
-      >
+      <TimerButton timer={timer}>
         <p className={styles.timeText}>{time}</p>
         <p className={styles.skillText}>
           <span>{skill.name[language]}</span>
@@ -40,14 +26,7 @@ export const HunterSkillTimerButton = ({
   }
 
   return (
-    <DualStatusTimerButton
-      secondCoolTime={secondStageSeconds}
-      time={time}
-      setTime={setTime}
-      isTimerActive={isTimerActive}
-      setIsTimerActive={setIsTimerActive}
-      restartTimer={restartTimer}
-    >
+    <DualStatusTimerButton secondCoolTime={secondStageSeconds} timer={timer}>
       <p className={styles.timeText}>
         {time > secondStageSeconds ? time - secondStageSeconds : time}
       </p>

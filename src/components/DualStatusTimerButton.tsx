@@ -1,39 +1,33 @@
+import type { Timer } from "@/hooks/useTimer";
 import colors from "components/Color.module.scss";
 
 type Props = {
-  time: number;
-  setTime: React.Dispatch<React.SetStateAction<number>>;
+  timer: Timer;
   secondCoolTime: number;
-  isTimerActive: boolean;
-  setIsTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
   children: React.ReactNode;
-  restartTimer: () => void;
 };
 export const DualStatusTimerButton = ({
-  time,
-  setTime,
-  secondCoolTime,
-  isTimerActive,
-  setIsTimerActive,
+  timer,
   children,
-  restartTimer,
+  secondCoolTime,
 }: Props) => {
+  const { time, isActive, toggle, startFrom } = timer;
+
   return (
     <button
       type="button"
-      className={`${
-        !isTimerActive
+      className={
+        !isActive
           ? `${colors.green} ${colors.greenText}`
           : time > secondCoolTime || time <= 3
             ? `${colors.red} ${colors.redText}`
             : `${colors.yellow} ${colors.yellowText}`
-      }`}
+      }
       onClick={() => {
-        if (!isTimerActive || time <= secondCoolTime) {
-          setIsTimerActive(!isTimerActive);
+        if (!isActive || time <= secondCoolTime) {
+          toggle();
         } else {
-          setTime(secondCoolTime);
-          restartTimer();
+          startFrom(secondCoolTime);
         }
       }}
     >

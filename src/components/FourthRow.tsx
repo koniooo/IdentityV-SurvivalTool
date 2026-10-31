@@ -2,25 +2,15 @@ import { RowContainer } from "components/RowContainer";
 import { TrumpCardButton } from "components/TrumpCardButton";
 import { UltraLongTimer } from "components/UltraLongTimer";
 import styles from "components/FourthRow.module.scss";
+import type { Timer } from "@/hooks/useTimer";
 
 type Props = {
   language: "ja" | "en";
   isTrumpCardTimerActive: boolean;
-  patrollerTime: number;
-  setPatrollerTime: React.Dispatch<React.SetStateAction<number>>;
-  isPatrollerTimerActive: boolean;
-  setIsPatrollerTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  teleportTime: number;
-  setTeleportTime: React.Dispatch<React.SetStateAction<number>>;
-  isTeleportTimerActive: boolean;
-  setIsTeleportTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  blinkTime: number;
-  setBlinkTime: React.Dispatch<React.SetStateAction<number>>;
-  isBlinkTimerActive: boolean;
-  setIsBlinkTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  ultraLongTime: number;
-  isUltraLongTimerActive: boolean;
-  setIsUltraLongTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  patrollerTimer: Timer;
+  teleportTimer: Timer;
+  blinkTimer: Timer;
+  ultraLongTimer: Timer;
   setHasTrumpCard: React.Dispatch<React.SetStateAction<boolean>>;
   elapsedTime: number;
   isTrumpCardUsed: boolean;
@@ -31,21 +21,10 @@ type Props = {
 export const FourthRow = ({
   language,
   isTrumpCardTimerActive,
-  patrollerTime,
-  setPatrollerTime,
-  isPatrollerTimerActive,
-  setIsPatrollerTimerActive,
-  teleportTime,
-  setTeleportTime,
-  isTeleportTimerActive,
-  setIsTeleportTimerActive,
-  blinkTime,
-  setBlinkTime,
-  isBlinkTimerActive,
-  setIsBlinkTimerActive,
-  ultraLongTime,
-  isUltraLongTimerActive,
-  setIsUltraLongTimerActive,
+  patrollerTimer,
+  teleportTimer,
+  blinkTimer,
+  ultraLongTimer,
   setHasTrumpCard,
   elapsedTime,
   isTrumpCardUsed,
@@ -58,19 +37,10 @@ export const FourthRow = ({
       <section className={styles.trump}>
         <TrumpCardButton
           language={language}
+          patrollerTimer={patrollerTimer}
+          teleportTimer={teleportTimer}
+          blinkTimer={blinkTimer}
           isTrumpCardTimerActive={isTrumpCardTimerActive}
-          patrollerTime={patrollerTime}
-          setPatrollerTime={setPatrollerTime}
-          isPatrollerTimerActive={isPatrollerTimerActive}
-          setIsPatrollerTimerActive={setIsPatrollerTimerActive}
-          teleportTime={teleportTime}
-          setTeleportTime={setTeleportTime}
-          isTeleportTimerActive={isTeleportTimerActive}
-          setIsTeleportTimerActive={setIsTeleportTimerActive}
-          blinkTime={blinkTime}
-          setBlinkTime={setBlinkTime}
-          isBlinkTimerActive={isBlinkTimerActive}
-          setIsBlinkTimerActive={setIsBlinkTimerActive}
           setHasTrumpCard={setHasTrumpCard}
           elapsedTime={elapsedTime}
           isTrumpCardUsed={isTrumpCardUsed}
@@ -80,11 +50,7 @@ export const FourthRow = ({
         />
       </section>
       <section className={styles.ultraLong}>
-        <UltraLongTimer
-          isUltraLongTimerActive={isUltraLongTimerActive}
-          setIsUltraLongTimerActive={setIsUltraLongTimerActive}
-          ultraLongTime={ultraLongTime}
-        />
+        <UltraLongTimer ultraLongTimer={ultraLongTimer} />
       </section>
     </RowContainer>
   );

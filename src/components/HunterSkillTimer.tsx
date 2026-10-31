@@ -2,6 +2,7 @@ import { hunterData } from "lib/hunterData";
 import { OneThirdColumn } from "components/OneThirdColumn";
 import { HunterSkillTimerButton } from "components/HunterSkillTimerButton";
 import { DreamWitchSkillTimerButton } from "components/DreamWitchSkillTimerButton";
+import type { Timer } from "@/hooks/useTimer";
 import styles from "components/HunterSkillTimer.module.scss";
 
 export const dreamWitchId = 10;
@@ -9,41 +10,17 @@ export const dreamWitchId = 10;
 type Props = {
   language: "ja" | "en";
   hunterId: number;
-  primaryTime: number;
-  setPrimaryTime: React.Dispatch<React.SetStateAction<number>>;
-  isPrimaryTimerActive: boolean;
-  setIsPrimaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  secondaryTime: number;
-  setSecondaryTime: React.Dispatch<React.SetStateAction<number>>;
-  isSecondaryTimerActive: boolean;
-  setIsSecondaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  tertiaryTime: number;
-  setTertiaryTime: React.Dispatch<React.SetStateAction<number>>;
-  isTertiaryTimerActive: boolean;
-  setIsTertiaryTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  restartPrimaryTimer: () => void;
-  restartSecondaryTimer: () => void;
-  restartTertiaryTimer: () => void;
+  primaryTimer: Timer;
+  secondaryTimer: Timer;
+  tertiaryTimer: Timer;
 };
 
 export const HunterSkillTimer = ({
   language,
   hunterId,
-  primaryTime,
-  secondaryTime,
-  tertiaryTime,
-  setPrimaryTime,
-  setSecondaryTime,
-  setTertiaryTime,
-  isPrimaryTimerActive,
-  isSecondaryTimerActive,
-  isTertiaryTimerActive,
-  setIsPrimaryTimerActive,
-  setIsSecondaryTimerActive,
-  setIsTertiaryTimerActive,
-  restartPrimaryTimer,
-  restartSecondaryTimer,
-  restartTertiaryTimer,
+  primaryTimer,
+  secondaryTimer,
+  tertiaryTimer,
 }: Props) => {
   const { primary, secondary, tertiary } = hunterData[hunterId].skills;
   if (hunterId === dreamWitchId && secondary) {
@@ -53,10 +30,7 @@ export const HunterSkillTimer = ({
           <DreamWitchSkillTimerButton
             language={language}
             skill={primary}
-            time={primaryTime}
-            setTime={setPrimaryTime}
-            isTimerActive={isPrimaryTimerActive}
-            setIsTimerActive={setIsPrimaryTimerActive}
+            timer={primaryTimer}
             note={
               language === "ja" ? "※オリジナルの攻撃が" : "*Tap on each hit"
             }
@@ -66,10 +40,7 @@ export const HunterSkillTimer = ({
           <DreamWitchSkillTimerButton
             language={language}
             skill={secondary}
-            time={secondaryTime}
-            setTime={setSecondaryTime}
-            isTimerActive={isSecondaryTimerActive}
-            setIsTimerActive={setIsSecondaryTimerActive}
+            timer={secondaryTimer}
             note={
               language === "ja"
                 ? "命中するたびにタップ"
@@ -88,11 +59,7 @@ export const HunterSkillTimer = ({
           <HunterSkillTimerButton
             language={language}
             skill={primary}
-            time={primaryTime}
-            setTime={setPrimaryTime}
-            isTimerActive={isPrimaryTimerActive}
-            setIsTimerActive={setIsPrimaryTimerActive}
-            restartTimer={restartPrimaryTimer}
+            timer={primaryTimer}
           />
         </section>
         <section
@@ -101,11 +68,7 @@ export const HunterSkillTimer = ({
           <HunterSkillTimerButton
             language={language}
             skill={secondary}
-            time={secondaryTime}
-            setTime={setSecondaryTime}
-            isTimerActive={isSecondaryTimerActive}
-            setIsTimerActive={setIsSecondaryTimerActive}
-            restartTimer={restartSecondaryTimer}
+            timer={secondaryTimer}
           />
         </section>
         <section
@@ -114,11 +77,7 @@ export const HunterSkillTimer = ({
           <HunterSkillTimerButton
             language={language}
             skill={tertiary}
-            time={tertiaryTime}
-            setTime={setTertiaryTime}
-            isTimerActive={isTertiaryTimerActive}
-            setIsTimerActive={setIsTertiaryTimerActive}
-            restartTimer={restartTertiaryTimer}
+            timer={tertiaryTimer}
           />
         </section>
       </>
@@ -130,22 +89,14 @@ export const HunterSkillTimer = ({
           <HunterSkillTimerButton
             language={language}
             skill={primary}
-            time={primaryTime}
-            setTime={setPrimaryTime}
-            isTimerActive={isPrimaryTimerActive}
-            setIsTimerActive={setIsPrimaryTimerActive}
-            restartTimer={restartPrimaryTimer}
+            timer={primaryTimer}
           />
         </OneThirdColumn>
         <OneThirdColumn>
           <HunterSkillTimerButton
             language={language}
             skill={secondary}
-            time={secondaryTime}
-            setTime={setSecondaryTime}
-            isTimerActive={isSecondaryTimerActive}
-            setIsTimerActive={setIsSecondaryTimerActive}
-            restartTimer={restartSecondaryTimer}
+            timer={secondaryTimer}
           />
         </OneThirdColumn>
       </div>
@@ -156,11 +107,7 @@ export const HunterSkillTimer = ({
         <HunterSkillTimerButton
           language={language}
           skill={primary}
-          time={primaryTime}
-          setTime={setPrimaryTime}
-          isTimerActive={isPrimaryTimerActive}
-          setIsTimerActive={setIsPrimaryTimerActive}
-          restartTimer={restartPrimaryTimer}
+          timer={primaryTimer}
         />
       </div>
     );

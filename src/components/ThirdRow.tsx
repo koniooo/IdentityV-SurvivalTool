@@ -1,33 +1,22 @@
 import { RowContainer } from "components/RowContainer";
 import { TimerButton } from "components/TimerButton";
 import { OneThirdColumn } from "components/OneThirdColumn";
+import type { Timer } from "@/hooks/useTimer";
 import styles from "components/ThirdRow.module.scss";
 import { patrollerDefaultTime, warpDefaultTime } from "components/StartButton";
 
 type Props = {
-  patrollerTime: number;
-  isPatrollerTimerActive: boolean;
-  setIsPatrollerTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  teleportTime: number;
-  isTeleportTimerActive: boolean;
-  setIsTeleportTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  blinkTime: number;
-  isBlinkTimerActive: boolean;
-  setIsBlinkTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
+  patrollerTimer: Timer;
+  teleportTimer: Timer;
+  blinkTimer: Timer;
   elapsedTime: number;
   isStartTimerActive: boolean;
 };
 
 export const ThirdRow = ({
-  patrollerTime,
-  isPatrollerTimerActive,
-  setIsPatrollerTimerActive,
-  teleportTime,
-  isTeleportTimerActive,
-  setIsTeleportTimerActive,
-  blinkTime,
-  isBlinkTimerActive,
-  setIsBlinkTimerActive,
+  patrollerTimer,
+  teleportTimer,
+  blinkTimer,
   elapsedTime,
   isStartTimerActive,
 }: Props) => {
@@ -35,25 +24,21 @@ export const ThirdRow = ({
     isStartTimerActive &&
     0 <= elapsedTime &&
     elapsedTime < patrollerDefaultTime &&
-    isPatrollerTimerActive &&
-    patrollerTime <= patrollerDefaultTime;
+    patrollerTimer.isActive &&
+    patrollerTimer.time <= patrollerDefaultTime;
 
   const isTeleportTimerNotReady =
     isStartTimerActive &&
     0 <= elapsedTime &&
     elapsedTime < warpDefaultTime &&
-    isTeleportTimerActive &&
-    teleportTime <= warpDefaultTime;
+    teleportTimer.isActive &&
+    teleportTimer.time <= warpDefaultTime;
 
   return (
     <RowContainer isEdgeRow={false}>
       <OneThirdColumn>
-        <TimerButton
-          isTimerActive={isPatrollerTimerActive}
-          setIsTimerActive={setIsPatrollerTimerActive}
-          time={patrollerTime}
-        >
-          <p className={styles.traitTimeText}>{patrollerTime}</p>
+        <TimerButton timer={patrollerTimer}>
+          <p className={styles.traitTimeText}>{patrollerTimer.time}</p>
           <svg // patroller
             className={
               isPatrollerTimerNotReady ? styles.centralSvg : styles.patroller
@@ -103,12 +88,8 @@ export const ThirdRow = ({
         </TimerButton>
       </OneThirdColumn>
       <OneThirdColumn>
-        <TimerButton
-          isTimerActive={isTeleportTimerActive}
-          setIsTimerActive={setIsTeleportTimerActive}
-          time={teleportTime}
-        >
-          <p className={styles.traitTimeText}>{teleportTime}</p>
+        <TimerButton timer={teleportTimer}>
+          <p className={styles.traitTimeText}>{teleportTimer.time}</p>
           {!isTeleportTimerNotReady && (
             <svg // teleport
               className={styles.teleport}
@@ -144,12 +125,8 @@ export const ThirdRow = ({
         </TimerButton>
       </OneThirdColumn>
       <OneThirdColumn>
-        <TimerButton
-          isTimerActive={isBlinkTimerActive}
-          setIsTimerActive={setIsBlinkTimerActive}
-          time={blinkTime}
-        >
-          <p className={styles.traitTimeText}>{blinkTime}</p>
+        <TimerButton timer={blinkTimer}>
+          <p className={styles.traitTimeText}>{blinkTimer.time}</p>
           <svg // blink
             className={styles.centralSvg}
             xmlns="http://www.w3.org/2000/svg"

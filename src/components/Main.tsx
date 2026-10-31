@@ -14,12 +14,9 @@ export const patrollerCoolTime = 90;
 export const teleportCoolTime = 100;
 export const blinkCoolTime = 150;
 export const ultraLongCoolTime = 150;
-
 export const trumpCardTime = 120;
-
 export const readyTime = 5;
 export const bloodyQueenId = 13;
-
 const bloodyQueenTotalCoolTimes = getHunterTotalCoolTimes(bloodyQueenId);
 
 type Props = {
@@ -28,108 +25,31 @@ type Props = {
 
 export const Main = ({ language }: Props) => {
   const [elapsedTime, setElapsedTime] = useState(-readyTime);
-  const [patrollerTime, setPatrollerTime] = useState(patrollerCoolTime);
-  const [teleportTime, setTeleportTime] = useState(teleportCoolTime);
-  const [blinkTime, setBlinkTime] = useState(blinkCoolTime);
-  const [ultraLongTime, setUltraLongTime] = useState(ultraLongCoolTime);
   const [isStartTimerActive, setIsStartTimerActive] = useState(false);
-  const [isPatrollerTimerActive, setIsPatrollerTimerActive] = useState(false);
-  const [isTeleportTimerActive, setIsTeleportTimerActive] = useState(false);
-  const [isBlinkTimerActive, setIsBlinkTimerActive] = useState(false);
-  const [isUltraLongTimerActive, setIsUltraLongTimerActive] = useState(false);
   const [hasConfinedSpace, setHasConfinedSpace] = useState(false);
   const [hasWantedOrder, setHasWantedOrder] = useState(false);
   const [hasTrumpCard, setHasTrumpCard] = useState(false);
   const [hasInsolence, setHasInsolence] = useState(false);
   const [hasDetention, setHasDetention] = useState(false);
   const [hunterId, setHunterId] = useState(bloodyQueenId);
-  const [primaryTime, setPrimaryTime] = useState(
-    bloodyQueenTotalCoolTimes.primary,
-  );
-  const [secondaryTime, setSecondaryTime] = useState(
-    bloodyQueenTotalCoolTimes.secondary,
-  );
-  const [tertiaryTime, setTertiaryTime] = useState(
-    bloodyQueenTotalCoolTimes.tertiary,
-  );
-  const [isPrimaryTimerActive, setIsPrimaryTimerActive] = useState(false);
-  const [isSecondaryTimerActive, setIsSecondaryTimerActive] = useState(false);
-  const [isTertiaryTimerActive, setIsTertiaryTimerActive] = useState(false);
   const [isTrumpCardUsed, setIsTrumpCardUsed] = useState(false);
   const [isTrumpCardAlertOn, setIsTrumpCardAlertOn] = useState(false);
-
   const pageVariables = language === "ja" ? variables : variablesEn;
-
-  const restartPatrollerTimer = useTimer({
-    coolTime: patrollerCoolTime,
-    time: patrollerTime,
-    setTime: setPatrollerTime,
-    isTimerActive: isPatrollerTimerActive,
-    setIsTimerActive: setIsPatrollerTimerActive,
-  });
-
-  const restartTeleportTimer = useTimer({
-    coolTime: teleportCoolTime,
-    time: teleportTime,
-    setTime: setTeleportTime,
-    isTimerActive: isTeleportTimerActive,
-    setIsTimerActive: setIsTeleportTimerActive,
-  });
-
-  const restartBlinkTimer = useTimer({
-    coolTime: blinkCoolTime,
-    time: blinkTime,
-    setTime: setBlinkTime,
-    isTimerActive: isBlinkTimerActive,
-    setIsTimerActive: setIsBlinkTimerActive,
-  });
-
-  const restartUltraLongTimer = useTimer({
-    coolTime: ultraLongCoolTime,
-    time: ultraLongTime,
-    setTime: setUltraLongTime,
-    isTimerActive: isUltraLongTimerActive,
-    setIsTimerActive: setIsUltraLongTimerActive,
-  });
+  const patrollerTimer = useTimer(patrollerCoolTime);
+  const teleportTimer = useTimer(teleportCoolTime);
+  const blinkTimer = useTimer(blinkCoolTime);
+  const primaryTimer = useTimer(bloodyQueenTotalCoolTimes.primary);
+  const secondaryTimer = useTimer(bloodyQueenTotalCoolTimes.secondary);
+  const tertiaryTimer = useTimer(bloodyQueenTotalCoolTimes.tertiary);
+  const ultraLongTimer = useTimer(ultraLongCoolTime);
 
   const changeHunter = (nextId: number) => {
     setHunterId(nextId);
-    setIsPrimaryTimerActive(false);
-    setIsSecondaryTimerActive(false);
-    setIsTertiaryTimerActive(false);
-
     const { primary, secondary, tertiary } = getHunterTotalCoolTimes(nextId);
-
-    setPrimaryTime(primary);
-    setSecondaryTime(secondary);
-    setTertiaryTime(tertiary);
+    primaryTimer.reset(primary);
+    secondaryTimer.reset(secondary);
+    tertiaryTimer.reset(tertiary);
   };
-
-  const totalCoolTimes = getHunterTotalCoolTimes(hunterId);
-
-  const restartPrimaryTimer = useTimer({
-    coolTime: totalCoolTimes.primary,
-    time: primaryTime,
-    setTime: setPrimaryTime,
-    isTimerActive: isPrimaryTimerActive,
-    setIsTimerActive: setIsPrimaryTimerActive,
-  });
-
-  const restartSecondaryTimer = useTimer({
-    coolTime: totalCoolTimes.secondary,
-    time: secondaryTime,
-    setTime: setSecondaryTime,
-    isTimerActive: isSecondaryTimerActive,
-    setIsTimerActive: setIsSecondaryTimerActive,
-  });
-
-  const restartTertiaryTimer = useTimer({
-    coolTime: totalCoolTimes.tertiary,
-    time: tertiaryTime,
-    setTime: setTertiaryTime,
-    isTimerActive: isTertiaryTimerActive,
-    setIsTimerActive: setIsTertiaryTimerActive,
-  });
 
   const isTrumpCardTimerActive =
     isStartTimerActive && 0 <= elapsedTime && elapsedTime < trumpCardTime;
@@ -139,41 +59,24 @@ export const Main = ({ language }: Props) => {
       <RowContainer isEdgeRow={true}>
         <StartButton
           language={language}
-          isPatrollerTimerActive={isPatrollerTimerActive}
-          isTeleportTimerActive={isTeleportTimerActive}
-          isBlinkTimerActive={isBlinkTimerActive}
-          isUltraLongTimerActive={isUltraLongTimerActive}
+          changeHunter={changeHunter}
           elapsedTime={elapsedTime}
           setElapsedTime={setElapsedTime}
           isStartTimerActive={isStartTimerActive}
           setIsStartTimerActive={setIsStartTimerActive}
-          restartPatrollerTimer={restartPatrollerTimer}
-          restartTeleportTimer={restartTeleportTimer}
-          restartBlinkTimer={restartBlinkTimer}
-          restartUltraLongTimer={restartUltraLongTimer}
-          restartPrimaryTimer={restartPrimaryTimer}
-          setPatrollerTime={setPatrollerTime}
-          setTeleportTime={setTeleportTime}
-          setBlinkTime={setBlinkTime}
-          setUltraLongTime={setUltraLongTime}
-          setIsPatrollerTimerActive={setIsPatrollerTimerActive}
-          setIsTeleportTimerActive={setIsTeleportTimerActive}
-          setIsBlinkTimerActive={setIsBlinkTimerActive}
-          setIsUltraLongTimerActive={setIsUltraLongTimerActive}
+          ultraLongTimer={ultraLongTimer}
           setHasConfinedSpace={setHasConfinedSpace}
           setHasWantedOrder={setHasWantedOrder}
           setHasInsolence={setHasInsolence}
           setHasTrumpCard={setHasTrumpCard}
           setHasDetention={setHasDetention}
-          setHunterId={setHunterId}
-          setPrimaryTime={setPrimaryTime}
-          setIsPrimaryTimerActive={setIsPrimaryTimerActive}
-          isPrimaryTimerActive={isPrimaryTimerActive}
-          setIsSecondaryTimerActive={setIsSecondaryTimerActive}
-          setIsTertiaryTimerActive={setIsTertiaryTimerActive}
           hunterId={hunterId}
           setIsTrumpCardAlertOn={setIsTrumpCardAlertOn}
           setIsTrumpCardUsed={setIsTrumpCardUsed}
+          patrollerTimer={patrollerTimer}
+          teleportTimer={teleportTimer}
+          blinkTimer={blinkTimer}
+          primaryTimer={primaryTimer}
         />
       </RowContainer>
       <SecondRow
@@ -192,60 +95,31 @@ export const Main = ({ language }: Props) => {
         hasDetention={hasDetention}
         setHasDetention={setHasDetention}
         hunterId={hunterId}
-        primaryTime={primaryTime}
-        secondaryTime={secondaryTime}
-        tertiaryTime={tertiaryTime}
-        setPrimaryTime={setPrimaryTime}
-        setSecondaryTime={setSecondaryTime}
-        setTertiaryTime={setTertiaryTime}
-        isPrimaryTimerActive={isPrimaryTimerActive}
-        isSecondaryTimerActive={isSecondaryTimerActive}
-        isTertiaryTimerActive={isTertiaryTimerActive}
-        setIsSecondaryTimerActive={setIsSecondaryTimerActive}
-        setIsPrimaryTimerActive={setIsPrimaryTimerActive}
-        setIsTertiaryTimerActive={setIsTertiaryTimerActive}
-        restartPrimaryTimer={restartPrimaryTimer}
-        restartSecondaryTimer={restartSecondaryTimer}
-        restartTertiaryTimer={restartTertiaryTimer}
         changeHunter={changeHunter}
+        primaryTimer={primaryTimer}
+        secondaryTimer={secondaryTimer}
+        tertiaryTimer={tertiaryTimer}
       />
       <ThirdRow
-        patrollerTime={patrollerTime}
-        isPatrollerTimerActive={isPatrollerTimerActive}
-        setIsPatrollerTimerActive={setIsPatrollerTimerActive}
-        teleportTime={teleportTime}
-        isTeleportTimerActive={isTeleportTimerActive}
-        setIsTeleportTimerActive={setIsTeleportTimerActive}
-        blinkTime={blinkTime}
-        isBlinkTimerActive={isBlinkTimerActive}
-        setIsBlinkTimerActive={setIsBlinkTimerActive}
         elapsedTime={elapsedTime}
         isStartTimerActive={isStartTimerActive}
+        patrollerTimer={patrollerTimer}
+        teleportTimer={teleportTimer}
+        blinkTimer={blinkTimer}
       />
       <FourthRow
         language={language}
         isTrumpCardTimerActive={isTrumpCardTimerActive}
-        patrollerTime={patrollerTime}
-        setPatrollerTime={setPatrollerTime}
-        isPatrollerTimerActive={isPatrollerTimerActive}
-        setIsPatrollerTimerActive={setIsPatrollerTimerActive}
-        teleportTime={teleportTime}
-        setTeleportTime={setTeleportTime}
-        isTeleportTimerActive={isTeleportTimerActive}
-        setIsTeleportTimerActive={setIsTeleportTimerActive}
-        blinkTime={blinkTime}
-        setBlinkTime={setBlinkTime}
-        isBlinkTimerActive={isBlinkTimerActive}
-        setIsBlinkTimerActive={setIsBlinkTimerActive}
-        ultraLongTime={ultraLongTime}
-        isUltraLongTimerActive={isUltraLongTimerActive}
-        setIsUltraLongTimerActive={setIsUltraLongTimerActive}
         setHasTrumpCard={setHasTrumpCard}
         elapsedTime={elapsedTime}
         isTrumpCardUsed={isTrumpCardUsed}
         setIsTrumpCardUsed={setIsTrumpCardUsed}
         isTrumpCardAlertOn={isTrumpCardAlertOn}
         setIsTrumpCardAlertOn={setIsTrumpCardAlertOn}
+        ultraLongTimer={ultraLongTimer}
+        patrollerTimer={patrollerTimer}
+        teleportTimer={teleportTimer}
+        blinkTimer={blinkTimer}
       />
     </main>
   );

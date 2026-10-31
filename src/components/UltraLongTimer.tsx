@@ -1,25 +1,14 @@
+import type { Timer } from "@/hooks/useTimer";
 import { TimerButton } from "components/TimerButton";
 import styles from "components/UltraLongTimer.module.scss";
-
 type Props = {
-  isUltraLongTimerActive: boolean;
-  setIsUltraLongTimerActive: React.Dispatch<React.SetStateAction<boolean>>;
-  ultraLongTime: number;
+  ultraLongTimer: Timer;
 };
-
-export const UltraLongTimer = ({
-  isUltraLongTimerActive,
-  setIsUltraLongTimerActive,
-  ultraLongTime,
-}: Props) => {
+export const UltraLongTimer = ({ ultraLongTimer }: Props) => {
   return (
     <div className={styles.ultraLongTimer}>
-      <TimerButton
-        isTimerActive={isUltraLongTimerActive}
-        setIsTimerActive={setIsUltraLongTimerActive}
-        time={ultraLongTime}
-      >
-        <p>{ultraLongTime}</p>
+      <TimerButton timer={ultraLongTimer}>
+        <p>{ultraLongTimer.time}</p>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 80.56 80.75"
