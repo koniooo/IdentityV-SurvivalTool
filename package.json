@@ -13,7 +13,8 @@
     "test": "vitest run",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "knip": "knip"
   },
   "dependencies": {
     "next": "^16.4.2",
@@ -27,6 +28,7 @@
     "eslint": "^9.39.5",
     "eslint-config-next": "^16.4.2",
     "eslint-plugin-simple-import-sort": "^14.0.0",
+    "knip": "^6.44.1",
     "prettier": "^3.9.10",
     "sass": "^1.105.2",
     "typescript": "6.0.3",

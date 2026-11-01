@@ -8,7 +8,7 @@ import { RowContainer } from "components/RowContainer";
 import styles from "components/SecondRow.module.scss";
 import { hunterData } from "lib/hunterData";
 
-export type Props = {
+type Props = {
   language: "ja" | "en";
   isTrumpCardTimerActive: boolean;
   elapsedTime: number;
