@@ -13,8 +13,8 @@ type Props = {
 
 export const DreamWitchSkillTimerButton = ({
   language,
-  timer,
   skill,
+  timer,
   note,
 }: Props) => {
   const { isActive, time, setRemainingTime, toggle } = timer;

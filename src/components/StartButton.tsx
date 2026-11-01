@@ -84,11 +84,11 @@ type Props = {
 };
 export const StartButton = ({
   language,
-  ultraLongTimer,
   elapsedTime,
   setElapsedTime,
   isStartTimerActive,
   setIsStartTimerActive,
+  ultraLongTimer,
   setHasConfinedSpace,
   setHasWantedOrder,
   setHasInsolence,
