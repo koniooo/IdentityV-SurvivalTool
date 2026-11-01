@@ -9,14 +9,16 @@ import { useTimer } from "@/hooks/useTimer";
 import variables from "styles/Variables.module.scss";
 import variablesEn from "styles/VariablesEn.module.scss";
 import styles from "components/Main.module.scss";
+import {
+  patrollerCoolTime,
+  teleportCoolTime,
+  blinkCoolTime,
+  ultraLongCoolTime,
+  trumpCardTime,
+  readyTime,
+  bloodyQueenId,
+} from "@/lib/timerConstants";
 
-export const patrollerCoolTime = 90;
-export const teleportCoolTime = 100;
-export const blinkCoolTime = 150;
-export const ultraLongCoolTime = 150;
-export const trumpCardTime = 120;
-export const readyTime = 5;
-export const bloodyQueenId = 13;
 const bloodyQueenTotalCoolTimes = getHunterTotalCoolTimes(bloodyQueenId);
 
 type Props = {

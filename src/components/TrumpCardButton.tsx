@@ -3,7 +3,7 @@ import {
   patrollerCoolTime,
   teleportCoolTime,
   blinkCoolTime,
-} from "components/Main";
+} from "@/lib/timerConstants";
 import type { Timer } from "@/hooks/useTimer";
 import colors from "components/Color.module.scss";
 import styles from "components/TrumpCardButton.module.scss";

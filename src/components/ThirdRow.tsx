@@ -3,7 +3,7 @@ import { TimerButton } from "components/TimerButton";
 import { OneThirdColumn } from "components/OneThirdColumn";
 import type { Timer } from "@/hooks/useTimer";
 import styles from "components/ThirdRow.module.scss";
-import { patrollerDefaultTime, warpDefaultTime } from "components/StartButton";
+import { patrollerDefaultTime, warpDefaultTime } from "@/lib/timerConstants";
 
 type Props = {
   patrollerTimer: Timer;
