@@ -1,8 +1,8 @@
 import "styles/reset.css";
 import "styles/globals.css";
-import { useLayoutEffect, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useEffect, useLayoutEffect } from "react";
 import type { AppProps } from "next/app";
+import { useRouter } from "next/router";
 
 export default function App({ Component, pageProps }: AppProps) {
   useEffect(() => {

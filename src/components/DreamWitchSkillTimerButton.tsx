@@ -1,8 +1,8 @@
-import type { SkillData } from "lib/hunterData";
 import type { Timer } from "@/hooks/useTimer";
-import common from "components/HunterSkillTimerButton.module.scss";
 import colors from "components/Color.module.scss";
 import styles from "components/DreamWitchSkillTimerButton.module.scss";
+import common from "components/HunterSkillTimerButton.module.scss";
+import type { SkillData } from "lib/hunterData";
 
 type Props = {
   language: "en" | "ja";

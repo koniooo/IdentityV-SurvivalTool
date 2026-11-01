@@ -1,5 +1,5 @@
-import { hunterData } from "lib/hunterData";
 import styles from "components/HunterSelect.module.scss";
+import { hunterData } from "lib/hunterData";
 
 type Props = {
   language: "ja" | "en";

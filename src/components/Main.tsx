@@ -1,23 +1,24 @@
 import { useState } from "react";
-import { RowContainer } from "components/RowContainer";
-import { StartButton } from "components/StartButton";
-import { SecondRow } from "components/SecondRow";
-import { ThirdRow } from "components/ThirdRow";
-import { FourthRow } from "components/FourthRow";
-import { getHunterTotalCoolTimes } from "lib/coolTime";
+
 import { useTimer } from "@/hooks/useTimer";
+import {
+  blinkCoolTime,
+  bloodyQueenId,
+  patrollerCoolTime,
+  readyTime,
+  teleportCoolTime,
+  trumpCardTime,
+  ultraLongCoolTime,
+} from "@/lib/timerConstants";
+import { FourthRow } from "components/FourthRow";
+import styles from "components/Main.module.scss";
+import { RowContainer } from "components/RowContainer";
+import { SecondRow } from "components/SecondRow";
+import { StartButton } from "components/StartButton";
+import { ThirdRow } from "components/ThirdRow";
+import { getHunterTotalCoolTimes } from "lib/coolTime";
 import variables from "styles/Variables.module.scss";
 import variablesEn from "styles/VariablesEn.module.scss";
-import styles from "components/Main.module.scss";
-import {
-  patrollerCoolTime,
-  teleportCoolTime,
-  blinkCoolTime,
-  ultraLongCoolTime,
-  trumpCardTime,
-  readyTime,
-  bloodyQueenId,
-} from "@/lib/timerConstants";
 
 const bloodyQueenTotalCoolTimes = getHunterTotalCoolTimes(bloodyQueenId);
 

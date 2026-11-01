@@ -1,8 +1,8 @@
+import type { Timer } from "@/hooks/useTimer";
+import styles from "components/FourthRow.module.scss";
 import { RowContainer } from "components/RowContainer";
 import { TrumpCardButton } from "components/TrumpCardButton";
 import { UltraLongTimer } from "components/UltraLongTimer";
-import styles from "components/FourthRow.module.scss";
-import type { Timer } from "@/hooks/useTimer";
 
 type Props = {
   language: "ja" | "en";

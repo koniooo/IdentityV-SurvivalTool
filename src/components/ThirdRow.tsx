@@ -1,9 +1,9 @@
-import { RowContainer } from "components/RowContainer";
-import { TimerButton } from "components/TimerButton";
-import { OneThirdColumn } from "components/OneThirdColumn";
 import type { Timer } from "@/hooks/useTimer";
-import styles from "components/ThirdRow.module.scss";
 import { patrollerDefaultTime, warpDefaultTime } from "@/lib/timerConstants";
+import { OneThirdColumn } from "components/OneThirdColumn";
+import { RowContainer } from "components/RowContainer";
+import styles from "components/ThirdRow.module.scss";
+import { TimerButton } from "components/TimerButton";
 
 type Props = {
   patrollerTimer: Timer;
