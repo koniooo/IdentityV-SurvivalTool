@@ -1,5 +1,5 @@
-import colors from "components/Color.module.scss";
 import type { Timer } from "@/hooks/useTimer";
+import colors from "components/Color.module.scss";
 
 type Props = {
   timer: Timer;

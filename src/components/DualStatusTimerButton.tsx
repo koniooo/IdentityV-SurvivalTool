@@ -8,8 +8,8 @@ type Props = {
 };
 export const DualStatusTimerButton = ({
   timer,
-  children,
   secondCoolTime,
+  children,
 }: Props) => {
   const { time, isActive, toggle, startFrom } = timer;
 

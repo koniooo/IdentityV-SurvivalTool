@@ -1,7 +1,7 @@
-import { PersonaButton } from "components/PersonaButton";
 import { accelerateDecodingTime, detentionTime } from "@/lib/timerConstants";
 import colors from "components/Color.module.scss";
 import styles from "components/Persona.module.scss";
+import { PersonaButton } from "components/PersonaButton";
 
 const presenceUnit = 250;
 const maxPresence = 1000;

@@ -1,8 +1,8 @@
 import styles from "components/RowContainer.module.scss";
 
 type Props = {
-  children: React.ReactNode;
   isEdgeRow: boolean;
+  children: React.ReactNode;
 };
 
 export const RowContainer = ({ isEdgeRow, children }: Props) => {

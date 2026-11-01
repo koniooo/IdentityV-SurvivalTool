@@ -1,10 +1,10 @@
+import type { Timer } from "@/hooks/useTimer";
 import {
-  trumpCardTime,
+  blinkCoolTime,
   patrollerCoolTime,
   teleportCoolTime,
-  blinkCoolTime,
+  trumpCardTime,
 } from "@/lib/timerConstants";
-import type { Timer } from "@/hooks/useTimer";
 import colors from "components/Color.module.scss";
 import styles from "components/TrumpCardButton.module.scss";
 

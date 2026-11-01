@@ -1,8 +1,8 @@
-import { TimerButton } from "components/TimerButton";
-import { DualStatusTimerButton } from "components/DualStatusTimerButton";
-import type { SkillData } from "lib/hunterData";
 import type { Timer } from "@/hooks/useTimer";
+import { DualStatusTimerButton } from "components/DualStatusTimerButton";
 import styles from "components/HunterSkillTimerButton.module.scss";
+import { TimerButton } from "components/TimerButton";
+import type { SkillData } from "lib/hunterData";
 
 type Props = {
   language: "ja" | "en";

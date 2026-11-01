@@ -1,9 +1,9 @@
-import { getHunter } from "lib/hunterData";
-import { OneThirdColumn } from "components/OneThirdColumn";
-import { HunterSkillTimerButton } from "components/HunterSkillTimerButton";
-import { DreamWitchSkillTimerButton } from "components/DreamWitchSkillTimerButton";
 import type { Timer } from "@/hooks/useTimer";
+import { DreamWitchSkillTimerButton } from "components/DreamWitchSkillTimerButton";
 import styles from "components/HunterSkillTimer.module.scss";
+import { HunterSkillTimerButton } from "components/HunterSkillTimerButton";
+import { OneThirdColumn } from "components/OneThirdColumn";
+import { getHunter } from "lib/hunterData";
 
 export const dreamWitchId = 10;
 

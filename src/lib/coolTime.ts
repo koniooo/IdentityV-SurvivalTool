@@ -1,4 +1,4 @@
-import { getHunter, type CoolTime } from "./hunterData";
+import { type CoolTime, getHunter } from "./hunterData";
 
 export const calculateTotalCoolTime = ({
   firstStageSeconds,

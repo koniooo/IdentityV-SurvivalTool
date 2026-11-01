@@ -1,17 +1,18 @@
-import { useRef, useEffect, useEffectEvent } from "react";
-import {
-  readyTime,
-  bloodyQueenId,
-  ultraLongCoolTime,
-  blinkCoolTime,
-  patrollerCoolTime,
-  teleportCoolTime,
-  warpDefaultTime,
-  patrollerDefaultTime,
-  accelerateDecodingTime,
-  detentionTime,
-} from "@/lib/timerConstants";
+import { useEffect, useEffectEvent, useRef } from "react";
+
 import type { Timer } from "@/hooks/useTimer";
+import {
+  accelerateDecodingTime,
+  blinkCoolTime,
+  bloodyQueenId,
+  detentionTime,
+  patrollerCoolTime,
+  patrollerDefaultTime,
+  readyTime,
+  teleportCoolTime,
+  ultraLongCoolTime,
+  warpDefaultTime,
+} from "@/lib/timerConstants";
 import colors from "components/Color.module.scss";
 import styles from "components/StartButton.module.scss";
 
@@ -83,11 +84,11 @@ type Props = {
 };
 export const StartButton = ({
   language,
-  ultraLongTimer,
   elapsedTime,
   setElapsedTime,
   isStartTimerActive,
   setIsStartTimerActive,
+  ultraLongTimer,
   setHasConfinedSpace,
   setHasWantedOrder,
   setHasInsolence,

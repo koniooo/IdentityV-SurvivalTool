@@ -1,12 +1,12 @@
-import { RowContainer } from "components/RowContainer";
-import { OneThirdColumn } from "components/OneThirdColumn";
-import { HunterSkillTimer } from "components/HunterSkillTimer";
-import { Persona } from "components/Persona";
-import { HunterSelect } from "components/HunterSelect";
-import { LanguageSwitch } from "components/LanguageSwitch";
-import { hunterData } from "lib/hunterData";
 import type { Timer } from "@/hooks/useTimer";
+import { HunterSelect } from "components/HunterSelect";
+import { HunterSkillTimer } from "components/HunterSkillTimer";
+import { LanguageSwitch } from "components/LanguageSwitch";
+import { OneThirdColumn } from "components/OneThirdColumn";
+import { Persona } from "components/Persona";
+import { RowContainer } from "components/RowContainer";
 import styles from "components/SecondRow.module.scss";
+import { hunterData } from "lib/hunterData";
 
 export type Props = {
   language: "ja" | "en";
@@ -35,17 +35,17 @@ export const SecondRow = ({
   isTrumpCardTimerActive,
   elapsedTime,
   isStartTimerActive,
+  hunterId,
   hasConfinedSpace,
   setHasConfinedSpace,
   hasWantedOrder,
   setHasWantedOrder,
   hasInsolence,
   setHasInsolence,
-  hasTrumpCard,
-  setHasTrumpCard,
   hasDetention,
   setHasDetention,
-  hunterId,
+  hasTrumpCard,
+  setHasTrumpCard,
   primaryTimer,
   secondaryTimer,
   tertiaryTimer,
