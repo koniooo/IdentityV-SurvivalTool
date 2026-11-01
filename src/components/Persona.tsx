@@ -1,6 +1,5 @@
 import { PersonaButton } from "components/PersonaButton";
-import { accelerateDecodingTime } from "components/StartButton";
-import { detentionTime } from "components/StartButton";
+import { accelerateDecodingTime, detentionTime } from "@/lib/timerConstants";
 import colors from "components/Color.module.scss";
 import styles from "components/Persona.module.scss";
 

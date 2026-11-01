@@ -1,0 +1,11 @@
+export const patrollerCoolTime = 90;
+export const teleportCoolTime = 100;
+export const blinkCoolTime = 150;
+export const ultraLongCoolTime = 150;
+export const trumpCardTime = 120;
+export const readyTime = 5;
+export const bloodyQueenId = 13;
+export const patrollerDefaultTime = 30;
+export const warpDefaultTime = 40;
+export const accelerateDecodingTime = 202;
+export const detentionTime = 120;

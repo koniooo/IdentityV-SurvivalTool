@@ -6,13 +6,15 @@ import {
   blinkCoolTime,
   patrollerCoolTime,
   teleportCoolTime,
-} from "components/Main";
+  warpDefaultTime,
+  patrollerDefaultTime,
+  accelerateDecodingTime,
+  detentionTime,
+} from "@/lib/timerConstants";
 import type { Timer } from "@/hooks/useTimer";
 import colors from "components/Color.module.scss";
 import styles from "components/StartButton.module.scss";
 
-export const patrollerDefaultTime = 30;
-export const warpDefaultTime = 40;
 const blinkDefaultTime = 60;
 const ultraLongDefaultTime = 30;
 const bloodyQueenDefaultTime = 8;
@@ -20,9 +22,7 @@ const bloodyQueenDefaultTime = 8;
 const constrainTime = 40;
 const quenchingEffectStartTime = 50;
 const quenchingEffectDuration = 5;
-export const accelerateDecodingTime = 202;
 const claustrophobiaTime = 20; // 幽閉の恐怖
-export const detentionTime = 120;
 
 const startButtonMessages = {
   ja: {
