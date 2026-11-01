@@ -512,3 +512,11 @@ export const hunterData: readonly HunterDatum[] = [
     },
   },
 ];
+
+export const getHunter = (hunterId: number) => {
+  const hunter = hunterData[hunterId];
+  if (hunter === undefined) {
+    throw new Error(`Unknown hunter id: ${hunterId}`);
+  }
+  return hunter;
+};

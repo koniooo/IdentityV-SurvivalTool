@@ -1,4 +1,4 @@
-import { hunterData, type CoolTime } from "./hunterData";
+import { getHunter, type CoolTime } from "./hunterData";
 
 export const calculateTotalCoolTime = ({
   firstStageSeconds,
@@ -6,7 +6,7 @@ export const calculateTotalCoolTime = ({
 }: CoolTime) => firstStageSeconds + secondStageSeconds;
 
 export const getHunterTotalCoolTimes = (hunterId: number) => {
-  const { primary, secondary, tertiary } = hunterData[hunterId].skills;
+  const { primary, secondary, tertiary } = getHunter(hunterId).skills;
 
   const primaryTotalCoolTime = calculateTotalCoolTime(primary.coolTime);
   const secondaryTotalCoolTime = secondary
