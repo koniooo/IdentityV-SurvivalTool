@@ -38,7 +38,9 @@ export const useTimer = (initialCoolTime: number) => {
     const id = setInterval(() => {
       setTime((t) => t - 1);
     }, 1000);
-    return () => clearInterval(id);
+    return () => {
+      clearInterval(id);
+    };
   }, [isActive, restartKey]);
 
   useEffect(() => {
