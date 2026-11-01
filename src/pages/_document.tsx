@@ -12,14 +12,14 @@ type Props = DocumentInitialProps & {
 };
 
 class MyDocument extends Document<Props> {
-  static async getInitialProps(ctx: DocumentContext): Promise<Props> {
+  static override async getInitialProps(ctx: DocumentContext): Promise<Props> {
     const initialProps = await Document.getInitialProps(ctx);
     const lang =
       ctx.pathname === "/en" || ctx.pathname.startsWith("/en/") ? "en" : "ja";
     return { ...initialProps, lang };
   }
 
-  render() {
+  override render() {
     return (
       <Html lang={this.props.lang}>
         <Head />
