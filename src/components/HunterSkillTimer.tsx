@@ -1,4 +1,4 @@
-import { hunterData } from "lib/hunterData";
+import { getHunter } from "lib/hunterData";
 import { OneThirdColumn } from "components/OneThirdColumn";
 import { HunterSkillTimerButton } from "components/HunterSkillTimerButton";
 import { DreamWitchSkillTimerButton } from "components/DreamWitchSkillTimerButton";
@@ -22,7 +22,7 @@ export const HunterSkillTimer = ({
   secondaryTimer,
   tertiaryTimer,
 }: Props) => {
-  const { primary, secondary, tertiary } = hunterData[hunterId].skills;
+  const { primary, secondary, tertiary } = getHunter(hunterId).skills;
   if (hunterId === dreamWitchId && secondary) {
     return (
       <div className={styles.double}>
