@@ -310,6 +310,7 @@ export const StartButton = ({
         );
       }
     }
+    return null;
   };
 
   return (
