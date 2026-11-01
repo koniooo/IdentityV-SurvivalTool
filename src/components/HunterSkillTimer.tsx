@@ -5,7 +5,7 @@ import { HunterSkillTimerButton } from "components/HunterSkillTimerButton";
 import { OneThirdColumn } from "components/OneThirdColumn";
 import { getHunter } from "lib/hunterData";
 
-export const dreamWitchId = 10;
+const dreamWitchId = 10;
 
 type Props = {
   language: "ja" | "en";
