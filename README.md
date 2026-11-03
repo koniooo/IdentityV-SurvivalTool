@@ -1,5 +1,8 @@
 # 第五人格サバイバルツール
 
+[![CI](https://github.com/koniooo/IdentityV-SurvivalTool/actions/workflows/ci.yml/badge.svg)](https://github.com/koniooo/IdentityV-SurvivalTool/actions/workflows/ci.yml)
+[![Deploy to GitHub Pages](https://github.com/koniooo/IdentityV-SurvivalTool/actions/workflows/deploy.yml/badge.svg)](https://github.com/koniooo/IdentityV-SurvivalTool/actions/workflows/deploy.yml)
+
 Identity V（第五人格）の対戦中に使う、サバイバー向けの非公式タイマー・情報管理ツールです。ハンターのスキルや特質のクールタイム、対戦経過時間、人格の選択状況を画面上で管理できます。
 
 **デモ:** [日本語版](https://koniooo.github.io/IdentityV-SurvivalTool/) / [English](https://koniooo.github.io/IdentityV-SurvivalTool/en)
